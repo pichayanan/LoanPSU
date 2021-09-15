@@ -8,12 +8,32 @@
 }
 
 .footer {
-    background-color: white;
+    /*    background-color: white;
     text-align: center;
-    padding: 12px;
+    padding: 12px;*/
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
 }
 
-#main {
+@media (max-width: 1024px) {
+    .footer {
+        width: 80%;
+    }
+}
+
+@media (max-width: 450px) {
+    .footer {
+        width: 100%;
+    }
+
+    .setMargin {
+        padding: 0 20px;
+    }
+}
+
+/*#main {
     transition: margin-left 0.5s;
     height: 88vh;
     margin: 0;
@@ -25,4 +45,4 @@
     #main {
         height: 76vh;
     }
-}
+}*/
