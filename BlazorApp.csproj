@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="JsonFile\**" />
+    <Compile Remove="Pages\Admin\**" />
+    <Content Remove="JsonFile\**" />
+    <Content Remove="Pages\Admin\**" />
+    <EmbeddedResource Remove="JsonFile\**" />
+    <EmbeddedResource Remove="Pages\Admin\**" />
+    <None Remove="JsonFile\**" />
+    <None Remove="Pages\Admin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Blazored.SessionStorage" Version="2.1.0" />
     <PackageReference Include="BlazorInputFile" Version="0.2.0" />
     <PackageReference Include="bootstrap-toggle" Version="2.2.2" />
@@ -13,8 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="JsonFile\" />
-    <Folder Include="Pages\Admin\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\files\" />
     <Folder Include="wwwroot\Temp\" />

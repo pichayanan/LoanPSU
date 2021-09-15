@@ -14,8 +14,8 @@ namespace BlazorApp.Pages
         UploadModel ModelUpload;
         List<UploadModel> resultInfoList;
         UploadModel SelectListUpload;
-        [Inject] Blazored.SessionStorage.ISessionStorageService sessionStorage { get; set; }
-        [Inject] NavigationManager NavigationManager { get; set; }
+/*        [Inject] Blazored.SessionStorage.ISessionStorageService sessionStorage { get; set; }
+        [Inject] NavigationManager NavigationManager { get; set; }*/
 
         protected override void OnInitialized()
         {
@@ -81,7 +81,6 @@ namespace BlazorApp.Pages
         {
             if (val != null) {
             await sessionStorage.SetItemAsync(key, val);
-            Console.WriteLine("result");
             }
         }
 

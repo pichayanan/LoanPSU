@@ -1,14 +1,9 @@
 ﻿@page "/fileinput"
 
-@using System.IO
 @using Microsoft.AspNetCore.Hosting
-@*@using BlazorApp.Models*@
 @using BlazorApp.Data
 
 @inject IWebHostEnvironment env
-@inject IJSRuntime JsRuntime
-@*@inject Blazored.SessionStorage.ISessionStorageService sessionStorage*@
-@*@inject NavigationManager NavigationManager*@
 
 <div class="modal-content">
     <div class="modal-header">
@@ -40,7 +35,6 @@
 </div>
 
 @code {
-    @*ApplyLoanModel ModelApplyLoan;*@
     IReadOnlyList<IBrowserFile> selectedFiles;
     [Parameter]
     public EventCallback<DTEventArgs> SetChildData { get; set; }
@@ -60,79 +54,87 @@
     {
         //ModelApplyLoan = new ApplyLoanModel();
         //ModelApplyLoan.ImgUrl = new List<ApplyLoanModel.FileData>();
-        foreach (var file in selectedFiles)
+        if (selectedFiles != null)
         {
-            try
+            foreach (var file in selectedFiles)
             {
-                if (file.Size <= maxFileSize)
+                try
                 {
-                    var url = await SaveFile(file);
+                    if (file.Size <= maxFileSize)
+                    {
+                        var url = await SaveFile(file);
 
-                    AddData(file.Name, url);
+                        AddData(file.Name, url);
 
-                    //ApplyLoanModel.FileData tmp = new ApplyLoanModel.FileData();
-                    //tmp.Name = file.Name;
-                    //tmp.NewName = url;
-                    //ModelApplyLoan.ImgUrl.Add(tmp);
+                        //ApplyLoanModel.FileData tmp = new ApplyLoanModel.FileData();
+                        //tmp.Name = file.Name;
+                        //tmp.NewName = url;
+                        //ModelApplyLoan.ImgUrl.Add(tmp);
 
-                    //ModelApplyLoan.ImgUrl.Add(new ApplyLoanModel.FileData() { Name = file.Name, NewName = url });
-                    //foreach (var item in ModelApplyLoan.ImgUrl)
-                    //{
-                    //    Console.WriteLine(item);
-                    //    Console.WriteLine(item.Name);
-                    //    Console.WriteLine(item.NewName);
-                    //}
-                    //var name = await sessionStorage.GetItemAsync<string>("name");
-                    //await sessionStorage.SetItemAsync("name", ModelApplyLoan.ImgUrl);
+                        //ModelApplyLoan.ImgUrl.Add(new ApplyLoanModel.FileData() { Name = file.Name, NewName = url });
+                        //foreach (var item in ModelApplyLoan.ImgUrl)
+                        //{
+                        //    Console.WriteLine(item);
+                        //    Console.WriteLine(item.Name);
+                        //    Console.WriteLine(item.NewName);
+                        //}
+                        //var name = await sessionStorage.GetItemAsync<string>("name");
+                        //await sessionStorage.SetItemAsync("name", ModelApplyLoan.ImgUrl);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
-        Message = $"{selectedFiles.Count} file(s) uploaded on server";
-        @*        testModelData test_22 = new testModelData() { LoanTypeID = 1, Guarantor = "new" };
-            var test2 = $"/uploaddoc/{test_22}";
-            NavigationManager.NavigateTo(test2);*@
-
+            Message = $"{selectedFiles.Count} file(s) uploaded on server";
+            @*        testModelData test_22 = new testModelData() { LoanTypeID = 1, Guarantor = "new" };
+                var test2 = $"/uploaddoc/{test_22}";
+                NavigationManager.NavigateTo(test2);*@
+        selectedFiles = null;
         this.StateHasChanged();
     }
-
-    public void AddData(string name, string url)
+    else
     {
-        DTEventArgs arg = new DTEventArgs();
-        arg.Params.Add(name);
-        arg.Params.Add(url);
-        SetChildData.InvokeAsync(arg);
+        string alert = "กรูณาเลือกไฟล์";
+        await JS.InvokeVoidAsync("displayTickerAlert", alert);
     }
+}
 
-    private async Task<string> SaveFile(IBrowserFile file, string guid = null)
+public void AddData(string name, string url)
+{
+    DTEventArgs arg = new DTEventArgs();
+    arg.Params.Add(name);
+    arg.Params.Add(url);
+    SetChildData.InvokeAsync(arg);
+}
+
+private async Task<string> SaveFile(IBrowserFile file, string guid = null)
+{
+    var dirToSave = Path.Combine(env.WebRootPath, TEMP_DIR);
+    var di = new DirectoryInfo(dirToSave);
+    if (!di.Exists)
     {
-        var dirToSave = Path.Combine(env.WebRootPath, TEMP_DIR);
-        var di = new DirectoryInfo(dirToSave);
-        if (!di.Exists)
+        di.Create();
+    }
+    //var indexOfDot = file.Name.LastIndexOf(".");
+    //var fileName = Guid.NewGuid().ToString() + file.Name.Substring(indexOfDot, file.Name.Length - indexOfDot);
+
+    //var fileName = Guid.NewGuid().ToString() + GetFileExtension(file.Name);
+    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
+
+    var filePath = Path.Combine(dirToSave, fileName);
+
+    using (var stream = file.OpenReadStream(maxFileSize))
+    {
+        using (var mstream = new MemoryStream())
         {
-            di.Create();
-        }
-        //var indexOfDot = file.Name.LastIndexOf(".");
-        //var fileName = Guid.NewGuid().ToString() + file.Name.Substring(indexOfDot, file.Name.Length - indexOfDot);
-
-        //var fileName = Guid.NewGuid().ToString() + GetFileExtension(file.Name);
-        var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
-
-        var filePath = Path.Combine(dirToSave, fileName);
-
-        using (var stream = file.OpenReadStream(maxFileSize))
-        {
-            using (var mstream = new MemoryStream())
+            using (Stream streamToWriteTo = File.Open(filePath, FileMode.Create))
             {
-                using (Stream streamToWriteTo = File.Open(filePath, FileMode.Create))
-                {
-                    await stream.CopyToAsync(streamToWriteTo);
-                }
+                await stream.CopyToAsync(streamToWriteTo);
             }
         }
-        return filePath;
     }
+    return filePath;
+}
 }

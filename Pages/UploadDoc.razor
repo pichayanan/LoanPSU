@@ -52,7 +52,8 @@
                 <button type="button"
                         class="btn secondary-bg px-4"
                         data-bs-toggle="modal"
-                        data-bs-target="#upload">
+                        data-bs-target="#upload"
+                        @onclick="myFunction">
                     เพิ่มเอกสาร
                 </button>
             </div>
@@ -125,6 +126,11 @@
 </body>
 
 @code {
+    public async Task myFunction()
+    {
+        await JS.InvokeVoidAsync("myFunction");
+    }
+
 
     //protected override void OnInitialized()
     @*    protected async override Task OnInitializedAsync()

@@ -1,12 +1,5 @@
 ﻿@page "/user/checkloan"
 
-@using System;
-@using System.IO;
-@using System.Text.Json;
-@using Newtonsoft.Json;
-
-@inject IJSRuntime JS
-
 <div class="container mt-5">
     <div class="h3">สถานะการกู้ยืมปัจจุบัน</div>
     <div class="owl-carousel owl-theme pt-2">
@@ -15,7 +8,7 @@
                 <div class="card-body">
                     <div class="card-title h5" style="color:blue">ทำรายการกู้ยืมไปแล้ว</div>
                     <p class="h1" style="color:blue">฿12000</p>
-                    <div class="text-end"style="color:blue" >
+                    <div class="text-end" style="color:blue">
                         <div>ผ่อนชำระรวม 2000 บาทต่อเดือน</div>
                         <div>เงินเดือนหลังหักชำระเหลือ 10000 ยังกู้ได้อีกนะ</div>
                     </div>
@@ -99,6 +92,14 @@
                                     <div class="col">@MaxTotal.Nots</div>
                                 </div>
 
+                                <div class="row mt-3 mx-1" style="">
+                                    <div class="col d-grid gap-2">
+                                        <button type="button" class="btn btn-outline-primary">รายละเอียด</button>
+                                    </div>
+                                    <div class="col d-grid gap-2">
+                                        <button type="button" class="btn btn-primary" @onclick="@(e => ApplyLoan(itam, MaxTotal))">ยื่นกู้</button>
+                                    </div>
+                                </div>
                                 if (itam.MaxTotal.Count != i + 1)
                                 {
                                     <hr />
@@ -106,18 +107,10 @@
                             }
                         }
 
-                        <div class="row mt-3 mx-1" style="">
-                            <div class="col d-grid gap-2">
-                                <button type="button" class="btn btn-outline-primary">รายละเอียด</button>
-                            </div>
-                            <div class="col d-grid gap-2">
-                                <button type="button" class="btn btn-primary">ยื่นกู้</button>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
-
         }
     </div>
 </div>
@@ -142,5 +135,12 @@
         listLoan = new List<LoanInfoModel>();
         string jsonString = File.ReadAllText(jsonLoanData);
         listLoan = JsonConvert.DeserializeObject<List<LoanInfoModel>>(jsonString);
+    }
+
+    private async Task ApplyLoan(LoanInfoModel landData, LoanInfoModel.MaxTotalModel loanDetail)
+    {
+        await sessionStorage.SetItemAsync("loanTitle", landData);
+        await sessionStorage.SetItemAsync("loanDetail", loanDetail);
+        NavigationManager.NavigateTo("/applyloan");
     }
 }

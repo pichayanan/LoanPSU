@@ -8,7 +8,15 @@
 @using Microsoft.JSInterop
 @using BlazorApp
 @using BlazorApp.Shared
+
+
+@*Add เพิ่ม *@
 @using Pages
 @using Pages.User
 @using BlazorApp.Models
+@using System.IO;
+@using Newtonsoft.Json;
 
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
