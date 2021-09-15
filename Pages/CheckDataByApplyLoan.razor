@@ -7,124 +7,126 @@
 
 <div class="container my-4">
     <!-- mobile hidden <ยังไม่ได้ทำ> -->
-    <div class="row justify-content-md-center pt-5">
-        <div class="col text-end mx-2">
-            <button type="button" class="btn bg-light">1</button>
+    <div class="card bg-white px-4 pb-5" style="margin-top: 60px;border-radius:10px">
+        <div class="row justify-content-md-center pt-5">
+            <div class="col text-end mx-2">
+                <button type="button" class="btn bg-light">1</button>
+            </div>
+            <div class="col mx-2">
+                <button type="button" class="btn primary-bg">2</button>
+            </div>
         </div>
-        <div class="col mx-2">
-            <button type="button" class="btn primary-bg">2</button>
+        
+            <div class="card secondary-bg mt-4 " style="border-radius: 10px; color: #2788DE">
+                <div class="card-body py-1 px-2 pt-1">
+                    <div class="card-title h3 pl-3">ผู้กู้</div>
+                </div>
+            </div>
+            <div class="mt-3 ms-4 mb-2">
+                <div class="row pt-1">
+                    <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
+                    <div class="col">ประเภทบุคลากร: </div>
+                </div>
+                <div class="row pt-1">
+                    <div class="col-xs-12 col-lg-6">ตำแหน่งงาน: </div>
+                    <div class="col">สังกัดส่วนงาน: </div>
+                </div>
+                <div class="row pt-1">
+                    <div class="col-xs-12 col-lg-6">วันที่เริ่มทำงาน: </div>
+                    <div class="col">สถานภาพ: </div>
+                </div>
+                <div class="row pt-1">
+                    <div class="col-xs-12 col-lg-6">มือถือ: </div>
+                    <div class="col">โทรศัพท์: </div>
+                </div>
+                <div class="row pt-1">
+                    <div class="col-xs-12 col-lg-6">เลขบัญชีในการโอนเงิน: </div>
+                    <div class="col">เงินเดือน: </div>
+                </div>
+            </div>
+        
+        
+            <div class="card secondary-bg mt-2 " style="border-radius: 10px; color: #2788DE">
+                <div class="card-body py-1 px-2 pt-1">
+                    <div class="card-title h3">คู่สมรสของผู้กู้</div>
+                </div>
+            </div>
+            <div class="mt-3 ms-4 mb-2">
+                <div class="row pt-1">
+                    <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
+                    <div class="col">มือถือ: </div>
+                </div>
+            </div>
+        
+        
+            <div class="card secondary-bg mt-4 " style="border-radius: 10px; color: #2788DE">
+                <div class="card-body py-1 px-2 pt-1">
+                    <div class="card-title h3">ผู้ค้ำ</div>
+                </div>
+            </div>
+            <div class="mt-3 ms-4 mb-2">
+                <div class="row pt-1">
+                    <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
+                    <div class="col">มือถือ: </div>
+                </div>
+            </div>
+        
+        
+            <div class="card secondary-bg mt-4 " style="border-radius: 10px; color: #2788DE">
+                <div class="card-body py-1 px-2 pt-1">
+                    <div class="card-title h3">ทายาท/บุตรบุญธรรมของผู้กู้</div>
+                </div>
+            </div>
+            <div class="mt-3 ms-4 mb-2">
+                <div class="row pt-1">
+                    <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
+                    <div class="col">มือถือ: </div>
+                </div>
+            </div>
+        
+        
+            <div class="card secondary-bg mt-4 " style="border-radius: 10px; color: #2788DE">
+                <div class="card-body py-1 px-2 pt-1">
+                    <div class="card-title h3">รายละเอียดการกู้เงิน</div>
+                </div>
+            </div>
+            <div class="mt-3 ms-4 pt-1">
+                <div>ประเภทการกู้: </div>
+                <br />
+                <div>จำนวนเงินที่ต้องการกู้: </div>
+                <br />
+                <div>ดอกเบี้ย: </div>
+                <br />
+                <div>ผ่อนชำระจำนวน: ... เดือน</div>
+                <br />
+                <div>ผ่อนชำระเดือนละ: ...  บาท</div>
+                <br />
+                <div>เอกสารที่ต้องแนบ: ... ภายใน 30 วัน หลังจากได้รับเงิน</div>
+                <br />
+            </div>
+       
+        <div class="mt-4  row">
+            <div class="col-6 text-end">
+                <button type="button"
+                        class="btn primary-bg"
+                        style="color:white;width:200px"
+                        data-bs-toggle="modal"
+                        data-bs-target="#backPage">
+                    กลับ
+                </button>
+            </div>
+            <div class="col-6">
+                <button type="button"
+                        class="btn primary-bg"
+                        style="color: white; width: 200px"
+                        data-bs-toggle="modal"
+                        data-bs-target="#nextPage">
+                    ยืนยันการส่งคำขอกู้
+                </button>
+            </div>
         </div>
     </div>
-    <div class="card bg-light mt-4  ">
-        <div class="card primary-bg " style="color:white">
-            <div class="card-body py-1 px-2 pt-1">
-                <div class="card-title h3">ผู้กู้</div>
-            </div>
-        </div>
-        <div class="mt-3 ms-4 mb-2">
-            <div class="row pt-1">
-                <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
-                <div class="col">ประเภทบุคลากร: </div>
-            </div>
-            <div class="row pt-1">
-                <div class="col-xs-12 col-lg-6">ตำแหน่งงาน: </div>
-                <div class="col">สังกัดส่วนงาน: </div>
-            </div>
-            <div class="row pt-1">
-                <div class="col-xs-12 col-lg-6">วันที่เริ่มทำงาน: </div>
-                <div class="col">สถานภาพ: </div>
-            </div>
-            <div class="row pt-1">
-                <div class="col-xs-12 col-lg-6">มือถือ: </div>
-                <div class="col">โทรศัพท์: </div>
-            </div>
-            <div class="row pt-1">
-                <div class="col-xs-12 col-lg-6">เลขบัญชีในการโอนเงิน: </div>
-                <div class="col">เงินเดือน: </div>
-            </div>
-        </div>
-    </div>
-    <div class="card bg-light mt-4  ">
-        <div class="card  primary-bg" style="color:white">
-            <div class="card-body py-1 px-2 pt-1">
-                <div class="card-title h3">คู่สมรสของผู้กู้</div>
-            </div>
-        </div>
-        <div class="mt-3 ms-4 mb-2">
-            <div class="row pt-1">
-                <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
-                <div class="col">มือถือ: </div>
-            </div>
-        </div>
-    </div>
-    <div class="card bg-light mt-4  ">
-        <div class="card  primary-bg" style="color:white">
-            <div class="card-body py-1 px-2 pt-1">
-                <div class="card-title h3">ผู้ค้ำ</div>
-            </div>
-        </div>
-        <div class="mt-3 ms-4 mb-2">
-            <div class="row pt-1">
-                <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
-                <div class="col">มือถือ: </div>
-            </div>
-        </div>
-    </div>
-    <div class="card bg-light mt-4  ">
-        <div class="card primary-bg" style="color:white">
-            <div class="card-body py-1 px-2 pt-1">
-                <div class="card-title h3">ทายาท/บุตรบุญธรรมของผู้กู้</div>
-            </div>
-        </div>
-        <div class="mt-3 ms-4 mb-2">
-            <div class="row pt-1">
-                <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
-                <div class="col">มือถือ: </div>
-            </div>
-        </div>
-    </div>
-    <div class="card bg-light mt-4  ">
-        <div class="card primary-bg" style="color:white">
-            <div class="card-body py-1 px-2 pt-1">
-                <div class="card-title h3">รายละเอียดการกู้เงิน</div>
-            </div>
-        </div>
-        <div class="mt-3 ms-4 pt-1">
-            <div>ประเภทการกู้: </div>
-            <br />
-            <div>จำนวนเงินที่ต้องการกู้: </div>
-            <br />
-            <div>ดอกเบี้ย: </div>
-            <br />
-            <div>ผ่อนชำระจำนวน: ... เดือน</div>
-            <br />
-            <div>ผ่อนชำระเดือนละ: ...  บาท</div>
-            <br />
-            <div>เอกสารที่ต้องแนบ: ... ภายใน 30 วัน หลังจากได้รับเงิน</div>
-            <br />
-        </div>
-        </div>
-    <div class="mt-4  row">
-        <div class="col-6 text-end">
-            <button type="button"
-                    class="btn primary-bg"
-                    style="color:white;width:200px"
-                    data-bs-toggle="modal"
-                    data-bs-target="#backPage">
-                กลับ
-            </button>
-        </div>
-        <div class="col-6">
-            <button type="button"
-                    class="btn primary-bg"
-                    style="color: white; width: 200px"
-                    data-bs-toggle="modal"
-                    data-bs-target="#nextPage">
-                ยืนยันการส่งคำขอกู้
-            </button>
-        </div>
-    </div>
-    </div>
+</div>
 
     @* model Back page *@
     <div class="modal fade" id="backPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
