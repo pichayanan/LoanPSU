@@ -1,0 +1,23 @@
+﻿.primary-bg {
+    background-color: #003c71;
+    color: white;
+}
+
+.secondary-bg {
+    background-color: #dbe8ee;
+    color: #003c71;
+}
+
+.error-color {
+    background-color: #E45E5E;
+    color: white;
+}
+
+.primary-bg-drop {
+    background-color: #EDF1F6;
+    color: #2788DE;
+}
+
+.primary-color {
+    color: #003c71;
+}

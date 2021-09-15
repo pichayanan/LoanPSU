@@ -1,0 +1,18 @@
+﻿@page "/applyloansuccess"
+@inject NavigationManager NavigationManager
+
+<div class="fixed-center">
+    <img src="https://image.makewebeasy.net/makeweb/0/6Nt5hg8FW/GraphicPictures/Logo_PSU_EH_01.png" class="img-thumbnail radius">
+    <div class="mt-3 primary-color">
+        <div class="h5">ยื่นคำขอสำเร็จ</div>
+        <div>โปรดรอผลการตรวจสอบจากเจ้าหน้าที่</div>
+    </div>
+    <div class="mt-4">
+        <button type="button" @onclick="backHome" class="btn primary-bg">กลับหน้าหลัก</button>
+    </div>
+</div>
+
+@code { public void backHome()
+            {
+                NavigationManager.NavigateTo("/");
+            } }

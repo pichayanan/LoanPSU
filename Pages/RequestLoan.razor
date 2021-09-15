@@ -1,0 +1,71 @@
+﻿
+@page "/RequestLoan"
+@inject NavigationManager NavigationManager
+
+<div class="card primary-bg" style="border-radius:0px">
+    <a style="font-size:x-large;color:white;padding-left:15px">คำขออื่นๆ</a>
+
+</div>
+
+<div class="card bg-light pa-3 mt-3 mx-2" style="height:300px;border-radius:0px">
+    <div class="row pt-3">
+
+        <div class="card col-10 primary-bg-drop pt-3 mt-3"  @onclick="ChangeGuarantor" style="height:60px;padding-left:20px;border-radius:0px;margin-left:40px">
+            <div class="col-8 ">
+                <a style="font-size:larger">คำขอเปลี่ยนผู้ค้ำ</a>
+
+            </div>
+
+
+        </div>
+        <div class="col-1 card primary-bg mt-3" @onclick="ChangeGuarantor" style="height:60px;margin-left:30px;width:60px">
+
+        </div>
+
+
+    </div>
+    <div class="row pt-3">
+
+        <div class="card col-10 primary-bg-drop pt-3 mt-2" style="height:60px;padding-left:20px;border-radius:0px;margin-left:40px">
+            <div class="col-8">
+                <a style="font-size:larger">คำขอกู้ประเภทกู้ทบยอด</a>
+
+            </div>
+
+
+        </div>
+        <div class="col-1 card primary-bg mt-2" @onclick="AnotherRequest" style="height:60px;margin-left:30px;width:60px">
+
+        </div>
+
+
+    </div>
+    <div class="row pt-3">
+
+        <div class="card col-10 primary-bg-drop pt-3 mt-2" style="height:60px;padding-left:20px;border-radius:0px;margin-left:40px">
+            <div class="col-8">
+                <a style="font-size:larger">คำขออื่นๆ</a>
+
+            </div>
+
+
+        </div>
+        <div class="col-1 card primary-bg mt-2" style="height:60px;margin-left:30px;width:60px">
+
+        </div>
+
+
+    </div>
+</div>
+
+@code {
+    public void ChangeGuarantor()
+    {
+        NavigationManager.NavigateTo("/ChangeGuarantor");
+    }
+    public void AnotherRequest()
+    {
+        NavigationManager.NavigateTo("/User/AnotherRequest");
+    }
+
+}

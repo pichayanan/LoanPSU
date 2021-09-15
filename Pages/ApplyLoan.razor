@@ -1,0 +1,114 @@
+﻿@page "/applyloan"
+
+@using BlazorApp.Models
+
+@inject IJSRuntime JS
+@inject NavigationManager NavigationManager
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+
+<div class="container my-4">
+    <!-- mobile hidden <ยังไม่ได้ทำ> -->
+    <div class="row justify-content-md-center pt-5" >
+        <div class="col text-end mx-2">
+            <button type="button" class="btn primary-bg">1</button>
+        </div>
+        <div class="col mx-2">
+            <button type="button" class="btn bg-light">2</button>
+        </div>
+    </div>
+
+    <div class="row my-3 pt-4">
+        <div class="col-12 col-md-6 mx-1">
+            <EditForm Model="ModelApplyLoan" OnValidSubmit="@Submit">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <div class="mb-3">
+                    <label class="form-label font-weight-bold">ประเภทการกู้</label>
+                    <InputSelect @bind-Value="ModelApplyLoan.LoanTypeID" class="form-select form-select-sm">
+                        @foreach (var item in LoanTypeList)
+                        {
+                            <option value="@item.TypeId">@item.Title</option>
+                        }
+                    </InputSelect>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label font-weight-bold">จำนวนเงินที่ต้องการกู้</label>
+                    <InputNumber @bind-Value="ModelApplyLoan.Money" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label font-weight-bold">จำนวนงวด</label>
+                    <InputNumber @bind-Value="ModelApplyLoan.Period" class="form-control" aria-describedby="periodHelp" />
+                    <div id="periodHelp" class="form-text">
+                        สามารถแก้ไขได้ แต่ต้องไม่เกิดกำหนดระยะเวลา ของงวดที่กำหนดไว้
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="guarantor" class="form-label font-weight-bold">ชื่อผู้ค้ำ</label>
+                    <div class="input-group">
+                        <InputText @bind-Value="ModelApplyLoan.Guarantor" class="form-control" />
+                        <button type="button"
+                                class="btn btn-outline-secondary"
+                                onclick="@findGuarantor()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <ValidationMessage For="()=>ModelApplyLoan.Guarantor" />
+                    <div id="guarantorList"></div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn primary-bg" style="color:white" type="submit">ดำเนินการต่อ</button>
+                </div>
+            </EditForm>
+
+        </div>
+        <div class="col bg-light mx-1">
+            <div class="text-h3 my-4 py-2 px-2 text-center"
+                 style="background-color: #DBE8EE;color:black">
+                การกู้เพื่อการศึกษาของตนเอง
+            </div>
+            <div class="mt-4 px-4">
+                <div class="row py-1">
+                    <div class="col">วงเงินสูงสุด</div>
+                    <div class="col text-end">50000 บาท</div>
+                </div>
+                <div class="row py-1">
+                    <div class="col">อัตราดอกเบี้ย</div>
+                    <div class="col text-end">0.25 %</div>
+                </div>
+                <div class="row py-1">
+                    <div class="col">ผ่อนชำระสูงสุด</div>
+                    <div class="col text-end">12 เดือน</div>
+                </div>
+                <div class="row py-1">
+                    <div class="col">ผ่อนชำระเดือนละ</div>
+                    <div class="col text-end">1000 บาท</div>
+                </div>
+                <div class="text-center mt-4 py-1">
+                    <button type="button" class="btn primary-bg px-5">รายละเอียด</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Random r = new();
+    private string stockSymbol;
+    private decimal price;
+
+    async Task Submit()
+    {
+        //stockSymbol = ModelApplyLoan.Guarantor;
+        //price = r.Next(1, 101);
+        //await JS.InvokeVoidAsync("displayTickerAlert1", stockSymbol, price);
+
+        await sessionStorage.SetItemAsync("FromLoan_1", ModelApplyLoan);
+        NavigationManager.NavigateTo("/uploaddoc");
+    }
+
+    private async Task findGuarantor()
+    {
+        await JS.InvokeVoidAsync("findGuarantorJS", ModelApplyLoan.Guarantor);
+    }
+
+}

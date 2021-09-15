@@ -1,0 +1,92 @@
+﻿@page "/Guarantor"
+@inject NavigationManager NavigationManager
+
+<div>
+    <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
+        <a>สัญญาที่คงอยู่</a>
+    </div>
+</div>
+<table class="table table-hover " style="">
+    <thead>
+        <tr class="table-light justify-content-center " style="height:40px;text-align:center">
+            <th>เลขที่สัญญา</th>
+            <th>ชื่อผู้กู้</th>
+            <th>ยอดเงินกู้คงเหลือ</th>
+            <th>กำหนดการชำระเงิน</th>
+            <th>สถานะ</th>
+            <th>หมายเหตุ</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <tr @onclick="SeeDetail" style="height:50px;">
+            <td>xxxxxxxx</td>
+            <td>xxx</td>
+            <td>xxxxx</td>
+            <td>xxxx</td>
+            <td>xxxx</td>
+            <td>
+                xxxxxxx
+            </td>
+        </tr>
+        <tr class="table-light">
+            <td>xxxxxxxx</td>
+            <td>xxx</td>
+            <td>xxxxx</td>
+            <td>xxxx</td>
+            <td>xxxx</td>
+            <td>
+                xxxxxxx
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>
+<div class="pt-5">
+    <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
+        <a>สัญญาที่สิ้นสุดลงแล้ว</a>
+    </div>
+</div>
+<table class="table table-hover " style="">
+    <thead>
+        <tr class="table-light justify-content-center " style="height:40px;text-align:center">
+            <th>เลขที่สัญญา</th>
+            <th>ชื่อผู้กู้</th>
+            <th>ยอดเงินกู้คงเหลือ</th>
+            <th>กำหนดการชำระเงิน</th>
+            <th>สถานะ</th>
+            <th>หมายเหตุ</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <tr style="height:50px;">
+            <td>xxxxxxxx</td>
+            <td>xxx</td>
+            <td>xxxxx</td>
+            <td>xxxx</td>
+            <td>xxxx</td>
+            <td>
+                xxxxxxx
+            </td>
+        </tr>
+        <tr class="table-light">
+            <td>xxxxxxxx</td>
+            <td>xxx</td>
+            <td>xxxxx</td>
+            <td>xxxx</td>
+            <td>xxxx</td>
+            <td>
+                xxxxxxx
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>
+@code {
+    public void SeeDetail()
+    {
+        NavigationManager.NavigateTo("/GuarantDetail");
+    }
+
+}

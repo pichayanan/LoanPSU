@@ -1,0 +1,85 @@
+﻿@page  "/GuarantDetail"
+@inject NavigationManager NavigationManager
+
+<div class="col-12 col-md-12 pb-3 bg-light" style="border-top:thin">
+    <div class="row col-12 pt-3">
+        <div class="col-9 col-md-9" style="margin-left:30px">
+            <a style="font-size: x-large;font-weight: bold;color: #2788DE
+">ชื่อผู้กู้</a>
+            <br />
+            <br />
+            <a style="font-weight: bold;color: #2788DE">ยอดเงินกู้ทั้งหมด   </a>&nbsp;&nbsp;&nbsp; <a style="font-weight: bold;
+        color: #2788DE"> ยอดเงินกู้คงเหลือ</a>
+            <br />
+            <br />
+            <a style="        font-weight: bold;
+        color: #2788DE
+">สถานะ  </a>&nbsp;&nbsp;&nbsp; <a style="        font-weight: bold;
+        color: #2788DE
+"> เลขที่สัญญา  </a>&nbsp;&nbsp;&nbsp; <a style="        font-weight: bold;
+        color: #2788DE
+"> ประเภทการกู้  </a>
+        </div>
+        <div class="col-2 col-md-2">
+
+             <div class="pt-4">
+                            <button class="primary-bg" onclick="" style="border-radius: 3px;color:white;width:200px;height:30px
+                ">
+                                เอกสารสัญญา
+                            </button>
+                        </div>
+                        <div class="pt-4">
+                        <button class="primary-bg" @onclick="home" style="border-radius: 3px;color:white;width:200px;height:30px
+                ">
+                            กลับหน้าหลัก
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <table class="table table-hover " style="">
+            <thead>
+                <tr class="table-light justify-content-center " style="height:60px;text-align:center">
+                    <th>วันที่</th>
+                    <th>งวดที่</th>
+                    <th>เงินต้น</th>
+                    <th>ดอกเบี้ย</th>
+                    <th>รวมชำระ</th>
+                    <th>สถานะ</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr>
+                    <td>12/02/64</td>
+                    <td>1</td>
+                    <td>10000</td>
+                    <td>208</td>
+                    <td>1041</td>
+                    <td>
+                        ชำระแล้ว
+                    </td>
+                </tr>
+                <tr class="table-light">
+                    <td>12/03064</td>
+                    <td>2</td>
+                    <td>8959</td>
+                    <td>208</td>
+                    <td>1041</td>
+                    <td>
+                        ชำระแล้ว
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        @code {
+            public void home()
+            {
+                NavigationManager.NavigateTo("/");
+            }
+
+
+        }
