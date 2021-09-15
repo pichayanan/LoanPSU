@@ -26,3 +26,9 @@ function myFunction() {
     file.files = emptyFile.files;
 }
 
+function checkboxSwitch() {
+    const cb = document.getElementById('checkbox');
+    console.log(cb.checked);
+    return cb.checked
+}
+

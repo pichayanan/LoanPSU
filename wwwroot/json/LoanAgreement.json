@@ -1,0 +1,81 @@
+[{
+        "LoanStatus": 0,
+        "NoLoan": 123,
+        "LoanAmout": 10000,
+        "DatePayment": "15/09/2021",
+        "TotalAmout": 1000,
+        "Note": ""
+    },
+    {
+        "LoanStatus": 1,
+        "NoLoan": 123,
+        "LoanAmout": 10000,
+        "DatePayment": "15/09/2021",
+        "TotalAmout": 1000,
+        "Note": ""
+    },
+    {
+        "LoanStatus": 2,
+        "NoLoan": 123,
+        "LoanAmout": 10000,
+        "DatePayment": "15/09/2021",
+        "TotalAmout": 1000,
+        "Note": ""
+    },
+    {
+        "LoanStatus": 3,
+        "NoLoan": 123,
+        "LoanAmout": 10000,
+        "DatePayment": "15/09/2021",
+        "TotalAmout": 1000,
+        "Note": ""
+    },
+    {
+        "LoanStatus": 4,
+        "NoLoan": 123,
+        "LoanAmout": 10000,
+        "DatePayment": "15/09/2021",
+        "TotalAmout": 1000,
+        "Note": ""
+    },
+    {
+        "LoanStatus": 5,
+        "NoLoan": 123,
+        "LoanAmout": 10000,
+        "DatePayment": "15/09/2021",
+        "TotalAmout": 1000,
+        "Note": ""
+    },
+    {
+        "LoanStatus": 5,
+        "NoLoan": 123,
+        "LoanAmout": 10000,
+        "DatePayment": "15/09/2021",
+        "TotalAmout": 1000,
+        "Note": ""
+    },
+    {
+        "LoanStatus": 5,
+        "NoLoan": 123,
+        "LoanAmout": 10000,
+        "DatePayment": "15/09/2021",
+        "TotalAmout": 1000,
+        "Note": ""
+    },
+    {
+        "LoanStatus": 5,
+        "NoLoan": 123,
+        "LoanAmout": 10000,
+        "DatePayment": "15/09/2021",
+        "TotalAmout": 1000,
+        "Note": ""
+    },
+    {
+        "LoanStatus": 5,
+        "NoLoan": 123,
+        "LoanAmout": 10000,
+        "DatePayment": "15/09/2021",
+        "TotalAmout": 1000,
+        "Note": ""
+    }
+]
