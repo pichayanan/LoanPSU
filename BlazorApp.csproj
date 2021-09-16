@@ -7,12 +7,16 @@
   <ItemGroup>
     <Compile Remove="JsonFile\**" />
     <Compile Remove="Pages\Admin\**" />
+    <Compile Remove="wwwroot\files\**" />
     <Content Remove="JsonFile\**" />
     <Content Remove="Pages\Admin\**" />
+    <Content Remove="wwwroot\files\**" />
     <EmbeddedResource Remove="JsonFile\**" />
     <EmbeddedResource Remove="Pages\Admin\**" />
+    <EmbeddedResource Remove="wwwroot\files\**" />
     <None Remove="JsonFile\**" />
     <None Remove="Pages\Admin\**" />
+    <None Remove="wwwroot\files\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\files\" />
     <Folder Include="wwwroot\Temp\" />
   </ItemGroup>
 
