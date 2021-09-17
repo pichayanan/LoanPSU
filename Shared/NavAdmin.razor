@@ -1,0 +1,63 @@
+﻿<div class="top-row pl-2 navbar navbar-light">
+    <a class="navbar-brand font-weight-bold " style="padding-left:7px" href="">ระบบสวัสดิการเงินกู้ <br> มหาวิทยาลัยสงขลานครินทร์</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu" aria-hidden="true">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-media-stop" aria-hidden="true"></span> ภาพรวม
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="UserResume">
+                <span class="oi oi-media-stop" aria-hidden="true"></span> ข้อมูลส่วนตัว
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="LoanAgreement">
+                <span class="oi oi-media-stop" aria-hidden="true"></span> สัญญาเงินกู้
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="Guarantor">
+                <span class="oi oi-media-stop" aria-hidden="true"></span> การค้ำประกัน
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="./User/CheckLoan">
+                <span class="oi oi-media-stop" aria-hidden="true"></span> ตรวจสอบสิทธ์การกู้
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="ApplyLoan">
+                <span class="oi oi-media-stop" aria-hidden="true"></span> ยื่นกู้
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="RequestLoan">
+                <span class="oi oi-media-stop" aria-hidden="true"></span> ยื่นคำขอ
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-media-stop" aria-hidden="true"></span> ออกจากระบบ
+            </NavLink>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
