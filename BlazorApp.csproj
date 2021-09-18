@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="JsonFile\" />
-    <Folder Include="Pages\Admin\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\files\" />
     <Folder Include="wwwroot\Temp\" />
