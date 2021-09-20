@@ -1,89 +1,124 @@
 ﻿@page "/Guarantor"
-@inject NavigationManager NavigationManager
 
-<div>
-    <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
-        <a>สัญญาที่คงอยู่</a>
-    </div>
+<div class="container mt-3">
+    @if (listAgreement.Count != 0)
+    {
+        <div>
+            <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
+                <a>สัญญาที่คงอยู่</a>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-light justify-content-center " style="height:40px;text-align:center">
+                        <th>เลขที่สัญญา</th>
+                        <th>สถานะ</th>
+                        <th>ประเภทการกู้</th>
+                        <th>ยอดเงินกู้</th>
+                        <th>ยอดเงินกู้คงเหลือ</th>
+                        <th>หมายเหตุ</th>
+                    </tr>
+                </thead>
+                @foreach (var agreement in listAgreement)
+                {
+                    @if (agreement.PlaymentStatus != 99)
+                    {
+                        @if (agreement.PlaymentStatus == 0)
+                        {
+                            titleStatus = "ปกติ";
+                        }
+                        if (agreement.PlaymentStatus == 1)
+                        {
+                            titleStatus = "ยังไม่ชำระเงิน";
+                        }
+                        @if (agreement.PlaymentStatus == 2)
+                        {
+                            titleStatus = "ยังไม่ชำระเงิน";
+                        }
+                        @if (agreement.PlaymentStatus == 3)
+                        {
+                            titleStatus = "พ้นกำหนด";
+                        }
+
+                        <tbody class="text-center">
+                            <tr @onclick="SeeDetail" style="height:50px;">
+                                <td>@agreement.NoLoan</td>
+                                <td>@titleStatus</td>
+                                <td>@agreement.LoanType</td>
+                                <td>@agreement.LoanAmout</td>
+                                <td>@agreement.TotalAmout</td>
+                                <td>@agreement.Note</td>
+                            </tr>
+
+                        </tbody>
+                    }
+                }
+            </table>
+        </div>
+
+
+        <div class="pt-5">
+            <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
+                <a>สัญญาที่สิ้นสุดลงแล้ว</a>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-light justify-content-center " style="height:40px;text-align:center">
+                        <th>เลขที่สัญญา</th>
+                        <th>สถานะ</th>
+                        <th>ประเภทการกู้</th>
+                        <th>ยอดเงินกู้</th>
+                        <th>ยอดเงินกู้คงเหลือ</th>
+                        <th>หมายเหตุ</th>
+                    </tr>
+                </thead>
+                @foreach (var agreement in listAgreement)
+                {
+                    @if (agreement.PlaymentStatus == 99)
+                    {
+                        titleStatus = "สิ้นสุดสัญญา";
+                        <tbody class="text-center">
+                            <tr style="height:50px;">
+                                <td>@agreement.NoLoan</td>
+                                <td>@titleStatus</td>
+                                <td>@agreement.LoanType</td>
+                                <td>@agreement.LoanAmout</td>
+                                <td>@agreement.TotalAmout</td>
+                                <td>@agreement.Note</td>
+                            </tr>
+                        </tbody>
+                    }
+                }
+            </table>
+        </div>
+    }
+    else
+    {
+        <div>
+
+            ไม่มีข้อมูล
+        </div>
+    }
+
+
 </div>
-<table class="table table-hover " style="">
-    <thead>
-        <tr class="table-light justify-content-center " style="height:40px;text-align:center">
-            <th>เลขที่สัญญา</th>
-            <th>ชื่อผู้กู้</th>
-            <th>ยอดเงินกู้คงเหลือ</th>
-            <th>กำหนดการชำระเงิน</th>
-            <th>สถานะ</th>
-            <th>หมายเหตุ</th>
-        </tr>
-    </thead>
-    <tbody class="text-center">
-        <tr @onclick="SeeDetail" style="height:50px;">
-            <td>xxxxxxxx</td>
-            <td>xxx</td>
-            <td>xxxxx</td>
-            <td>xxxx</td>
-            <td>xxxx</td>
-            <td>
-                xxxxxxx
-            </td>
-        </tr>
-        <tr class="table-light">
-            <td>xxxxxxxx</td>
-            <td>xxx</td>
-            <td>xxxxx</td>
-            <td>xxxx</td>
-            <td>xxxx</td>
-            <td>
-                xxxxxxx
-            </td>
-        </tr>
 
-    </tbody>
-
-</table>
-<div class="pt-5">
-    <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
-        <a>สัญญาที่สิ้นสุดลงแล้ว</a>
-    </div>
-</div>
-<table class="table table-hover " style="">
-    <thead>
-        <tr class="table-light justify-content-center " style="height:40px;text-align:center">
-            <th>เลขที่สัญญา</th>
-            <th>ชื่อผู้กู้</th>
-            <th>ยอดเงินกู้คงเหลือ</th>
-            <th>กำหนดการชำระเงิน</th>
-            <th>สถานะ</th>
-            <th>หมายเหตุ</th>
-        </tr>
-    </thead>
-    <tbody class="text-center">
-        <tr style="height:50px;">
-            <td>xxxxxxxx</td>
-            <td>xxx</td>
-            <td>xxxxx</td>
-            <td>xxxx</td>
-            <td>xxxx</td>
-            <td>
-                xxxxxxx
-            </td>
-        </tr>
-        <tr class="table-light">
-            <td>xxxxxxxx</td>
-            <td>xxx</td>
-            <td>xxxxx</td>
-            <td>xxxx</td>
-            <td>xxxx</td>
-            <td>
-                xxxxxxx
-            </td>
-        </tr>
-
-    </tbody>
-
-</table>
 @code {
+
+    List<LoanAgreementModel> listAgreement;
+    string jsonGuarantAgreement = "wwwroot/json/GuarantAgreement.json";
+    string titleStatus = "";
+
+    protected override void OnInitialized()
+    {
+        listAgreement = new List<LoanAgreementModel>();
+        string jsonString = File.ReadAllText(jsonGuarantAgreement);
+        listAgreement = JsonConvert.DeserializeObject<List<LoanAgreementModel>>(jsonString);
+    }
+
+
+
+
+
     public void SeeDetail()
     {
         NavigationManager.NavigateTo("/GuarantDetail");

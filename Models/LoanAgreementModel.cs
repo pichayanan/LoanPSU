@@ -15,5 +15,6 @@ namespace BlazorApp.Models
         public String DateSubmit { get; set; }
         public int TotalAmout { get; set; }
         public String Note { get; set; }
+        public int PlaymentStatus { get; set; }
     }
 }
