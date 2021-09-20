@@ -19,7 +19,7 @@ function Cardimgheader() {
     })
 }
 
-function myFunction() {
+function emptyFile() {
     var file = document.querySelector('input');
     var emptyFile = document.createElement('input');
     emptyFile.type = 'file';

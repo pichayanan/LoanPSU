@@ -1,0 +1,98 @@
+﻿@page "/FromUpload";
+
+<div>
+    @if (listModel.Count == 0)
+    {
+        <div>ยังไม่มีเอกสาร</div>
+    }
+    else
+    {
+        <div>ชื่อเอกสาร</div>
+
+        @for (var i = 0; i < listModel.Count; i++)
+        {
+            var item = listModel[i];
+
+            <div class="row justify-content-between my-2">
+                <div class="col-4">@item.Name</div>
+                <div class="col-4 text-end">
+                    <button type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#Confirm"
+                            class="btn error-color"
+                            @onclick="@(e => ConfirmFrom(item))">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+        }
+    }
+
+
+    @* modal Confirm *@
+    <div class="modal fade"
+         id="Confirm"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    ยื่นยันการลบเอกสารชื่อ @SelectListUpload.Name หรือไหม
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        ปิด
+                    </button>
+                    <button type="button"
+                            class="btn error-color"
+                            data-bs-dismiss="modal"
+                            @onclick="DeleteFile">
+                        ตกลง
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    UploadModel SelectListUpload;
+
+    protected override void OnInitialized()
+    {
+        SelectListUpload = new UploadModel();
+    }
+
+    [Parameter]
+    public List<UploadModel> listModel { get; set; }
+
+    public void ConfirmFrom(UploadModel listUpload)
+    {
+        SelectListUpload = new UploadModel();
+        SelectListUpload = listUpload;
+    }
+
+    public void DeleteFile()
+    {
+        if (SelectListUpload != null)
+        {
+            if (CheckFileExist(SelectListUpload.Url))
+            {
+                var myTodo = listModel.FirstOrDefault(x => x.Id == SelectListUpload.Id);
+                listModel.Remove(myTodo);
+                File.Delete(SelectListUpload.Url);
+            }
+        }
+
+    }
+
+    protected bool CheckFileExist(string URL)
+    {
+        bool RetFlag = false;
+        RetFlag = File.Exists(URL);
+        return RetFlag;
+    }
+}

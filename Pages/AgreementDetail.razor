@@ -1,28 +1,27 @@
 ﻿@page  "/AgreementDetail"
-@inject NavigationManager NavigationManager
 
 <div class="col-12 col-md-12 pb-3 bg-light" style="border-top:thin">
     <div class="row col-12 pt-3">
         <div class="col-9 col-md-9" style="margin-left:30px">
-            <a style="font-size: x-large;font-weight: bold;color: #2788DE
-">ชื่อผู้กู้</a>
+            <a style="font-size: x-large; font-weight: bold; color: #2788DE">
+            ชื่อผู้กู้
+            </a>
             <br />
             <br />
-            <a style="font-weight: bold;color: #2788DE">ยอดเงินกู้ทั้งหมด   </a>&nbsp;&nbsp;&nbsp; <a style="font-weight: bold;
-        color: #2788DE"> ยอดเงินกู้คงเหลือ</a>
+            <a style="font-weight: bold;color: #2788DE">ยอดเงินกู้ทั้งหมด</a>
+            &nbsp;&nbsp;&nbsp; 
+            <a style="font-weight: bold; color: #2788DE">ยอดเงินกู้คงเหลือ</a>
             <br />
             <br />
-            <a style="        font-weight: bold;
-        color: #2788DE"> สถานะ  </a>&nbsp;&nbsp;&nbsp; <a style="font-weight: bold;
-        color: #2788DE
-"> เลขที่สัญญา  </a>&nbsp;&nbsp;&nbsp; <a style="        font-weight: bold;
-        color: #2788DE
-"> ประเภทการกู้  </a>
+            <a style="font-weight: bold; color: #2788DE">สถานะ</a>
+            &nbsp;&nbsp;&nbsp;
+            <a style="font-weight: bold; color: #2788DE">เลขที่สัญญา</a>
+            &nbsp;&nbsp;&nbsp;
+            <a style="font-weight: bold; color: #2788DE">ประเภทการกู้</a>
         </div>
         <div class="col-2 col-md-2">
             <div class="pt-4">
-                <button class="primary-bg" onclick="" style="border-radius: 3px;color:white;width:200px;height:30px
-    ">
+                <button class="primary-bg" onclick="" style="border-radius: 3px; color:white; width:200px; height:30px">
                     เอกสารสัญญา
                 </button>
             </div>
@@ -34,7 +33,6 @@
 
         </div>
     </div>
-
 </div>
 <table class="table table-hover " style="border-top:1px solid ">
     <thead>
@@ -75,7 +73,8 @@
 @code {
     public void premise()
     {
-        NavigationManager.NavigateTo("/AgreementPremise");
-    }
+        @*NavigationManager.NavigateTo("/uploaddoc");*@
+    NavigationManager.NavigateTo("/AgreementPremise");
+}
 
 }

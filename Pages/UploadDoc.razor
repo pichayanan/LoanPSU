@@ -1,40 +1,8 @@
 ﻿@page "/uploaddoc"
-@using BlazorApp.Models
-
-@*@inject Blazored.SessionStorage.ISessionStorageService sessionStorage*@
-@*@inject IJSRuntime JS*@
 
 <body>
-    <div id="main">
-        <div class="container mt-3">
-            @if (resultInfoList != null)
-            {
-                if (resultInfoList.Count == 0)
-                {
-                    <div>ยังไม่มีเอกสาร</div>
-                }
-                else
-                {
-                    <div>ชื่อเอกสาร</div>
-                    @for (var i = 0; i < resultInfoList.Count; i++)
-                    {
-                        var item = resultInfoList[i];
-                        <div class="row justify-content-between my-2">
-                            <div class="col-4">@item.Name</div>
-                            <div class="col-4 text-end">
-                                <button type="button"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#Confirm"
-                                        class="btn error-color"
-                                        @onclick="@(e => ConfirmFrom(item))">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </div>
-                    }
-                }
-            }
-        </div>
+    <div class="container mt-3">
+        <FromUpload listModel="@resultInfoList" />
     </div>
 
     @*footer*@
@@ -53,7 +21,7 @@
                         class="btn secondary-bg"
                         data-bs-toggle="modal"
                         data-bs-target="#upload"
-                        @onclick="myFunction">
+                        @onclick="EmptyFile">
                     เพิ่มเอกสาร
                 </button>
             </div>
@@ -93,42 +61,12 @@
         </div>
     </div>
 
-    <!-- Modal Confirm -->
-    @if (SelectListUpload != null)
-    {
-        <div class="modal fade"
-             id="Confirm"
-             tabindex="-1"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        ยื่นยันการลบเอกสารชื่อ @SelectListUpload.Name หรือไหม
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button"
-                                class="btn btn-secondary"
-                                data-bs-dismiss="modal">
-                            ปิด
-                        </button>
-                        <button type="button"
-                                class="btn error-color"
-                                data-bs-dismiss="modal"
-                                @onclick="@(e => DeleteFile())">
-                            ตกลง
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
 </body>
 
 @code {
-    public async Task myFunction()
+    public async Task EmptyFile()
     {
-        await JS.InvokeVoidAsync("myFunction");
+        await JS.InvokeVoidAsync("emptyFile");
     }
 
 

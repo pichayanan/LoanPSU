@@ -1,7 +1,6 @@
 ﻿using BlazorApp.Data;
 using BlazorApp.Models;
 using Microsoft.AspNetCore.Components;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,10 +12,8 @@ namespace BlazorApp.Pages
     {
         UploadModel ModelUpload;
         List<UploadModel> resultInfoList;
-        UploadModel SelectListUpload;
-/*        [Inject] Blazored.SessionStorage.ISessionStorageService sessionStorage { get; set; }
-        [Inject] NavigationManager NavigationManager { get; set; }*/
-
+        /*[Inject] Blazored.SessionStorage.ISessionStorageService sessionStorage { get; set; }
+          [Inject] NavigationManager NavigationManager { get; set; }*/
         protected override void OnInitialized()
         {
             resultInfoList = new List<UploadModel>();
@@ -31,25 +28,6 @@ namespace BlazorApp.Pages
             resultInfoList.Add(ModelUpload);
         }
 
-        public void ConfirmFrom(UploadModel listUpload)
-        {
-            SelectListUpload = new UploadModel();
-            SelectListUpload = listUpload;
-        }
-
-        public void DeleteFile()
-        {
-            if (SelectListUpload != null)
-            {
-                if (CheckFileExist(SelectListUpload.Url))
-                {
-                    var myTodo = resultInfoList.FirstOrDefault(x => x.Id == SelectListUpload.Id);
-                    resultInfoList.Remove(myTodo);
-                    File.Delete(SelectListUpload.Url);
-                }
-            }
-        }
-
         protected bool CheckFileExist(string URL)
         {
             bool RetFlag = false;
@@ -62,6 +40,7 @@ namespace BlazorApp.Pages
             await SaveDataToStorage("FromLoan_2", resultInfoList);
             NavigationManager.NavigateTo("/CheckDataByApplyLoan");
         }
+
         public void BackPage()
         {
             if (resultInfoList.Count != 0)
@@ -77,6 +56,7 @@ namespace BlazorApp.Pages
             }
             NavigationManager.NavigateTo("/applyloan");
         }
+
         async Task SaveDataToStorage(string key, List<UploadModel> val = null)
         {
             if (val != null) {

@@ -1,1 +1,61 @@
 ﻿@page "/AgreementPremise"
+
+<div class="container mt-3">
+    <FromUpload listModel="@resultInfoList"/>
+</div>
+
+@*footer*@
+<div class="footer">
+    <div class="px-3 py-3 text-end">
+        <div class="row justify-content-center">
+            <div class="col-10 text-end">
+                <button type="button" class="btn btn-primary px-5 mx-2">บันทึก</button>
+                <button type="button"
+                        class="btn btn-primary px-5 mx-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#upload"
+                        @onclick="EmptyFile">
+                    อัพโหลดเพิ่ม
+                </button>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+</div>
+
+@* model Upload *@
+<div class="modal fade"
+     id="upload"
+     tabindex="-1"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <FileInput SetChildData="SetCurrentData" />
+    </div>
+</div>
+
+@code{
+    public async Task EmptyFile()
+    {
+        await JS.InvokeVoidAsync("emptyFile");
+    }
+
+    UploadModel ModelUpload;
+    public List<UploadModel> resultInfoList { get; set; }
+
+    protected override void OnInitialized()
+    {
+        resultInfoList = new List<UploadModel>();
+    }
+
+    public void SetCurrentData(DTEventArgs value)
+    {
+        ModelUpload = new UploadModel();
+        ModelUpload.Id = resultInfoList.Count() + 1;
+        ModelUpload.Name = value.Params[0].ToString();
+        ModelUpload.Url = value.Params[1].ToString();
+        resultInfoList.Add(ModelUpload);
+    }
+
+}
