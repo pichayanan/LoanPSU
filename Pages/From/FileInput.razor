@@ -7,14 +7,14 @@
 
 <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">เพิ่มไฟล์</h5>
+        <h5 class="modal-title font-weight-bold" id="exampleModalLabel">อัปโหลดเอกสาร</h5>
         <button type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"></button>
     </div>
     <div class="mb-3 px-md-2">
-        <label for="formFile" class="form-label">Blazor Server File Upload</label>
+        <label for="formFile" class="form-label">เลือกไฟล์ที่ต้องการ</label>
         <h3>@Message</h3>
         @* รองรับ หากใส่ไป =>>> multiple*@
         <InputFile OnChange="OnInputFileChange" class="form-control" id="formFile" />
