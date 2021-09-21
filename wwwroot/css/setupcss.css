@@ -1,4 +1,9 @@
-﻿.primary-bg {
+﻿.border-test {
+    border-style: solid;
+    border-color: coral;
+}
+
+.primary-bg {
     background-color: #003c71;
     color: white;
 }

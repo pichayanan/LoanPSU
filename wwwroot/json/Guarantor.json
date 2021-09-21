@@ -1,0 +1,42 @@
+﻿[
+  {
+    "Id": 1,
+    "Prefix": "นาย",
+    "Fname": "A",
+    "Lname": "A",
+    "MarriageStatus": false,
+    "MarriageName": "Ab A",
+    "BabyStatus": false,
+    "BabyName": "AbA A"
+  },
+  {
+    "Id": 2,
+    "Prefix": "นาย",
+    "Fname": "A",
+    "Lname": "B",
+    "MarriageStatus": false,
+    "MarriageName": "Ab A",
+    "BabyStatus": false,
+    "BabyName": "AbA A"
+  },
+  {
+    "Id": 3,
+    "Prefix": "นาย",
+    "Fname": "C",
+    "Lname": "C",
+    "MarriageStatus": true,
+    "MarriageName": "Ab A",
+    "BabyStatus": false,
+    "BabyName": "AbA A"
+  },
+  {
+    "Id": 4,
+    "Prefix": "นาย",
+    "Fname": "D",
+    "Lname": "D",
+    "MarriageStatus": true,
+    "MarriageName": "Ab A",
+    "BabyStatus": true,
+    "BabyName": "AbA A"
+  }
+]
