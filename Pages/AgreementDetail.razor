@@ -1,6 +1,6 @@
 ﻿@page  "/AgreementDetail"
 
-<div class="container">
+<div class="container my-3">
     <div class="row justify-content-between py-3 bg-light">
         <div class="col-4 mt-3">
             <div style="font-size: x-large; font-weight: bold; color: #2788DE"> ชื่อผู้กู้ </div>
@@ -28,49 +28,49 @@
             </div>
         </div>
     </div>
+    <div class="row justify-content-between">
+        <table class="table table-hover " style="border-top:1px solid;border-bottom:1px solid" >
+            <thead>
+                <tr class="table-light text-center">
+                    <th>วันที่</th>
+                    <th>งวดที่</th>
+                    <th>เงินต้น</th>
+                    <th>ดอกเบี้ย</th>
+                    <th>รวมชำระ</th>
+                    <th>สถานะ</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr>
+                    <td>12/02/64</td>
+                    <td>1</td>
+                    <td>10000</td>
+                    <td>208</td>
+                    <td>1041</td>
+                    <td>
+                        ชำระแล้ว
+                    </td>
+                </tr>
+                <tr class="table-light">
+                    <td>12/03064</td>
+                    <td>2</td>
+                    <td>8959</td>
+                    <td>208</td>
+                    <td>1041</td>
+                    <td>
+                        ชำระแล้ว
+                    </td>
+                </tr>
 
-    <table class="table table-hover " style="border-top:1px solid ">
-        <thead>
-            <tr class="table-light justify-content-center " style="height:60px;text-align:center">
-                <th>วันที่</th>
-                <th>งวดที่</th>
-                <th>เงินต้น</th>
-                <th>ดอกเบี้ย</th>
-                <th>รวมชำระ</th>
-                <th>สถานะ</th>
-            </tr>
-        </thead>
-        <tbody class="text-center">
-            <tr>
-                <td>12/02/64</td>
-                <td>1</td>
-                <td>10000</td>
-                <td>208</td>
-                <td>1041</td>
-                <td>
-                    ชำระแล้ว
-                </td>
-            </tr>
-            <tr class="table-light">
-                <td>12/03064</td>
-                <td>2</td>
-                <td>8959</td>
-                <td>208</td>
-                <td>1041</td>
-                <td>
-                    ชำระแล้ว
-                </td>
-            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    @code {
+        public void premise()
+        {
+            @*NavigationManager.NavigateTo("/uploaddoc");*@
+            NavigationManager.NavigateTo("/AgreementPremise");
+        }
 
-        </tbody>
-    </table>
-
-</div>
-@code {
-    public void premise()
-    {
-        @*NavigationManager.NavigateTo("/uploaddoc");*@
-        NavigationManager.NavigateTo("/AgreementPremise");
     }
-
-}
