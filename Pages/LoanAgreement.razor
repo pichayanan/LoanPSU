@@ -25,6 +25,19 @@
                     {
                         @if (agreement.LoanStatus != 2 && agreement.LoanStatus != 99)
                         {
+                            var colorTable = "#";
+
+                            if (countTable == false)
+                            {
+                                colorTable = whiteColor;
+                                countTable = true;
+                            }
+                            else
+                            {
+                                colorTable = grayColor;
+                                countTable = false;
+                            }
+
                             if (agreement.LoanStatus == 0)
                             {
                                 titleStatus = "รอพิจารณาการกู้";
@@ -56,7 +69,7 @@
                             }
 
                             <tbody @onclick="@(e => UploadPayment(agreement))">
-                                <tr style="height:50px;">
+                                <tr style="background-color: @colorTable; height:50px;">
                                     <td class="text-center">
                                         @if (agreement.NoLoan != 0)
                                         {
@@ -92,12 +105,6 @@
                                         {
                                             @detailNote;
                                         }
-                                        @*<button class="primary-bg"
-                                                type="button"
-
-                                                style="border-radius:3px; color: #ffffff;">
-                                            อัปโหลดเอกสาร
-                                        </button>*@
                                     </td>
                                 </tr>
                             </tbody>
@@ -115,8 +122,8 @@
                     </div>
 
                     <table class="table table-hover " style="">
-                        <thead>
-                            <tr class="table-light justify-content-center " style="height:40px;text-align:center">
+                        <thead class="text-center table-light">
+                            <tr>
                                 <th>เลขที่สัญญา</th>
                                 <th>สถานะ</th>
                                 <th>ประเภทการกู้</th>
@@ -125,10 +132,24 @@
                                 <th>หมายเหตุ</th>
                             </tr>
                         </thead>
-                        @foreach (var agreement in listAgreement)
+
+                        @for (var i = 0; i < listAgreement.Count; i++)
                         {
+                            var agreement = listAgreement[i];
                             if (agreement.LoanStatus == 2 || agreement.LoanStatus == 99)
                             {
+                                var colorTable = "#";
+                                if (countTable == false)
+                                {
+                                    colorTable = whiteColor;
+                                    countTable = true;
+                                }
+                                else
+                                {
+                                    colorTable = grayColor;
+                                    countTable = false;
+                                }
+
                                 if (agreement.LoanStatus == 2)
                                 {
                                     titleStatus = "ไม่อนุมัติ";
@@ -138,7 +159,7 @@
                                     titleStatus = "สิ้นสุดสัญญา";
                                 }
                                 <tbody class="text-center">
-                                    <tr style="height:50px;">
+                                    <tr style="background-color: @colorTable; height: 50px;">
                                         <td>
                                             @if (agreement.NoLoan != 0)
                                             {
@@ -182,4 +203,7 @@
 </boby>
 
 @code {
+    public Boolean countTable = false;
+    public string grayColor = "#d3d5d4";
+    public string whiteColor = "#ffffff";
 }
