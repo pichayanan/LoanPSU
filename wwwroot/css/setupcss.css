@@ -26,3 +26,13 @@
 .primary-color {
     color: #003c71;
 }
+
+.border-table {
+    border-inline: 1px solid;
+    border-bottom:1px solid;
+}
+
+table > thead {
+    background-color:#ffffff;
+    text-align:center;
+}
