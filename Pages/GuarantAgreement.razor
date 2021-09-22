@@ -7,9 +7,9 @@
             <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
                 <a>สัญญาที่คงอยู่</a>
             </div>
-            <table class="table table-hover">
+            <table class="table table-hover border-table">
                 <thead>
-                    <tr class="table-light justify-content-center " style="height:40px;text-align:center">
+                    <tr >
                         <th>เลขที่สัญญา</th>
                         <th>สถานะ</th>
                         <th>ประเภทการกู้</th>
@@ -39,8 +39,20 @@
                             titleStatus = "พ้นกำหนด";
                         }
 
+                        var colorTable = "#";
+                        if (countTable == false)
+                        {
+                            colorTable = whiteColor;
+                            countTable = true;
+                        }
+                        else
+                        {
+                            colorTable = grayColor;
+                            countTable = false;
+                        }
+
                         <tbody class="text-center">
-                            <tr @onclick="SeeDetail" style="height:50px;">
+                            <tr @onclick="SeeDetail" style="height:50px;background-color:@colorTable">
                                 <td>@agreement.NoLoan</td>
                                 <td>@titleStatus</td>
                                 <td>@agreement.LoanType</td>
@@ -60,9 +72,9 @@
             <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
                 <a>สัญญาที่สิ้นสุดลงแล้ว</a>
             </div>
-            <table class="table table-hover">
-                <thead>
-                    <tr class="table-light justify-content-center " style="height:40px;text-align:center">
+            <table class="table table-hover border-table">
+                <thead >
+                    <tr >
                         <th>เลขที่สัญญา</th>
                         <th>สถานะ</th>
                         <th>ประเภทการกู้</th>
@@ -76,8 +88,21 @@
                     @if (agreement.PlaymentStatus == 99)
                     {
                         titleStatus = "สิ้นสุดสัญญา";
+
+                        var colorTable = "#";
+                        if (countTable == false)
+                        {
+                            colorTable = whiteColor;
+                            countTable = true;
+                        }
+                        else
+                        {
+                            colorTable = grayColor;
+                            countTable = false;
+                        }
+
                         <tbody class="text-center">
-                            <tr style="height:50px;">
+                            <tr style="height:50px;background-color:@colorTable">
                                 <td>@agreement.NoLoan</td>
                                 <td>@titleStatus</td>
                                 <td>@agreement.LoanType</td>
@@ -103,6 +128,10 @@
 </div>
 
 @code {
+    public Boolean countTable = false;
+    public string grayColor = "#d3d5d4";
+    public string whiteColor = "#ffffff";
+
 
     List<LoanAgreementModel> listAgreement;
     string jsonGuarantAgreement = "wwwroot/json/GuarantAgreement.json";
