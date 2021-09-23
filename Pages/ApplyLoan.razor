@@ -2,200 +2,202 @@
 
 <div class="container my-4 ">
     <!-- mobile hidden <ยังไม่ได้ทำ> -->
-    <div class="row justify-content-md-center pt-5">
-        <div class="col text-end mx-2">
-            <button type="button" class="btn primary-bg">1</button>
+    <div class="card bg-white px-4 pb-5" style="margin-top: 60px;border-radius:10px">
+        <div class="row justify-content-md-center pt-5">
+            <div class="col text-end mx-2">
+                <button type="button" class="btn primary-bg">1</button>
+            </div>
+            <div class="col mx-2">
+                <button type="button" class="btn bg-light">2</button>
+            </div>
         </div>
-        <div class="col mx-2">
-            <button type="button" class="btn bg-light">2</button>
-        </div>
-    </div>
-    <div class="card py-2 px-2 mt-3" style="border-radius:8px">
-        <div class="row my-3 mx-2 pt-4">
-            <div class="col-12 col-md-6">
-                <EditForm Model="ModelApplyLoan" OnValidSubmit="@Submit">
-                    <DataAnnotationsValidator />
-                    <ValidationSummary />
-                    <div class="mb-3">
-                        <label class="form-label font-weight-bold">ประเภทการกู้</label>
-                        <InputSelect @bind-Value="ModelApplyLoan.LoanTypeID" class="form-select form-select-sm">
-                            @foreach (var item in LoanTypeList)
-                            {
-                                if (@item.Id != 0)
+
+        
+                <div class="row my-3 mx-2 pt-4">
+                    <div class="col-12 col-md-6">
+                        <EditForm Model="ModelApplyLoan" OnValidSubmit="@Submit">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+                            <div class="mb-3">
+                                <label class="form-label font-weight-bold">ประเภทการกู้</label>
+                                <InputSelect @bind-Value="ModelApplyLoan.LoanTypeID" class="form-select form-select-sm">
+                                    @foreach (var item in LoanTypeList)
+                                    {
+                                        if (@item.Id != 0)
+                                        {
+                                            <option value="@item.Id">@item.Id.  @item.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    }
+                                </InputSelect>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label font-weight-bold">จำนวนเงินที่ต้องการกู้</label>
+                                <InputNumber @bind-Value="ModelApplyLoan.Money" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label font-weight-bold">จำนวนงวด</label>
+                                <InputNumber @bind-Value="ModelApplyLoan.Period" class="form-control" aria-describedby="periodHelp" />
+                                <div id="periodHelp" class="form-text">
+                                    สามารถแก้ไขได้ แต่ต้องไม่เกิดกำหนดระยะเวลา ของงวดที่กำหนดไว้
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="guarantor" class="form-label font-weight-bold">ชื่อผู้ค้ำ</label>
+                                <div class="input-group">
+                                    <InputText @bind-Value="ModelApplyLoan.Guarantor" class="form-control" />
+                                    <button type="button"
+                                            class="btn btn-outline-secondary"
+                                            @onclick="findGuarantor">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <ValidationMessage For="()=>ModelApplyLoan.Guarantor" />
+                                @if (selectGuarantor.Count != 0)
                                 {
-                                    <option value="@item.Id">@item.Id.  @item.Name</option>
+                                    <div>
+                                        <ul>
+                                            @for (var i = 0; i < selectGuarantor.Count; i++)
+                                            {
+                                                var people = selectGuarantor[i];
+
+                                                <li @onclick="@(e => changeValGuarantor(people))"><a class="dropdown-item">@people.Prefix@people.Fname @people.Lname</a></li>
+                                            }
+                                        </ul>
+                                    </div>
                                 }
-                                else
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn primary-bg" style="color:white" type="submit">ดำเนินการต่อ</button>
+                            </div>
+                        </EditForm>
+
+                    </div>
+                    <div class="col secondary-bg mx-2" style="border-radius:10px">
+                        @if (ModelApplyLoan.LoanTypeID != 0)
+                        {
+                            var LoanType = LoanTypeList.FirstOrDefault(x => x.Id == ModelApplyLoan.LoanTypeID);
+
+                            <div class="text-h3 my-4 py-2 px-2 text-center"
+                                 style="background-color: #DBE8EE;color:black">
+                                @LoanType.Id. @LoanType.Name
+                            </div>
+
+                            @if (LoanType.MaxTotal.Count != 0)
+                            {
+                                @for (var i = 0; i < LoanType.MaxTotal.Count; i++)
                                 {
-                                    <option value="@item.Id">@item.Name</option>
+                                    var maxTotal = LoanType.MaxTotal[i];
+
+                                    <div class="mt-4 px-4">
+                                        <div class="row py-1">
+                                            <div class="col">วงเงินสูงสุด</div>
+                                            @if (maxTotal.Money != 0)
+                                            {
+                                                <div class="col text-end">@maxTotal.Money บาท</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col text-end">กู้ได้ตามจริง</div>
+                                            }
+                                        </div>
+                                        <div class="row py-1">
+                                            <div class="col">อัตราดอกเบี้ย</div>
+                                            @if (maxTotal.Tax != 0)
+                                            {
+                                                <div class="col text-end">@maxTotal.Tax %</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col text-end">-</div>
+                                            }
+                                        </div>
+                                        <div class="row py-1">
+                                            <div class="col">ผ่อนชำระสูงสุด</div>
+                                            <div class="col text-end">@maxTotal.Period เดือน</div>
+                                        </div>
+                                        <div class="row py-1">
+                                            <div class="col">ผ่อนชำระเดือนละ</div>
+                                            <div class="col text-end">1000 บาท</div>
+                                        </div>
+                                    </div>
                                 }
                             }
-                        </InputSelect>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label font-weight-bold">จำนวนเงินที่ต้องการกู้</label>
-                        <InputNumber @bind-Value="ModelApplyLoan.Money" class="form-control" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label font-weight-bold">จำนวนงวด</label>
-                        <InputNumber @bind-Value="ModelApplyLoan.Period" class="form-control" aria-describedby="periodHelp" />
-                        <div id="periodHelp" class="form-text">
-                            สามารถแก้ไขได้ แต่ต้องไม่เกิดกำหนดระยะเวลา ของงวดที่กำหนดไว้
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="guarantor" class="form-label font-weight-bold">ชื่อผู้ค้ำ</label>
-                        <div class="input-group">
-                            <InputText @bind-Value="ModelApplyLoan.Guarantor" class="form-control" />
-                            <button type="button"
-                                    class="btn btn-outline-secondary"
-                                    @onclick="findGuarantor">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                        <ValidationMessage For="()=>ModelApplyLoan.Guarantor" />
-                        @if (selectGuarantor.Count != 0)
-                        {
-                            <div>
-                                <ul>
-                                    @for (var i = 0; i < selectGuarantor.Count; i++)
-                                    {
-                                        var people = selectGuarantor[i];
-
-                                        <li @onclick="@(e => changeValGuarantor(people))"><a class="dropdown-item">@people.Prefix@people.Fname @people.Lname</a></li>
-                                    }
-                                </ul>
+                            <div class="text-center mt-4 py-1">
+                                <button type="button" class="btn primary-bg px-5" @onclick="@(e => OpenPDF(LoanType))">รายละเอียด</button>
                             </div>
                         }
                     </div>
-                    <div class="d-grid gap-2">
-                        <button class="btn primary-bg" style="color:white" type="submit">ดำเนินการต่อ</button>
-                    </div>
-                </EditForm>
-
-            </div>
-            <div class="col secondary-bg mx-2" style="border-radius:10px">
-                @if (ModelApplyLoan.LoanTypeID != 0)
-                {
-                    var LoanType = LoanTypeList.FirstOrDefault(x => x.Id == ModelApplyLoan.LoanTypeID);
-
-                    <div class="text-h3 my-4 py-2 px-2 text-center"
-                         style="background-color: #DBE8EE;color:black">
-                        @LoanType.Id. @LoanType.Name
-                    </div>
-
-                    @if (LoanType.MaxTotal.Count != 0)
-                    {
-                        @for (var i = 0; i < LoanType.MaxTotal.Count; i++)
-                        {
-                            var maxTotal = LoanType.MaxTotal[i];
-
-                            <div class="mt-4 px-4">
-                                <div class="row py-1">
-                                    <div class="col">วงเงินสูงสุด</div>
-                                    @if (maxTotal.Money != 0)
-                                    {
-                                        <div class="col text-end">@maxTotal.Money บาท</div>
-                                    }
-                                    else
-                                    {
-                                        <div class="col text-end">กู้ได้ตามจริง</div>
-                                    }
-                                </div>
-                                <div class="row py-1">
-                                    <div class="col">อัตราดอกเบี้ย</div>
-                                    @if (maxTotal.Tax != 0)
-                                    {
-                                        <div class="col text-end">@maxTotal.Tax %</div>
-                                    }
-                                    else
-                                    {
-                                        <div class="col text-end">-</div>
-                                    }
-                                </div>
-                                <div class="row py-1">
-                                    <div class="col">ผ่อนชำระสูงสุด</div>
-                                    <div class="col text-end">@maxTotal.Period เดือน</div>
-                                </div>
-                                <div class="row py-1">
-                                    <div class="col">ผ่อนชำระเดือนละ</div>
-                                    <div class="col text-end">1000 บาท</div>
-                                </div>
-                            </div>
-                        }
-                    }
-                    <div class="text-center mt-4 py-1">
-                        <button type="button" class="btn primary-bg px-5" @onclick="@(e => OpenPDF(LoanType))">รายละเอียด</button>
-                    </div>
-                }
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-@code {
-    async Task Submit()
-    {
-        Boolean period = false;
-        var LoanType = LoanTypeList.FirstOrDefault(x => x.Id == ModelApplyLoan.LoanTypeID);
-
-        if (LoanType.MaxTotal.Count != 0)
-        {
-            for (var i = 0; i < LoanType.MaxTotal.Count; i++)
+        @code {
+            async Task Submit()
             {
-                var loan = LoanType.MaxTotal[i];
-                if (ModelApplyLoan.Period <= loan.Period)
+                Boolean period = false;
+                var LoanType = LoanTypeList.FirstOrDefault(x => x.Id == ModelApplyLoan.LoanTypeID);
+
+                if (LoanType.MaxTotal.Count != 0)
                 {
-                    period = true;
+                    for (var i = 0; i < LoanType.MaxTotal.Count; i++)
+                    {
+                        var loan = LoanType.MaxTotal[i];
+                        if (ModelApplyLoan.Period <= loan.Period)
+                        {
+                            period = true;
+                        }
+                        else
+                        {
+                            string alert = "ระบุจำนวนงวดไม่ถูกต้อง จำนวนงวดต้องไม่เกิน " + loan.Period + "งวด!";
+                            await JS.InvokeVoidAsync("displayTickerAlert", alert);
+                        }
+                    }
+                }
+                if (period == true)
+                {
+                    await sessionStorage.SetItemAsync("FromLoan_1", ModelApplyLoan);
+                    NavigationManager.NavigateTo("/uploaddoc");
+                }
+            }
+
+            private void findGuarantor()
+            {
+                selectGuarantor = new List<GuarantorPeople>();
+
+                if (guarantorPeoples.Count != 0 && ModelApplyLoan.Guarantor != "")
+                {
+                    for (var i = 0; i < guarantorPeoples.Count; i++)
+                    {
+                        var people = guarantorPeoples[i];
+                        var fullName = people.Prefix + people.Fname + " " + people.Lname;
+                        Console.WriteLine(people);
+
+                        if (fullName.Contains(ModelApplyLoan.Guarantor))
+                        {
+                            // do html stuff
+                            selectGuarantor.Add(people);
+                        }
+                    }
                 }
                 else
                 {
-                    string alert = "ระบุจำนวนงวดไม่ถูกต้อง จำนวนงวดต้องไม่เกิน " + loan.Period + "งวด!";
-                    await JS.InvokeVoidAsync("displayTickerAlert", alert);
+                    ModelApplyLoan.Guarantor = "";
                 }
             }
-        }
-        if (period == true)
-        {
-            await sessionStorage.SetItemAsync("FromLoan_1", ModelApplyLoan);
-            NavigationManager.NavigateTo("/uploaddoc");
-        }
-    }
 
-    private void findGuarantor()
-    {
-        selectGuarantor = new List<GuarantorPeople>();
-
-        if (guarantorPeoples.Count != 0 && ModelApplyLoan.Guarantor != "")
-        {
-            for (var i = 0; i < guarantorPeoples.Count; i++)
+            private void OpenPDF(SelectLoanType data)
             {
-                var people = guarantorPeoples[i];
-                var fullName = people.Prefix + people.Fname + " " + people.Lname;
-                Console.WriteLine(people);
-
-                if (fullName.Contains(ModelApplyLoan.Guarantor))
-                {
-                    // do html stuff
-                    selectGuarantor.Add(people);
-                }
+                Console.WriteLine(data);
             }
+
+            private void changeValGuarantor(GuarantorPeople people)
+            {
+                var fullName = people.Prefix + people.Fname + " " + people.Lname;
+                ModelApplyLoan.Guarantor = fullName;
+            }
+
         }
-        else
-        {
-            ModelApplyLoan.Guarantor = "";
-        }
-    }
-
-    private void OpenPDF(SelectLoanType data)
-    {
-        Console.WriteLine(data);
-    }
-
-    private void changeValGuarantor(GuarantorPeople people)
-    {
-        var fullName = people.Prefix + people.Fname + " " + people.Lname;
-        ModelApplyLoan.Guarantor = fullName;
-    }
-
-}
