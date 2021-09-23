@@ -1,88 +1,51 @@
 ﻿using BlazorApp.Models;
+using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorApp.ModelsDB;
 
 namespace BlazorApp.Pages
 {
     public partial class ApplyLoan
     {
-        LoanTitleData loanTitleData;
-        LoanDetailData loanDetailData;
         ApplyLoanModel ModelApplyLoan;
-        List<SelectLoanType> LoanTypeList;
-        string jsonLoanData = "wwwroot/json/LoanData.json";
-        string jsonGuarantor = "wwwroot/json/Guarantor.json";
 
-        List<GuarantorPeople> guarantorPeoples;
-        List<GuarantorPeople> selectGuarantor;
+        [Parameter]
+        public decimal LoadID { get; set; } = 0;
+        public LoanType Model { get; set; }
+        List<LoanType> LoanTypeList;
 
-        protected async override Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
             ModelApplyLoan = new ApplyLoanModel();
-            loanTitleData = new LoanTitleData();
-            loanDetailData = new LoanDetailData();
-            selectGuarantor = new List<GuarantorPeople>();
+            Model = new LoanType();
 
             setData();
-            setGuarantor();
 
-            var loanTitle = await sessionStorage.GetItemAsStringAsync("loanTitle");
-            var loanDetail = await sessionStorage.GetItemAsStringAsync("loanDetail");
-            if (loanTitle != null && loanDetail != null)
+            if (LoadID != 0)
             {
-                loanTitleData = await sessionStorage.GetItemAsync<LoanTitleData>("loanTitle");
-                loanDetailData = await sessionStorage.GetItemAsync<LoanDetailData>("loanDetail");
-
-                ModelApplyLoan.LoanTypeID = loanTitleData.Id;
-                ModelApplyLoan.Money = loanDetailData.Money;
-                ModelApplyLoan.Period = loanDetailData.Period;
+                Model = _context.LoanTypes.Where(c => c.LoanTypeId == LoadID).FirstOrDefault();
+                ModelApplyLoan.LoanTypeID = Model.LoanTypeId;
+                ModelApplyLoan.Period = (int)Model.LoanPeriod;
+                ModelApplyLoan.LoanMaxAmount = Model.LoanMaxAmount;
             }
+            else {
+                ModelApplyLoan.LoanTypeID = 0;
+                ModelApplyLoan.LoanMaxAmount = 0;
+                ModelApplyLoan.Period = 0;
+            }
+            ModelApplyLoan.Guarantor = "";
         }
 
         private void setData()
         {
-            LoanTypeList = new List<SelectLoanType>();
-            string jsonString = File.ReadAllText(jsonLoanData);
-            LoanTypeList = JsonConvert.DeserializeObject<List<SelectLoanType>>(jsonString);
-            LoanTypeList.Insert(0, new SelectLoanType() { Id = 0, Name = "---กรุณาระบุ---" });
-            ModelApplyLoan.LoanTypeID = 0;
-            ModelApplyLoan.Money = 0;
-            ModelApplyLoan.Period = 0;
-            ModelApplyLoan.Guarantor = "";
-        }
-
-        private void setGuarantor()
-        {
-            guarantorPeoples = new List<GuarantorPeople>();
-            string jsonString = File.ReadAllText(jsonGuarantor);
-            guarantorPeoples = JsonConvert.DeserializeObject<List<GuarantorPeople>>(jsonString);
-        }
-
-        public class SelectLoanType
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public List<LoanDetailData> MaxTotal { get; set; }
-        }
-
-        public class LoanTitleData
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public Boolean Compound { get; set; }
-            public string Nots { get; set; }
-        }
-
-        public class LoanDetailData
-        {
-            public int Money { get; set; }
-            public int Period { get; set; }
-            public double Tax { get; set; }
-            public string Nots { get; set; }
+            LoanTypeList = new List<LoanType>();
+            LoanTypeList = _context.LoanTypes.Where(c => c.Active == true).ToList<LoanType>();
+            LoanTypeList.Insert(0, new LoanType() { LoanTypeId = 0, LoanTypeName = "---กรุณาระบุ---" });
         }
     }
 }
