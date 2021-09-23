@@ -6,15 +6,19 @@
 
   <ItemGroup>
     <Compile Remove="JsonFile\**" />
+    <Compile Remove="Modelss\**" />
     <Compile Remove="Pages\Admin\**" />
     <Compile Remove="wwwroot\files\**" />
     <Content Remove="JsonFile\**" />
+    <Content Remove="Modelss\**" />
     <Content Remove="Pages\Admin\**" />
     <Content Remove="wwwroot\files\**" />
     <EmbeddedResource Remove="JsonFile\**" />
+    <EmbeddedResource Remove="Modelss\**" />
     <EmbeddedResource Remove="Pages\Admin\**" />
     <EmbeddedResource Remove="wwwroot\files\**" />
     <None Remove="JsonFile\**" />
+    <None Remove="Modelss\**" />
     <None Remove="Pages\Admin\**" />
     <None Remove="wwwroot\files\**" />
   </ItemGroup>
@@ -42,7 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modelss\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\Temp\" />
   </ItemGroup>
