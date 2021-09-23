@@ -1,47 +1,38 @@
 ﻿@page  "/GuarantDetail"
 @inject NavigationManager NavigationManager
 
-<div class="col-12 col-md-12 pb-3 bg-light" style="border-top:thin">
-    <div class="row col-12 pt-3">
-        <div class="col-9 col-md-9" style="margin-left:30px">
-            <a style="font-size: x-large;font-weight: bold;color: #2788DE
-">ชื่อผู้กู้</a>
-            <br />
-            <br />
-            <a style="font-weight: bold;color: #2788DE">ยอดเงินกู้ทั้งหมด   </a>&nbsp;&nbsp;&nbsp; <a style="font-weight: bold;
-        color: #2788DE"> ยอดเงินกู้คงเหลือ</a>
-            <br />
-            <br />
-            <a style="        font-weight: bold;
-        color: #2788DE
-">สถานะ  </a>&nbsp;&nbsp;&nbsp; <a style="        font-weight: bold;
-        color: #2788DE
-"> เลขที่สัญญา  </a>&nbsp;&nbsp;&nbsp; <a style="        font-weight: bold;
-        color: #2788DE
-"> ประเภทการกู้  </a>
-        </div>
-        <div class="col-2 col-md-2">
-
-             <div class="pt-4">
-                            <button class="primary-bg" onclick="" style="border-radius: 3px;color:white;width:200px;height:30px
-                ">
-                                เอกสารสัญญา
-                            </button>
-                        </div>
-                        <div class="pt-4">
-                        <button class="primary-bg" @onclick="home" style="border-radius: 3px;color:white;width:200px;height:30px
-                ">
-                            กลับหน้าหลัก
-                        </button>
-                    </div>
-
-                </div>
+<div class="container my-3">
+    <div class="row justify-content-between py-3 bg-light">
+        <div class="col-4 mt-3">
+            <div style="font-size: x-large; font-weight: bold; color: #2788DE"> ชื่อผู้กู้ </div>
+            <div class="row my-3" style="font-weight: bold;color: #2788DE">
+                <div class="col-12 col-lg-6">ยอดเงินกู้ทั้งหมด</div>
+                <div class="col-12 col-lg-6">ยอดเงินกู้คงเหลือ</div>
             </div>
-
+            <div class="row" style="font-weight: bold; color: #2788DE">
+                <div class="col-12 col-lg-6">สถานะ</div>
+                <div class="col-12 col-lg-6">เลขที่สัญญา</div>
+                <div class="col-12 col-lg-6">ประเภทการกู้</div>
+            </div>
         </div>
-        <table class="table table-hover " style="">
+        <div class="col-4">
+            <div class="pt-4 text-end">
+                <button class="primary-bg" onclick="" style="border-radius: 3px; color:white; width:200px; height:30px">
+                    เอกสารสัญญา
+                </button>
+            </div>
+            <div class="pt-4 text-end">
+                <button class="primary-bg" @onclick="home" style="border-radius: 3px; color: white; width: 200px; height: 30px ">
+                    <i class="fas fa-home"></i>
+                    กลับหน้าหลัก
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <table class="table table-hover " style="border-top:1px solid;border-bottom:1px solid">
             <thead>
-                <tr class="table-light justify-content-center " style="height:60px;text-align:center">
+                <tr class="table-light text-center">
                     <th>วันที่</th>
                     <th>งวดที่</th>
                     <th>เงินต้น</th>
@@ -74,12 +65,15 @@
 
             </tbody>
         </table>
-
-        @code {
-            public void home()
-            {
-                NavigationManager.NavigateTo("/");
-            }
+    </div>
+</div>
 
 
-        }
+@code {
+    public void home()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
+
+}

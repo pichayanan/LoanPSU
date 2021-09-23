@@ -31,7 +31,6 @@
 		<Folder Include="Modelss\" />
 		<Folder Include="wwwroot\images\" />
 		<Folder Include="wwwroot\Temp\" />
-		<Folder Include="Pages\Admin\" />
 		<Folder Include="wwwroot\files\" />
 	</ItemGroup>
 
