@@ -13,6 +13,10 @@
     color: #003c71;
 }
 
+.blue-bg {
+    background-color: #1b6ec2;
+}
+
 .error-color {
     background-color: #E45E5E;
     color: white;

@@ -1,14 +1,10 @@
 ﻿@page "/Admin/ManageTypeLoan"
 
 <div class="container mt-3">
+   
 
-    <div class="card col-12 col-md-12 primary-bg pt-2 text-center"
-         style="color:white; border-radius:0px; height:50px; padding-left:15px">
-        <a>จัดการประเภทการกู้</a>
-    </div>
-
-    <table class="table table-hover border-table">
-        <thead>
+    <table class="table table-hover border-table" style="border-top: 1px solid">
+        <thead class=" primary-bg text-light">
             <tr>
                 <th>สถานะ</th>
                 <th>วันที่สร้าง</th>
@@ -53,10 +49,19 @@
 
 
 </div>
-<div class="footer primary-bg" @onclick="CreateLoan">
-    <div class="my-3 newtype text-light">
-        สร้างประเภทใหม่
+<div class="footer primary-bg"  @onclick="CreateLoan">
+    <div class="row">
+        <div class="col">
+           
+        </div>
+        <div class="col my-3 newtype text-light">
+            สร้างประเภทใหม่
+        </div>
+        <div class="col">
+           
+        </div>
     </div>
+    
 
 </div>
 
