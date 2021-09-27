@@ -1,5 +1,81 @@
 ﻿@page "/Admin/ManageTypeLoan"
 
-@code {
+<div class="container mt-3">
+   
 
+    <table class="table table-hover border-table" style="border-top: 1px solid">
+        <thead class=" primary-bg text-light">
+            <tr>
+                <th>สถานะ</th>
+                <th>วันที่สร้าง</th>
+                <th>ชื่อประเภทการกู้</th>
+                <th>วงเงินสูงสุด</th>
+                <th>ดอกเบี้ย</th>
+                <th>จำนวนงวดสูงสุด</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr class="py-2" style="background-color:whitesmoke ;">
+                <td class="text-center text-primary">
+                    Active
+                </td>
+                <td class="text-center">12 กค 64 12:30</td>
+                <td class="text-center">กู้เพื่อ.......</td>
+                <td class="text-center">1000000</td>
+                <td class="text-center">0.25</td>
+                <td class="text-center">
+                    48
+
+
+
+                </td>
+                <td>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+
+                        </label>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+
+
+
+
+</div>
+<div class="footer primary-bg"  @onclick="CreateLoan">
+    <div class="row">
+        <div class="col">
+           
+        </div>
+        <div class="col my-3 newtype text-light">
+            สร้างประเภทใหม่
+        </div>
+        <div class="col">
+           
+        </div>
+    </div>
+    
+
+</div>
+
+
+@code {
+    public Boolean countTable = false;
+    public string grayColor = "#d3d5d4";
+    public string whiteColor = "#ffffff";
+
+    public void CreateLoan()
+    {
+        NavigationManager.NavigateTo("/Admin/CreateTypeLoan");
+    } 
 }
+
+
+
