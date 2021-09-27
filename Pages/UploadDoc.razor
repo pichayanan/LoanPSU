@@ -1,8 +1,10 @@
 ﻿@page "/uploaddoc"
 
-<body>
+
     <div class="container mt-3">
-        <FromUpload listModel="@resultInfoList" />
+        <div class="card m-3 p-3 ">
+            <FromUpload listModel="@resultInfoList" />
+        </div>
     </div>
 
     @*footer*@
@@ -61,7 +63,7 @@
         </div>
     </div>
 
-</body>
+
 
 @code {
     public async Task EmptyFile()

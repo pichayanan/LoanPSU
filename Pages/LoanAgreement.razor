@@ -1,13 +1,125 @@
 ﻿@page "/LoanAgreement"
+@inject NavigationManager NavigationManager
 
+<div class="container mt-3">
+    @if (listAgreement.Count != 0)
+    {
+        <div>
+            <div class="card col-12 col-md-12 primary-bg pt-2 "
+                 style="color:white; border-radius:0px; height:50px; padding-left:15px">
+                <a>สัญญาที่คงอยู่</a>
+            </div>
 
-    <div class="container mt-3">
-        @if (listAgreement.Count != 0)
+            <table class="table table-hover border-table">
+                <thead>
+                    <tr>
+                        <th>เลขที่สัญญา</th>
+                        <th>สถานะ</th>
+                        <th>ประเภทการกู้</th>
+                        <th>ยอดเงินกู้</th>
+                        <th>ยอดเงินกู้คงเหลือ</th>
+                        <th>หมายเหตุ</th>
+                    </tr>
+                </thead>
+                @foreach (var agreement in listAgreement)
+                {
+                    @if (agreement.LoanStatus != 2 && agreement.LoanStatus != 99)
+                    {
+                        var colorTable = "#";
+
+                        if (countTable == false)
+                        {
+                            colorTable = whiteColor;
+                            countTable = true;
+                        }
+                        else
+                        {
+                            colorTable = grayColor;
+                            countTable = false;
+                        }
+
+                        if (agreement.LoanStatus == 0)
+                        {
+                            titleStatus = "รอพิจารณาการกู้";
+                            detailNote = "วันที่ยื่นขอกู้ ";
+                        }
+                        else if (agreement.LoanStatus == 1)
+                        {
+                            titleStatus = "อนุมัติ และระบุวันนัดหมาย";
+                            detailNote = "เลื่อกวันนัดหมาย";
+                        }
+                        else if (agreement.LoanStatus == 3)
+                        {
+                            titleStatus = "รอทำสัญญา";
+                            detailNote = "วันที่นัดหมาย ";
+                        }
+                        else if (agreement.LoanStatus == 4)
+                        {
+                            titleStatus = "อนุมัติสัญญา รอส่งเอกสาร";
+                            detailNote = "ส่งเอกสารภายใน 30 วันนับจากวันที่ได้รับเงิน";
+
+                        }
+                        else if (agreement.LoanStatus == 5)
+                        {
+                            titleStatus = "รอตรวจสอบเอกสาร";
+                        }
+                        else if (agreement.LoanStatus == 6)
+                        {
+                            titleStatus = "ผ่านการตรวจสอบ";
+                        }
+
+                        <tbody @onclick="@(e => UploadPayment(agreement))">
+                            <tr style="background-color: @colorTable; height:50px;">
+                                <td class="text-center">
+                                    @if (agreement.NoLoan != 0)
+                                    {
+                                        @agreement.NoLoan;
+                                    }
+                                    else
+                                    {
+                                        @dataDefault;
+                                    }
+                                </td>
+                                <td class="text-left">@titleStatus</td>
+                                <td class="text-center">@agreement.LoanType</td>
+                                <td class="text-center">@agreement.LoanAmout</td>
+                                <td class="text-center">@agreement.TotalAmout</td>
+                                <td class="text-center">
+                                    @if (agreement.LoanStatus == 0)
+                                    {
+                                        @detailNote; @agreement.DateSubmit;
+                                    }
+                                    @if (agreement.LoanStatus == 1)
+                                    {
+                                        <button class="button-color shadow rounded"
+                                                type="button"
+                                                @onclick="ChooseDate"
+                                                style="border-radius:3px; color: #ffffff;height:30px">
+                                            @detailNote
+                                        </button>
+                                    }
+                                    @if (agreement.LoanStatus == 3)
+                                    {
+                                        @detailNote; @agreement.SingingDate;
+                                    }
+                                    @if (agreement.LoanStatus == 4)
+                                    {
+                                        @detailNote;
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+                }
+            </table>
+        </div>
+
+        @if (LoanCheckbook == true)
         {
-            <div>
-                <div class="card col-12 col-md-12 primary-bg pt-2 "
-                     style="color:white; border-radius:0px; height:50px; padding-left:15px">
-                    <a>สัญญาที่คงอยู่</a>
+            <div class="pt-5" style="padding-bottom: 5rem">
+
+                <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
+                    <a>สัญญาที่สิ้นสุดลงแล้ว</a>
                 </div>
 
                 <table class="table table-hover border-table">
@@ -21,12 +133,13 @@
                             <th>หมายเหตุ</th>
                         </tr>
                     </thead>
-                    @foreach (var agreement in listAgreement)
+
+                    @for (var i = 0; i < listAgreement.Count; i++)
                     {
-                        @if (agreement.LoanStatus != 2 && agreement.LoanStatus != 99)
+                        var agreement = listAgreement[i];
+                        if (agreement.LoanStatus == 2 || agreement.LoanStatus == 99)
                         {
                             var colorTable = "#";
-
                             if (countTable == false)
                             {
                                 colorTable = whiteColor;
@@ -38,39 +151,17 @@
                                 countTable = false;
                             }
 
-                            if (agreement.LoanStatus == 0)
+                            if (agreement.LoanStatus == 2)
                             {
-                                titleStatus = "รอพิจารณาการกู้";
-                                detailNote = "วันที่ยื่นขอกู้ ";
+                                titleStatus = "ไม่อนุมัติ";
                             }
-                            else if (agreement.LoanStatus == 1)
+                            else if (agreement.LoanStatus == 99)
                             {
-                                titleStatus = "อนุมัติ และระบุวันนัดหมาย";
-                                detailNote = "เลื่อกวันนัดหมาย";
+                                titleStatus = "สิ้นสุดสัญญา";
                             }
-                            else if (agreement.LoanStatus == 3)
-                            {
-                                titleStatus = "รอทำสัญญา";
-                                detailNote = "วันที่นัดหมาย ";
-                            }
-                            else if (agreement.LoanStatus == 4)
-                            {
-                                titleStatus = "อนุมัติสัญญา รอส่งเอกสาร";
-                                detailNote = "ส่งเอกสารภายใน 30 วันนับจากวันที่ได้รับเงิน";
-
-                            }
-                            else if (agreement.LoanStatus == 5)
-                            {
-                                titleStatus = "รอตรวจสอบเอกสาร";
-                            }
-                            else if (agreement.LoanStatus == 6)
-                            {
-                                titleStatus = "ผ่านการตรวจสอบ";
-                            }
-
-                            <tbody @onclick="@(e => UploadPayment(agreement))">
-                                <tr style="background-color: @colorTable; height:50px;">
-                                    <td class="text-center">
+                            <tbody class="text-center">
+                                <tr style="background-color: @colorTable; height: 50px;">
+                                    <td>
                                         @if (agreement.NoLoan != 0)
                                         {
                                             @agreement.NoLoan;
@@ -80,130 +171,45 @@
                                             @dataDefault;
                                         }
                                     </td>
-                                    <td class="text-left">@titleStatus</td>
-                                    <td class="text-center">@agreement.LoanType</td>
-                                    <td class="text-center">@agreement.LoanAmout</td>
-                                    <td class="text-center">@agreement.TotalAmout</td>
-                                    <td class="text-center">
-                                        @if (agreement.LoanStatus == 0)
-                                        {
-                                            @detailNote; @agreement.DateSubmit;
-                                        }
-                                        @if (agreement.LoanStatus == 1)
-                                        {
-                                            <button class="button-color shadow rounded"
-                                                    type="button"
-                                                    style="border-radius:3px; color: #ffffff;height:30px">
-                                                @detailNote
-                                            </button>
-                                        }
-                                        @if (agreement.LoanStatus == 3)
-                                        {
-                                            @detailNote; @agreement.SingingDate;
-                                        }
-                                        @if (agreement.LoanStatus == 4)
-                                        {
-                                            @detailNote;
-                                        }
-                                    </td>
+                                    <td>@titleStatus</td>
+                                    <td>@agreement.LoanType</td>
+                                    <td>@agreement.LoanAmout</td>
+                                    <td>@agreement.TotalAmout</td>
+                                    <td>@agreement.Note</td>
                                 </tr>
                             </tbody>
                         }
                     }
+
                 </table>
             </div>
-
-            @if (LoanCheckbook == true)
-            {
-                <div class="pt-5" style="padding-bottom: 5rem">
-
-                    <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
-                        <a>สัญญาที่สิ้นสุดลงแล้ว</a>
-                    </div>
-
-                    <table class="table table-hover border-table"   >
-                        <thead>
-                            <tr>
-                                <th>เลขที่สัญญา</th>
-                                <th>สถานะ</th>
-                                <th>ประเภทการกู้</th>
-                                <th>ยอดเงินกู้</th>
-                                <th>ยอดเงินกู้คงเหลือ</th>
-                                <th>หมายเหตุ</th>
-                            </tr>
-                        </thead>
-
-                        @for (var i = 0; i < listAgreement.Count; i++)
-                        {
-                            var agreement = listAgreement[i];
-                            if (agreement.LoanStatus == 2 || agreement.LoanStatus == 99)
-                            {
-                                var colorTable = "#";
-                                if (countTable == false)
-                                {
-                                    colorTable = whiteColor;
-                                    countTable = true;
-                                }
-                                else
-                                {
-                                    colorTable = grayColor;
-                                    countTable = false;
-                                }
-
-                                if (agreement.LoanStatus == 2)
-                                {
-                                    titleStatus = "ไม่อนุมัติ";
-                                }
-                                else if (agreement.LoanStatus == 99)
-                                {
-                                    titleStatus = "สิ้นสุดสัญญา";
-                                }
-                                <tbody class="text-center">
-                                    <tr style="background-color: @colorTable; height: 50px;">
-                                        <td>
-                                            @if (agreement.NoLoan != 0)
-                                            {
-                                                @agreement.NoLoan;
-                                            }
-                                            else
-                                            {
-                                                @dataDefault;
-                                            }
-                                        </td>
-                                        <td>@titleStatus</td>
-                                        <td>@agreement.LoanType</td>
-                                        <td>@agreement.LoanAmout</td>
-                                        <td>@agreement.TotalAmout</td>
-                                        <td>@agreement.Note</td>
-                                    </tr>
-                                </tbody>
-                            }
-                        }
-
-                    </table>
-                </div>
-            }
-
         }
-        else
-        {
-            @* listAgreement == 0*@
-        }
-    </div>
-    <div class="footer">
-        <div class="my-3 ms-3">
-            <label class="switch">
-                <input type="checkbox" id="checkbox" @onclick="CheckboxSwitch">
-                <span class="slider round"></span>
-            </label>
-            @Message
-        </div>
 
+    }
+    else
+    {
+        @* listAgreement == 0*@
+    }
+</div>
+<div class="footer">
+    <div class="my-3 ms-3">
+        <label class="switch">
+            <input type="checkbox" id="checkbox" @onclick="CheckboxSwitch">
+            <span class="slider round"></span>
+        </label>
+        @Message
     </div>
+
+</div>
 
 
 @code {
     public Boolean countTable = false;
     public string grayColor = "#d3d5d4";
     public string whiteColor = "#ffffff";
+
+    public void ChooseDate()
+    {
+        NavigationManager.NavigateTo("./User/ChooseDate");
+    }
 }

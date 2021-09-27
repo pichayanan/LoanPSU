@@ -3,15 +3,16 @@
 
 <div class="container my-4 ">
     <!-- mobile hidden <ยังไม่ได้ทำ> -->
-    <div class="row justify-content-md-center pt-5">
-        <div class="col text-end mx-2">
-            <button type="button" class="btn primary-bg">1</button>
+
+    <div class="card  px-2 mt-5 pb-5" style="border-radius:8px">
+        <div class="row justify-content-md-center pt-5">
+            <div class="col text-end mx-2">
+                <button type="button" class="btn primary-bg">1</button>
+            </div>
+            <div class="col mx-2">
+                <button type="button" class="btn bg-light">2</button>
+            </div>
         </div>
-        <div class="col mx-2">
-            <button type="button" class="btn bg-light">2</button>
-        </div>
-    </div>
-    <div class="card py-2 px-2 mt-3" style="border-radius:8px">
         <div class="row my-3 mx-2 pt-4">
             <div class="col-12 col-md-6">
                 <EditForm Model="ModelApplyLoan" OnValidSubmit="@Submit">
@@ -58,21 +59,21 @@
                         </div>
                         <ValidationMessage For="()=>ModelApplyLoan.Guarantor" />
                         @*@if (selectGuarantor.Count != 0)
-                            {
-                                <div>
-                                    <ul>
-                                        @for (var i = 0; i < selectGuarantor.Count; i++)
-                                        {
-                                            var people = selectGuarantor[i];
+                        {
+                            <div>
+                                <ul>
+                                    @for (var i = 0; i < selectGuarantor.Count; i++)
+                                    {
+                                        var people = selectGuarantor[i];
 
-                                            <li @onclick="@(e => changeValGuarantor(people))"><a class="dropdown-item">@people.Prefix@people.Fname @people.Lname</a></li>
-                                        }
-                                    </ul>
-                                </div>
-                            }*@
+                                        <li @onclick="@(e => changeValGuarantor(people))"><a class="dropdown-item">@people.Prefix@people.Fname @people.Lname</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        }*@
                     </div>
                     <div class="d-grid gap-2">
-                        <button class="btn primary-bg" style="color:white" type="submit">ดำเนินการต่อ</button>
+                        <button class="btn button-color shadow rounded" style="color:white;border-radius:10px" type="submit">ดำเนินการต่อ</button>
                     </div>
                 </EditForm>
 
@@ -120,7 +121,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-4 py-1">
-                        <button type="button" class="btn primary-bg px-5" @onclick="() => OpenPDF(loan)">รายละเอียด</button>
+                        <button type="button" class="btn button-color shadow rounded px-5 text-light" style="border-radius:10px" @onclick="() => OpenPDF(loan)">รายละเอียด</button>
                     </div>
                 }
             </div>
