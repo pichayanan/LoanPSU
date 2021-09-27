@@ -13,7 +13,7 @@ namespace BlazorApp.Models
         public int LoanTypeID { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "กรุณากรอกกำนวณเงินกู้")]
-        public int  Money { get; set; }
+        public int LoanMaxAmount { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "กรุณากรอกกำนวณงวดในการกู้")]
         public int Period { get; set; }

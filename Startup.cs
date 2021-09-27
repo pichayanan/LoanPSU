@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorApp.Data;
 using Blazored.SessionStorage;
+using BlazorApp.ModelsDB;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlazorApp
 {
@@ -31,6 +33,10 @@ namespace BlazorApp
             services.AddSingleton<WeatherForecastService>();
 
             services.AddBlazoredSessionStorage();
+            services.AddDbContext<ModelContext>
+                (options => options.UseOracle
+                    (Configuration.GetConnectionString("DefaultConnection"))
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

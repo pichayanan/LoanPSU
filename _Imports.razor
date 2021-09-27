@@ -19,7 +19,9 @@
 @using BlazorApp.Data
 @using System.IO;
 @using Newtonsoft.Json;
+@using BlazorApp.ModelsDB
 
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JS
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject ModelContext _context
