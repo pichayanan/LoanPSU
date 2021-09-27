@@ -24,7 +24,7 @@ namespace BlazorApp.Pages
             ModelApplyLoan = new ApplyLoanModel();
             Model = new LoanType();
 
-            setData();
+            SetData();
 
             if (LoadID != 0)
             {
@@ -41,7 +41,7 @@ namespace BlazorApp.Pages
             ModelApplyLoan.Guarantor = "";
         }
 
-        private void setData()
+        public void SetData()
         {
             LoanTypeList = new List<LoanType>();
             LoanTypeList = _context.LoanTypes.Where(c => c.Active == true).ToList<LoanType>();
