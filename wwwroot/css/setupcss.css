@@ -40,3 +40,10 @@ table > thead {
     background-color:#ffffff;
     text-align:center;
 }
+.button-color {
+    background-color: #2788DE;
+}
+
+.font-color {
+    color: #2788DE;
+}
