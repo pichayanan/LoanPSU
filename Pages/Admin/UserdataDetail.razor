@@ -1,0 +1,67 @@
+﻿
+@page "/Admin/UserdataDetail"
+<div class="container my-3">
+    <div class="row justify-content-between py-3 bg-light">
+        <div class="col-4 mt-3">
+            <div style="font-size: x-large; font-weight: bold; color: #2788DE"> ชื่อผู้กู้ </div>
+            <div class="row my-3" style="font-weight: bold;color: #2788DE">
+                <div class="col-12 col-lg-6">ยอดเงินกู้ทั้งหมด</div>
+                <div class="col-12 col-lg-6">ยอดเงินกู้คงเหลือ</div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="pt-4 text-end">
+                <button class="primary-bg" onclick="" style="border-radius: 3px; color:white; width:200px; height:30px">
+                    สัญญาเงินกู้
+                </button>
+            </div>
+            <div class="pt-4 text-end">
+                <button class="primary-bg" style="border-radius: 3px; color: white; width: 200px; height: 30px ">
+                    
+                    สัญญาการค้ำ
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <table class="table table-hover " style="border-top:1px solid;border-bottom:1px solid">
+            <thead>
+                <tr class="table-light text-center">
+                    <th>วันที่</th>
+                    <th>งวดที่</th>
+                    <th>เงินต้น</th>
+                    <th>ดอกเบี้ย</th>
+                    <th>รวมชำระ</th>
+                    <th>สถานะ</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr>
+                    <td>12/02/64</td>
+                    <td>1</td>
+                    <td>10000</td>
+                    <td>208</td>
+                    <td>1041</td>
+                    <td>
+                        ชำระแล้ว
+                    </td>
+                </tr>
+                <tr class="table-light">
+                    <td>12/03064</td>
+                    <td>2</td>
+                    <td>8959</td>
+                    <td>208</td>
+                    <td>1041</td>
+                    <td>
+                        ชำระแล้ว
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+@code {
+  
+
+}

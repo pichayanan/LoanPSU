@@ -25,7 +25,7 @@
         </thead>
 
         <tbody>
-            <tr class="py-2" style="background-color:whitesmoke ;">
+            <tr class="py-2" style="background-color:whitesmoke ;" @onclick="SeeDetail">
                 <td class="text-center ">
                     .......
                 </td>
@@ -65,8 +65,8 @@
     public string grayColor = "#d3d5d4";
     public string whiteColor = "#ffffff";
 
-    public void CreateLoan()
+    public void SeeDetail()
     {
-        NavigationManager.NavigateTo("/Admin/CreateTypeLoan");
+        NavigationManager.NavigateTo("/Admin/UserdataDetail");
     }
 }
