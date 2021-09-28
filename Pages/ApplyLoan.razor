@@ -157,6 +157,19 @@
 
     private void findGuarantor()
     {
+
+        var staffTest = _context.VLoanStaffDetails.Where(c =>
+                c.StaffNameThai.Contains(ModelApplyLoan.Guarantor) ||
+                c.StaffSnameThai.Contains(ModelApplyLoan.Guarantor)
+            ).ToList();
+
+
+
+        @*ModelApplyLoan.Guarantor*@
+
+
+
+
         @*        selectGuarantor = new List<GuarantorPeople>();
 
             if (guarantorPeoples.Count != 0 && ModelApplyLoan.Guarantor != "")
