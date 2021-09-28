@@ -12,6 +12,7 @@ using BlazorApp.Data;
 using Blazored.SessionStorage;
 using BlazorApp.ModelsDB;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BlazorApp
 {
@@ -37,6 +38,9 @@ namespace BlazorApp
                 (options => options.UseOracle
                     (Configuration.GetConnectionString("DefaultConnection"))
                 );
+            services.AddAuthentication(
+                (CookieAuthenticationDefaults.AuthenticationScheme)
+                ).AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,11 +53,19 @@ namespace BlazorApp
             else
             {
                 app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
+            /*Add Authentication*/
+            app.UseHttpsRedirection();
 
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            /*Add Authentication*/
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

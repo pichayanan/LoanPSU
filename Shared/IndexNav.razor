@@ -1,21 +1,75 @@
-﻿<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-        <img src="http://www.thaiall.com/java/bootstrap-stack.png" width="40" height="40" alt="" />
-    </a>
+﻿@*<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="http://www.thaiall.com/java/bootstrap-stack.png" width="40" height="40" alt="" />
+        </a>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto h5">
-            ระบบสวัสดิการเงินกู้ <br />
-            มหาวิทยาลัยสงขลานครินทร์
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav mr-auto h5">
+                ระบบสวัสดิการเงินกู้ <br />
+                มหาวิทยาลัยสงขลานครินทร์
+            </div>
+            <span class="navbar-text">
+                Navbar text with an inline element
+            </span>
+
+            <div class="my-2 my-lg-0 text-end">
+                <button type="button" class="btn Secondary-bg Primary">
+                    เข้าสู่ระบบ
+                </button>
+            </div>
         </div>
-        <div class="my-2 my-lg-0">
-            <button type="button" class="btn Secondary-bg Primary">
-                เข้าสู่ระบบ
-            </button>
+    </nav>*@
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">
+            <img src="http://www.thaiall.com/java/bootstrap-stack.png" width="40" height="40" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page">
+                        ระบบสวัสดิการเงินกู้ <br />
+                        มหาวิทยาลัยสงขลานครินทร์
+                    </a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <NavLink class="nav-link" @onclick="setUser">
+                    <button type="button"
+                            class="btn Secondary-bg Primary">
+                        เข้าสู่ระบบ User
+                    </button>
+                </NavLink>
+            </span>
+            <span class="navbar-text">
+                <NavLink class="nav-link" @onclick="setAdmin">
+                    <button type="button"
+                            class="btn Secondary-bg Primary">
+                        เข้าสู่ระบบ Admin
+                    </button>
+                </NavLink>
+            </span>
         </div>
     </div>
 </nav>
 
 @code {
+
+    public async Task setUser()
+    {
+        await sessionStorage.SetItemAsync("role", "user");
+        NavigationManager.NavigateTo("/SignIn", true);
+    }
+
+    public async Task setAdmin()
+    {
+        await sessionStorage.SetItemAsync("role", "admin");
+        NavigationManager.NavigateTo("/SignIn", true);
+    }
 
 }
