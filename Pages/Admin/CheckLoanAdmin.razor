@@ -25,7 +25,16 @@
 
                 <div class="mb-3">
                     <label class="form-label font-weight-bold">ชื่อ-นามสกุลของบุคลากร</label>
-                    <input class="form-control" id="exampleFormControlInput1">
+                    
+                    <div class="row col-12">
+                        <div class="col-11 ">
+                            <input class="form-control" id="exampleFormControlInput1" placeholder="">
+                        </div>
+                        <button type="button"
+                                class="btn btn-outline-secondary primary-bg-drop col-1 ">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label font-weight-bold">เงินเดือนทั้งหมด</label>
@@ -37,7 +46,21 @@
                 </div>
                 <div class="mb-3">
                     <label for="guarantor" class="form-label font-weight-bold">ประเภทการกู้</label>
-                    <input class="form-control" id="exampleFormControlInput1">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">กู้เพื่อรักษาพยาบาลตนเอง</option>
+                        <option value="2">กู้เพื่อการศึกษาตนเอง</option>
+                        <option value="3">กู้ค่าเล่าเรียนบุตรในส่วนที่เกินสิทธิ</option>
+                        <option value="4">กู้เพื่อซื้อวัสดุอุปกรณ์การศึกษาของบุตร</option>
+                        <option value="5">กู้เพื่อซื้อคอมพิวเตอร์และอุปกรณ์ IT</option>
+                        <option value="6">กู้เพื่อส่งเสริมสุขภาวะบุคลากร</option>
+                        <option value="7">กู้เพื่อประกอบกิจกรรมด้านวัฒนธรรม</option>
+                        <option value="8">กู้เพื่อซื้อประกัน</option>
+                        <option value="9">กู้เพื่อซ่อมแซมยานพาหนะ</option>
+                        <option value="10">กู้เพื่อซ่อมแซมที่อยู่อาศัย</option>
+                        <option value="11">กู้เพื่อตัดชุดขาว</option>
+                        <option value="12">กู้เพื่อตัดชุดครุยบุคลากร</option>
+                    </select>
                 </div>
                 <div class="mb-3 row">
                     <div class="col-8">
@@ -50,7 +73,7 @@
                     </div>
                 </div>
                 <div class="d-grid gap-2">
-                    <button class="btn primary-bg" style="color: white; border-radius: 10px" type="submit">ดำเนินการต่อ</button>
+                    <button class="btn button-color " style="color: white; border-radius: 10px" type="submit">ดำเนินการต่อ</button>
                 </div>
 
 
@@ -81,10 +104,22 @@
                         <div class="col">ผ่อนชำระเดือนละ</div>
                         <div class="col text-end">1000 บาท</div>
                     </div>
-                   
+
                 </div>
+
+                @*กรณีที่ไม่มีสิทธิกู้*@
+
+                @*<div class="mt-4 px-4">
+            <div class="py-1 px-2">
+               <div> ไม่สามารถกู้ได้เพราะ จำนวนเงินสุทธิคงเหลือของคุณน้อยเกินไป</div>
+                <div> *** คุณจะสามารถกู้ได้ในจำนวนเงิน .... บาท </div>
             </div>
-        </div>
+
+        </div>*@
+
+
+            </div>
+            </div>
     </div>
 </div>
 

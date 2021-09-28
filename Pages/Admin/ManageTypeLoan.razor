@@ -4,7 +4,11 @@
 
     <div class="mx-2">
         
-        <table class="table table-hover border-table mt-5 " style="border-top: 1px solid">
+            <div class="mt-3" style="text-align:end">
+                <button type="button" class="btn secondary-bg shadow rounded text-center" @onclick="CreateLoan" style="border-radius: 5px;width:180px"><i class="fas fa-plus-circle mx-2"></i>สร้างประเภทใหม่</button>
+            </div>
+       
+        <table class="table table-hover border-table mt-4 " style="border-top: 1px solid">
             <thead class=" primary-bg text-light">
                 <tr>
                     <th>สถานะ</th>
@@ -70,22 +74,11 @@
 
 </div>
 @*footer*@
-<div class="footer">
+@*<div class="footer">
 
-    <div class="row py-3 col-12 ms-1 ">
-        <div class="col-3 text-left">
+    
 
-
-        </div>
-        <div class="col-4 text-center">
-
-        </div>
-        <div class="col-3" style="text-align:end">
-            <button type="button" class="btn secondary-bg shadow rounded text-center" @onclick="CreateLoan" style="border-radius: 5px;width:180px"><i class="fas fa-plus-circle mx-2"></i>สร้างประเภทใหม่</button>
-        </div>
-    </div>
-
-</div>
+</div>*@
 @code {
     public Boolean countTable = false;
     public string grayColor = "#d3d5d4";
