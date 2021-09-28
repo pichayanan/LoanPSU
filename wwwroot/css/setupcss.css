@@ -47,3 +47,7 @@ table > thead {
 .font-color {
     color: #2788DE;
 }
+
+.card-border {
+    border-color: #2788DE;
+}
