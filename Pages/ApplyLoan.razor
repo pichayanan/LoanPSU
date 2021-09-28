@@ -82,12 +82,12 @@
                 @if (ModelApplyLoan.LoanTypeID != 0)
                 {
                     var loan = LoanTypeList.FirstOrDefault(x => x.LoanTypeId == ModelApplyLoan.LoanTypeID);
-
-                    <div class="text-h3 my-4 py-2 px-2 text-center"
-                         style="background-color: #DBE8EE;color:black">
+                
+                    <div class=" card bg-light font-color  text-h2 font-weight-bolder my-4 py-2 px-2 text-center"
+                         style="border-radius: 10px">
                         @loan.LoanParentId @loan.LoanParentName
                     </div>
-
+                
                     <div class="mt-4 px-4">
                         <div class="row py-1">
                             <div class="col">วงเงินสูงสุด</div>

@@ -3,91 +3,152 @@
 @page "/User/AnotherRequest"
 @inject NavigationManager NavigationManager
 
-<div class="row">
-    <div class="col-2">
-
-    </div>
-    <div class="col-8 card bg-light p-3 mt-4 mb-4">
-        <div class="mt-5" style="padding-left:40px">
-            เปลี่ยนผู้ค้ำ กรณีทำสัญญาแล้ว
+<div class="container my-3">
+    <div class="row">
+        <div class="col-2">
 
         </div>
-        <div class="mt-4" style="padding-left:40px">
-            เลขที่สัญญา
-        </div>
-        <div class="card primary-bg-drop pt-3 pb-4 mt-4">
-            <div style="color:blue">
-                <div class="row pt-4">
-                    <div class="col-6 " style="padding-left: 100px">
-                        <a style="font-size:larger">วงเงินสูงสุด  </a>
+        <div class="col-8 card bg-light p-3 mt-4 mb-4 shadow rounded">
+            <div class="mt-5" style="padding-left:40px">
+                เปลี่ยนผู้ค้ำ กรณีทำสัญญาแล้ว
+
+            </div>
+            <div class="mt-4" style="padding-left:40px">
+                เลขที่สัญญา
+
+            </div>
+            <div class="card primary-bg-drop pt-3 pb-4 mt-4 shadow rounded">
+                <div class="font-color">
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">วงเงินสูงสุด  </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">50000 บาท </a>
+                        </div>
                     </div>
-                    <div class="col-6" style="text-align:end;padding-right:90px">
-                        <a style="font-size:larger">50000 บาท </a>
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">อัตราดอกเบี้ย  </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">0.25 % </a>
+                        </div>
                     </div>
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">ผ่อนชำระสูงสุด  </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">12 เดือน </a>
+                        </div>
+                    </div>
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">ผ่อนชำระเดือนละ </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">1000 บาท </a>
+                        </div>
+                    </div>
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">วันที่ทำรายการ  </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">12 กรกฎาคม 2564 </a>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="row pt-4">
-                    <div class="col-6 " style="padding-left: 100px">
-                        <a style="font-size:larger">อัตราดอกเบี้ย  </a>
+
+            </div>
+            <div class="mt-4 " style="padding-left:40px">
+                <label for="guarantor" class="form-label font-weight-bold">ชื่อผู้ค้ำใหม่</label>
+                <div class="row">
+                    <div class="col-8 ">
+                        <input class="form-control" id="exampleFormControlInput1" placeholder="ระบุชื่อผู้ค้ำคนใหม่">
                     </div>
-                    <div class="col-6" style="text-align:end;padding-right:90px">
-                        <a style="font-size:larger">0.25 % </a>
-                    </div>
-                </div>
-                <div class="row pt-4">
-                    <div class="col-6 " style="padding-left: 100px">
-                        <a style="font-size:larger">ผ่อนชำระสูงสุด  </a>
-                    </div>
-                    <div class="col-6" style="text-align:end;padding-right:90px">
-                        <a style="font-size:larger">12 เดือน </a>
-                    </div>
-                </div>
-                <div class="row pt-4">
-                    <div class="col-6 " style="padding-left: 100px">
-                        <a style="font-size:larger">ผ่อนชำระเดือนละ </a>
-                    </div>
-                    <div class="col-6" style="text-align:end;padding-right:90px">
-                        <a style="font-size:larger">1000 บาท </a>
-                    </div>
-                </div>
-                <div class="row pt-4">
-                    <div class="col-6 " style="padding-left: 100px">
-                        <a style="font-size:larger">วันที่ทำรายการ  </a>
-                    </div>
-                    <div class="col-6" style="text-align:end;padding-right:90px">
-                        <a style="font-size:larger">12 กรกฎาคม 2564 </a>
-                    </div>
+                    <button type="button"
+                            class="btn btn-outline-secondary primary-bg-drop col-1">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
 
             </div>
 
-        </div>
-        <div class="mt-4 "style="padding-left:40px">
-            <label for="guarantor" class="form-label font-weight-bold">ชื่อผู้ค้ำใหม่</label>
-            <div class="row ">
-                <div class="col-8 ">
-                    <input class="form-control"  id="exampleFormControlInput1"  placeholder="ระบุชื่อผู้ค้ำคนใหม่">
+            <div class="mt-4  row">
+                <div class="col-6 text-end">
+                    <button type="button"
+                            class="btn secondary-bg shadow rounded"
+                            style="width:200px"
+                            data-bs-toggle="modal"
+                            data-bs-target="#backPage">
+                        กลับ
+                    </button>
                 </div>
-                <button type="button"
-                        class="btn btn-outline-secondary primary-bg-drop col-1"
-                        >
-                    
-                    <i class="fas fa-search"></i>
-                </button>
+                <div class="col-6">
+                    <button type="button"
+                            class="btn button-color shadow rounded"
+                            style="color: white; width: 200px"
+                            data-bs-toggle="modal"
+                            data-bs-target="#nextPage">
+                        ยื่นคำขอ
+                    </button>
+                </div>
             </div>
 
         </div>
-        <div class="mt-5 text-center">
-            <button class="primary-bg" type="button" style="color:white;border-radius:3px;width:200px">ยื่นคำขอ</button>
+        <div class="col-2">
 
         </div>
 
     </div>
-    <div class="col-2">
+</div>
 
+@* model Back page *@
+<div class="modal fade" id="backPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+               
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                เมื่อกดกลับ ระบบจะไม่ทำการบันทึกข้อมูลหน้านี้ คุณต้องการกลับหรือไหม
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="BackPage">กลับ</button>
+            </div>
+        </div>
     </div>
+</div>
 
+@* model Back page *@
+<div class="modal fade" id="nextPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                คุณยื่นยันการส่งคำขอเปลี่ยนผู้ค้ำใช่หรือไหม
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="NextPage">ยื่นยัน</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @code {
 
+    public void BackPage()
+    {
+        NavigationManager.NavigateTo("/RequestLoan");
+    }
+
+    public void NextPage()
+    {
+        NavigationManager.NavigateTo("/applyloansuccess");
+    }
 }

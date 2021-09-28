@@ -3,7 +3,7 @@
 <div class="container my-4">
     <!-- mobile hidden <ยังไม่ได้ทำ> -->
     <div class="card bg-white px-4 pb-5" style="margin-top: 60px;border-radius:10px">
-        <div class="row justify-content-md-center pt-5">
+        <div class="row justify-content-md-center pt-5 mb-3">
             <div class="col text-end mx-2">
                 <button type="button" class="btn bg-light">1</button>
             </div>
@@ -12,12 +12,15 @@
             </div>
         </div>
 
-        <div class="card secondary-bg mt-4 " style="border-radius: 10px; color: #2788DE">
-            <div class="card-body py-1 px-2 pt-1">
-                <div class="card-title h3 pl-3">ผู้กู้</div>
-            </div>
+        <div class="card mt-4 text-center " style="border-radius: 10px; border-color: red; color: red; font-size: x-large; height: 40px">
+            โปรดตรวจสอบความถูกต้องของข้อมูลอีกครั้งก่อนทำการยืนยัน
         </div>
-        <div class="mt-3 ms-4 mb-2">
+
+        <div class="card primary-bg text-light mt-4 px-3 " style="border-radius: 10px;font-size:x-large;height:40px">
+            ข้อมูลผู้กู้
+        </div>
+
+        <div class="mt-3 ms-4 mb-2 ">
             <div class="row pt-1">
                 <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
                 <div class="col">ประเภทบุคลากร: </div>
@@ -38,14 +41,16 @@
                 <div class="col-xs-12 col-lg-6">เลขบัญชีในการโอนเงิน: </div>
                 <div class="col">เงินเดือน: </div>
             </div>
-        </div>
-
-
-        <div class="card secondary-bg mt-2 " style="border-radius: 10px; color: #2788DE">
-            <div class="card-body py-1 px-2 pt-1">
-                <div class="card-title h3">คู่สมรสของผู้กู้</div>
+            <div class="row pt-1">
+                <div class="col" style="color:red">หากข้อมูลส่วนตัวไม่ถูกต้องกรุณาแก้ไขในระบบสารสนเทศบุคลากร และดำเนินการสร้างคำขอใหม่</div>
+                
             </div>
         </div>
+
+        <div class="card primary-bg text-light mt-4 px-3 " style="border-radius: 10px;font-size:x-large;height:40px">
+            ข้อมูลคู่สมรสของผู้กู้
+        </div>
+
         <div class="mt-3 ms-4 mb-2">
             <div class="row pt-1">
                 <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
@@ -53,12 +58,29 @@
             </div>
         </div>
 
+        <div class="card primary-bg text-light mt-4 px-3 " style="border-radius: 10px;font-size:x-large;height:40px">
+            ข้อมูลผู้ค้ำ
+        </div>
 
-        <div class="card secondary-bg mt-4 " style="border-radius: 10px; color: #2788DE">
-            <div class="card-body py-1 px-2 pt-1">
-                <div class="card-title h3">ผู้ค้ำ</div>
+        <div class="mt-3 ms-4 mb-2">
+            <div class="row pt-1">
+                <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
+                <div class="col">ประเภทบุคลากร: </div>
+            </div>
+            <div class="row pt-1">
+                <div class="col-xs-12 col-lg-6">ตำแหน่งงาน: </div>
+                <div class="col">สังกัดส่วนงาน: </div>
+            </div>
+            <div class="row pt-1">
+                <div class="col" style="color:red">หากข้อมูลส่วนตัวไม่ถูกต้องกรุณาแก้ไขในระบบสารสนเทศบุคลากร และดำเนินการสร้างคำขอใหม่</div>
+
             </div>
         </div>
+
+        <div class="card primary-bg text-light mt-4 px-3 " style="border-radius: 10px;font-size:x-large;height:40px">
+            ข้อมูลทายาทของผู้กู้
+        </div>
+
         <div class="mt-3 ms-4 mb-2">
             <div class="row pt-1">
                 <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
@@ -66,32 +88,17 @@
             </div>
         </div>
 
-
-        <div class="card secondary-bg mt-4 " style="border-radius: 10px; color: #2788DE">
-            <div class="card-body py-1 px-2 pt-1">
-                <div class="card-title h3">ทายาท/บุตรบุญธรรมของผู้กู้</div>
-            </div>
+        <div class="card primary-bg text-light mt-4 px-3 " style="border-radius: 10px;font-size:x-large;height:40px">
+            รายละเอียดการกู้เงิน
         </div>
-        <div class="mt-3 ms-4 mb-2">
-            <div class="row pt-1">
-                <div class="col-xs-12 col-lg-6">ชื่อ-สกุล: </div>
-                <div class="col">มือถือ: </div>
-            </div>
-        </div>
-
-
-        <div class="card secondary-bg mt-4 " style="border-radius: 10px; color: #2788DE">
-            <div class="card-body py-1 px-2 pt-1">
-                <div class="card-title h3">รายละเอียดการกู้เงิน</div>
-            </div>
-        </div>
+        
         <div class="mt-3 ms-4 pt-1">
             <div>ประเภทการกู้: @loanData.LoanTypeId @loanData.LoanParentName</div>
             <br />
-            <div>จำนวนเงินที่ต้องการกู้: @info.LoanMaxAmount บาท</div>
+            <div>จำนวนเงินที่ต้องการกู้(บาท): @info.LoanMaxAmount บาท</div>
             <br />
             <div>
-                ดอกเบี้ย:
+                อัตราดอกเบี้ย(ต่อปี):
                 @if (loanData.LoanInterate == 0)
                 {
                     @LoanInterate
@@ -102,19 +109,17 @@
                 }
             </div>
             <br />
-            <div>ผ่อนชำระจำนวน: @info.Period เดือน</div>
+            <div>ผ่อนชำระจำนวน(งวด): @info.Period เดือน</div>
             <br />
-            <div>ผ่อนชำระเดือนละ: ...  บาท</div>
-            <br />
-            <div>เอกสารที่ต้องแนบ: ... ภายใน 30 วัน หลังจากได้รับเงิน</div>
+            <div style="color:red">ท่านต้องดำเนินการส่งหลักฐาน ภายใน 30 วันหลังจากได้รับเงินจากกองคลัง</div>
             <br />
         </div>
 
         <div class="mt-4  row">
             <div class="col-6 text-end">
                 <button type="button"
-                        class="btn primary-bg"
-                        style="color:white;width:200px"
+                        class="btn secondary-bg shadow rounded"
+                        style="width:200px"
                         data-bs-toggle="modal"
                         data-bs-target="#backPage">
                     กลับ
@@ -122,7 +127,7 @@
             </div>
             <div class="col-6">
                 <button type="button"
-                        class="btn primary-bg"
+                        class="btn button-color shadow rounded"
                         style="color: white; width: 200px"
                         data-bs-toggle="modal"
                         data-bs-target="#nextPage">

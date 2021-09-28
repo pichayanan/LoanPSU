@@ -9,6 +9,34 @@
 
 @*footer*@
 <div class="footer">
+
+    <div class="row py-3 col-12 ms-1 ">
+        <div class="col-3 text-left">
+            <button type="button" class="btn secondary-bg  shadow rounded text-center" @onclick="back" style="border-radius: 5px;width:180px">กลับ</button>
+
+        </div>
+        <div class="col-4 text-center">
+            <button type="button"
+                    class="btn secondary-bg  shadow rounded text-center"
+                    data-bs-toggle="modal"
+                    data-bs-target="#upload"
+                    @onclick="EmptyFile"
+                    style="border-radius: 5px; width: 180px">
+                อัพโหลดเพิ่ม
+            </button>
+        </div>
+        <div class="col-3" style="text-align:end">
+            <button type="button" class="btn secondary-bg  shadow rounded text-center" style="border-radius: 5px;width:180px">บันทึก</button>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@*old version footer*@
+@*<div class="footer">
     <div class="px-3 py-3 text-end">
         <div class="row justify-content-center">
             <div class="col-10 text-end">
@@ -25,7 +53,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 @* model Upload *@
 <div class="modal fade"
@@ -59,6 +87,11 @@
         ModelUpload.Name = value.Params[0].ToString();
         ModelUpload.Url = value.Params[1].ToString();
         resultInfoList.Add(ModelUpload);
+    }
+    public void back()
+    {
+        @*NavigationManager.NavigateTo("/uploaddoc");*@
+        NavigationManager.NavigateTo("/AgreementDetail");
     }
 
 }

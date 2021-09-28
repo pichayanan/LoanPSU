@@ -1,75 +1,75 @@
 ﻿
 @page "/RequestLoan"
 @inject NavigationManager NavigationManager
+    <div class="container my-3">
+        <div class="card primary-bg shadow rounded mt-3" style="border-radius:10px">
+            <a style="font-size:x-large;color:white;padding-left:15px">คำขออื่นๆ</a>
 
-<div class="card primary-bg" style="border-radius:0px">
-    <a style="font-size:x-large;color:white;padding-left:15px">คำขออื่นๆ</a>
+        </div>
 
-</div>
+        <div class="card bg-light pa-3 mt-3 mx-2 shadow rounded" style="height:300px;border-radius:10px">
+            <div class="row pt-3">
 
-<div class="card bg-light pa-3 mt-3 mx-2" style="height:300px;border-radius:0px">
-    <div class="row pt-3">
+                <div class="card col-10 primary-bg-drop pt-3 mt-3 shadow rounded" @onclick="ChangeGuarantor" style="height:60px;padding-left:20px;border-radius:10px;margin-left:40px">
+                    <div class="col-8 ">
+                        <a style="font-size:larger">คำขอเปลี่ยนผู้ค้ำ</a>
 
-        <div class="card col-10 primary-bg-drop pt-3 mt-3"  @onclick="ChangeGuarantor" style="height:60px;padding-left:20px;border-radius:0px;margin-left:40px">
-            <div class="col-8 ">
-                <a style="font-size:larger">คำขอเปลี่ยนผู้ค้ำ</a>
+                    </div>
+
+
+                </div>
+                <div class="col-1 card primary-bg mt-3 shadow rounded" @onclick="ChangeGuarantor" style="height:60px;margin-left:30px;width:60px">
+
+                </div>
+
 
             </div>
+            <div class="row pt-3">
+
+                <div class="card col-10 primary-bg-drop pt-3 mt-2 shadow rounded" @onclick="CompoundLoan" style="height:60px;padding-left:20px;border-radius:10px;margin-left:40px">
+                    <div class="col-8">
+                        <a style="font-size:larger">คำขอกู้ประเภทกู้ทบยอด</a>
+
+                    </div>
 
 
-        </div>
-        <div class="col-1 card primary-bg mt-3" @onclick="ChangeGuarantor" style="height:60px;margin-left:30px;width:60px">
+                </div>
+                <div class="col-1 card primary-bg mt-2 shadow rounded" @onclick="CompoundLoan" style="height:60px;margin-left:30px;width:60px">
 
-        </div>
+                </div>
 
-
-    </div>
-    <div class="row pt-3">
-
-        <div class="card col-10 primary-bg-drop pt-3 mt-2" @onclick="CompoundLoan" style="height:60px;padding-left:20px;border-radius:0px;margin-left:40px">
-            <div class="col-8">
-                <a style="font-size:larger">คำขอกู้ประเภทกู้ทบยอด</a>
 
             </div>
+            <div class="row pt-3">
+
+                <div class="card col-10 primary-bg-drop pt-3 mt-2 shadow rounded" @onclick="AnotherRequest" style="height:60px;padding-left:20px;border-radius:10px;margin-left:40px">
+                    <div class="col-8">
+                        <a style="font-size:larger">คำขออื่นๆ</a>
+
+                    </div>
 
 
-        </div>
-        <div class="col-1 card primary-bg mt-2" @onclick="CompoundLoan" style="height:60px;margin-left:30px;width:60px">
+                </div>
+                <div class="col-1 card primary-bg mt-2 shadow rounded" @onclick="AnotherRequest" style="height:60px;margin-left:30px;width:60px">
 
-        </div>
+                </div>
 
-
-    </div>
-    <div class="row pt-3">
-
-        <div class="card col-10 primary-bg-drop pt-3 mt-2" @onclick="AnotherRequest" style="height:60px;padding-left:20px;border-radius:0px;margin-left:40px">
-            <div class="col-8">
-                <a style="font-size:larger">คำขออื่นๆ</a>
 
             </div>
-
-
         </div>
-        <div class="col-1 card primary-bg mt-2" @onclick="AnotherRequest"  style="height:60px;margin-left:30px;width:60px">
-
-        </div>
-
-
     </div>
-</div>
+    @code {
+        public void ChangeGuarantor()
+        {
+            NavigationManager.NavigateTo("/ChangeGuarantor");
+        }
+        public void AnotherRequest()
+        {
+            NavigationManager.NavigateTo("./User/AnotherRequest");
+        }
+        public void CompoundLoan()
+        {
+            NavigationManager.NavigateTo("./User/CompoundLoan");
+        }
 
-@code {
-    public void ChangeGuarantor()
-    {
-        NavigationManager.NavigateTo("/ChangeGuarantor");
     }
-    public void AnotherRequest()
-    {
-        NavigationManager.NavigateTo("./User/AnotherRequest");
-    }
-    public void CompoundLoan()
-    {
-        NavigationManager.NavigateTo("./User/CompoundLoan");
-    }
-
-}
