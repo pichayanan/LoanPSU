@@ -1,59 +1,92 @@
 ﻿
 @page "/Admin/UserdataDetail"
+@inject NavigationManager NavigationManager
+
 <div class="container my-3">
-    <div class="row justify-content-between py-3 bg-light">
-        <div class="col-4 mt-3">
+    <div class=" mt-4 row">
+        <div class=" col-8"></div>
+        <form class="d-flex col-4">
+            <input class="form-control me-2 shadow rounded" type="search" placeholder="Search" aria-label="Search">
+
+            <button type="button"
+                    class="btn btn-outline-secondary primary-bg-drop shadow rounded">
+                <i class="fas fa-search"></i>
+            </button>
+
+        </form>
+    </div>
+
+    <div class="row justify-content-between py-3 mt-3 bg-light shadow rounded " style="border-radius:10px">
+
+
+
+        <div class="col mt-3">
             <div style="font-size: x-large; font-weight: bold; color: #2788DE"> ชื่อผู้กู้ </div>
             <div class="row my-3" style="font-weight: bold;color: #2788DE">
-                <div class="col-12 col-lg-6">ยอดเงินกู้ทั้งหมด</div>
-                <div class="col-12 col-lg-6">ยอดเงินกู้คงเหลือ</div>
+                <div class="col-12 col-lg-4">ยอดเงินกู้ทั้งหมด</div>
+                <div class="col-12 col-lg-4">ยอดเงินกู้คงเหลือ</div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="pt-4 text-end">
-                <button class="primary-bg" onclick="" style="border-radius: 3px; color:white; width:200px; height:30px">
-                    สัญญาเงินกู้
+        <div class="row mt-3 justify-content-start">
+            <div class="col-2">
+                <button class="button-color text-light shadow rounded" onclick="" style="border-radius: 10px;  height:30px;border:none;width:180px">
+                    ตรวจสอบสิทธิการกู้
                 </button>
             </div>
-            <div class="pt-4 text-end">
-                <button class="primary-bg" style="border-radius: 3px; color: white; width: 200px; height: 30px ">
-                    
-                    สัญญาการค้ำ
+
+            <div class=" col-2 ">
+                <button class="button-color text-light shadow rounded" onclick="" style="border-radius: 10px; height: 30px; border: none; width: 180px ">
+                    สัญญากู้
                 </button>
             </div>
+            <div class="col-2 ">
+                <button class="secondary-bg  shadow rounded" style="border-radius: 10px; height: 30px; border: none; width: 180px ">
+
+                    สัญญาค้ำ
+                </button>
+            </div>
+
         </div>
+
+
     </div>
+
     <div class="row justify-content-between">
         <table class="table table-hover " style="border-top:1px solid;border-bottom:1px solid">
-            <thead>
-                <tr class="table-light text-center">
-                    <th>วันที่</th>
-                    <th>งวดที่</th>
-                    <th>เงินต้น</th>
-                    <th>ดอกเบี้ย</th>
-                    <th>รวมชำระ</th>
+            <thead class="primary-bg text-center text-light">
+                <tr>
+                    <th>เลขที่สัญญา</th>
+                    <th>ประเภทเงินกู้</th>
+                    <th>ยอดเงินกู้</th>
+                    <th>ชำระคืนแล้ว</th>
+                    <th>ยอดคงเหลือ</th>
+                    <th>ผู้กู้/ผู้ค้ำ</th>
                     <th>สถานะ</th>
                 </tr>
             </thead>
             <tbody class="text-center">
                 <tr>
-                    <td>12/02/64</td>
-                    <td>1</td>
-                    <td>10000</td>
-                    <td>208</td>
-                    <td>1041</td>
+                    <td>001</td>
+                    <td>กู้เพื่อการศึกษา</td>
+                    <td>100000</td>
+                    <td>1000</td>
+                    <td>99000</td>
                     <td>
-                        ชำระแล้ว
+                        นาย....
+                    </td>
+                    <td>
                     </td>
                 </tr>
                 <tr class="table-light">
-                    <td>12/03064</td>
-                    <td>2</td>
-                    <td>8959</td>
-                    <td>208</td>
-                    <td>1041</td>
+                    <td>001</td>
+                    <td>กู้เพื่อการศึกษา</td>
+                    <td>100000</td>
+                    <td>1000</td>
+                    <td>99000</td>
                     <td>
-                        ชำระแล้ว
+                        นาย....
+                    </td>
+                    <td>
                     </td>
                 </tr>
 
@@ -61,7 +94,31 @@
         </table>
     </div>
 </div>
+
+
+<div class="footer">
+
+    <div class="row py-3 col-12 ms-1 ">
+        <div class="col-3 text-left">
+            <button type="button" class="btn secondary-bg shadow rounded text-center" @onclick="back" style="border-radius: 5px;width:180px">กลับ</button>
+
+        </div>
+        <div class="col-4 text-center">
+
+        </div>
+        <div class="col-3" style="text-align:end">
+
+        </div>
+    </div>
+
+</div>
+
+
 @code {
-  
+    public void back()
+    {
+        NavigationManager.NavigateTo("./Admin/CheckUserdata");
+    }
+
 
 }

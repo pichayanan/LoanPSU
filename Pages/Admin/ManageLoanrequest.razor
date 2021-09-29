@@ -1,6 +1,148 @@
 ﻿
 @page "/Admin/ManageLoanRequest"
 
-@code {
+<div class="container mt-3">
 
+    <div class=" mt-4 row">
+        <div class=" col-8"></div>
+        <form class="d-flex col-4">
+            <input class="form-control me-2 shadow rounded" type="search" placeholder="Search" aria-label="Search">
+
+            <button type="button"
+                    class="btn btn-outline-secondary primary-bg-drop shadow rounded">
+                <i class="fas fa-search"></i>
+            </button>
+
+        </form>
+    </div>
+
+    <table class="table table-hover border-table mt-4" style="border-top: 1px solid">
+        <thead class="text-light primary-bg">
+            <tr>
+                <th>สถานะ</th>
+                <th>วันที่/เวลา</th>
+                <th>ยอดเงินกู้</th>
+                <th>ประเภท</th>
+                <th>ชื่อ-นามสกุล</th>
+                <th>ดำเนินการ</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr class="py-2" style="background-color:whitesmoke ;" @onclick="SeeDetail">
+                <td class="text-center ">
+                    รอตรวจสอบ
+                </td>
+                <td class="text-center">12 ก.ค.64/13.30</td>
+                <td class="text-center">10000</td>
+                <td class="text-center">ตัดชุดครุย</td>
+                <td class="text-center">ดวงธิดา ชูมาลี</td>
+                <td class="text-center">
+                    <button class="btn button-color text-light shadow rounded" style="border-radius: 10px; width: 100px">ตรวจสอบ</button>
+
+
+
+                </td>
+
+            </tr>
+            <tr class="py-2" style="background-color:whitesmoke ;" @onclick="SeeDetail">
+                <td class="text-center ">
+                    รอทำสัญญา
+                </td>
+                <td class="text-center">12 ก.ค.64/13.30</td>
+                <td class="text-center">10000</td>
+                <td class="text-center">เพื่อการศึกษาตนเอง</td>
+                <td class="text-center">ดวงธิดา ชูมาลี</td>
+                <td class="text-center">
+                    <button class="btn button-color text-light shadow rounded" style="border-radius: 10px; width: 100px">พิมพ์</button>
+
+
+
+                </td>
+
+            </tr>
+            <tr class="py-2" style="background-color:whitesmoke ;" @onclick="SeeDetail">
+                <td class="text-center ">
+                    รอดำเนินการ
+                </td>
+                <td class="text-center">12 ก.ค.64/13.30</td>
+                <td class="text-center">10000</td>
+                <td class="text-center">เปลี่ยนผู้ค้ำ</td>
+                <td class="text-center">ดวงธิดา ชูมาลี</td>
+                <td class="text-center">
+                    <button class="btn button-color text-light shadow rounded" style="border-radius: 10px; width: 100px">ตรวจสอบ</button>
+
+
+
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+
+
+
+
+
+</div>
+<div class="footer">
+
+    <div class="row py-3 col-12 ">
+        <div class="col-1 "style="text-align:end">
+            <button type="button" class="btn shadow rounded text-center" style="background-color:gray;">ตัวกรอง</button>
+
+        </div>
+        
+            <div class="col-1" style="text-align:end">
+                <div class="font-color font-weight-bolder">ประเภท</div>
+            </div>
+            <div class="col-2">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>ทุกประเภท</option>
+                    <option value="1">กู้เพื่อรักษาพยาบาลตนเอง</option>
+                    <option value="2">กู้เพื่อการศึกษาตนเอง</option>
+                    <option value="3">กู้ค่าเล่าเรียนบุตรในส่วนที่เกินสิทธิ</option>
+                    <option value="4">กู้เพื่อซื้อวัสดุอุปกรณ์การศึกษาของบุตร</option>
+                    <option value="5">กู้เพื่อซื้อคอมพิวเตอร์และอุปกรณ์ IT</option>
+                    <option value="6">กู้เพื่อส่งเสริมสุขภาวะบุคลากร</option>
+                    <option value="7">กู้เพื่อประกอบกิจกรรมด้านวัฒนธรรม</option>
+                    <option value="8">กู้เพื่อซื้อประกัน</option>
+                    <option value="9">กู้เพื่อซ่อมแซมยานพาหนะ</option>
+                    <option value="10">กู้เพื่อซ่อมแซมที่อยู่อาศัย</option>
+                    <option value="11">กู้เพื่อตัดชุดขาว</option>
+                    <option value="12">กู้เพื่อตัดชุดครุยบุคลากร</option>
+                </select>
+            </div>
+        
+        
+            <div class="col-1 " style="text-align:end">
+                <div class="font-color font-weight-bolder">สถานะ</div>
+            </div>
+            <div class="col-2 ">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>ทุกประเภท</option>
+                    <option value="1">รอตรวจสอบ</option>
+                    <option value="2">รอทำสัญญา</option>
+                    <option value="3">รอดำเนินการ</option>
+                   
+                </select>
+            </div>
+        </div>
+
+   
+
+</div>
+
+
+@code {
+    public Boolean countTable = false;
+    public string grayColor = "#d3d5d4";
+    public string whiteColor = "#ffffff";
+
+    public void SeeDetail()
+    {
+        NavigationManager.NavigateTo("/Admin/UserdataDetail");
+    }
 }
