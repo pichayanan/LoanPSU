@@ -10,6 +10,14 @@
 
 <div class="container my-4 ">
     <!-- mobile hidden <ยังไม่ได้ทำ> -->
+
+    <div class="row">
+        <div class="col-10"></div>
+        <div class="mt-3 col-2" style="text-align:end">
+            <button type="button" class="btn secondary-bg shadow rounded text-center" @onclick="backcheckloan" style="border-radius: 5px;width:180px"><i class="fas fa-user fa-lg mx-2"></i>ดูรายละเอียด</button>
+        </div>
+    </div>
+
     <div class="card bg-white px-4 pb-5" style="margin-top: 60px;border-radius:10px">
         <div class="row justify-content-md-center pt-5">
             <div class="col text-end mx-2">
@@ -25,7 +33,7 @@
 
                 <div class="mb-3">
                     <label class="form-label font-weight-bold">ชื่อ-นามสกุลของบุคลากร</label>
-                    
+
                     <div class="row col-12">
                         <div class="col-11 ">
                             <input class="form-control" id="exampleFormControlInput1" placeholder="">
@@ -110,20 +118,23 @@
                 @*กรณีที่ไม่มีสิทธิกู้*@
 
                 @*<div class="mt-4 px-4">
-            <div class="py-1 px-2">
-               <div> ไม่สามารถกู้ได้เพราะ จำนวนเงินสุทธิคงเหลือของคุณน้อยเกินไป</div>
-                <div> *** คุณจะสามารถกู้ได้ในจำนวนเงิน .... บาท </div>
-            </div>
+                        <div class="py-1 px-2">
+                           <div> ไม่สามารถกู้ได้เพราะ จำนวนเงินสุทธิคงเหลือของคุณน้อยเกินไป</div>
+                            <div> *** คุณจะสามารถกู้ได้ในจำนวนเงิน .... บาท </div>
+                        </div>
 
-        </div>*@
+                    </div>*@
 
 
             </div>
-            </div>
+        </div>
     </div>
 </div>
 
 @code {
-
+    public void backcheckloan()
+    {
+        NavigationManager.NavigateTo("./Admin/CheckLoanpage");
+    }
 
 }
