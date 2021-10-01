@@ -1,16 +1,11 @@
-﻿@page "/CheckDataByApplyLoan"
+﻿
+@page "/Admin/AgreementData"
+
 
 <div class="container my-4">
     <!-- mobile hidden <ยังไม่ได้ทำ> -->
     <div class="card bg-white px-4 pb-5" style="margin-top: 60px;border-radius:10px">
-        <div class="row justify-content-md-center pt-5 mb-3">
-            <div class="col text-end mx-2">
-                <button type="button" class="btn bg-light">1</button>
-            </div>
-            <div class="col mx-2">
-                <button type="button" class="btn primary-bg">2</button>
-            </div>
-        </div>
+        
 
         <div class="card mt-4 text-center " style="border-radius: 10px; border-color: red; color: red; font-size: x-large; height: 40px">
             โปรดตรวจสอบความถูกต้องของข้อมูลอีกครั้งก่อนทำการยืนยัน
@@ -43,7 +38,7 @@
             </div>
             <div class="row pt-1">
                 <div class="col" style="color:red">หากข้อมูลส่วนตัวไม่ถูกต้องกรุณาแก้ไขในระบบสารสนเทศบุคลากร และดำเนินการสร้างคำขอใหม่</div>
-                
+
             </div>
         </div>
 
@@ -91,25 +86,18 @@
         <div class="card primary-bg text-light mt-4 px-3 " style="border-radius: 10px;font-size:x-large;height:40px">
             รายละเอียดการกู้เงิน
         </div>
-        
+
         <div class="mt-3 ms-4 pt-1">
-            <div>ประเภทการกู้: @loanData.LoanTypeId @loanData.LoanParentName</div>
+            <div>ประเภทการกู้: </div>
             <br />
-            <div>จำนวนเงินที่ต้องการกู้(บาท): @info.LoanMaxAmount บาท</div>
+            <div>จำนวนเงินที่ต้องการกู้(บาท): บาท</div>
             <br />
             <div>
                 อัตราดอกเบี้ย(ต่อปี):
-                @if (loanData.LoanInterate == 0)
-                {
-                    @LoanInterate
-                }
-                else
-                {
-                    @loanData.LoanInterate @typeInterate
-                }
+             
             </div>
             <br />
-            <div>ผ่อนชำระจำนวน(งวด): @info.Period เดือน</div>
+            <div>ผ่อนชำระจำนวน(งวด): เดือน</div>
             <br />
             <div style="color:red">ท่านต้องดำเนินการส่งหลักฐาน ภายใน 30 วันหลังจากได้รับเงินจากกองคลัง</div>
             <br />
@@ -128,10 +116,10 @@
             <div class="col-6">
                 <button type="button"
                         class="btn button-color shadow rounded"
-                        style="color: white; width: 200px"
+                        style="color: white"
                         data-bs-toggle="modal"
                         data-bs-target="#nextPage">
-                    ยืนยันการส่งคำขอกู้
+                    ถูกต้องและดำเนินการอัปโหลดเอกสาร
                 </button>
             </div>
         </div>
@@ -159,59 +147,29 @@
 
 @* model Back page *@
 <div class="modal fade" id="nextPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    คุณยื่นยันในการยื่นขอกู้ในประเภท @loanData.LoanParentName ใช่หรือไหม
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="NextPage">ยืนยัน</button>
-                </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                คุณยื่นยันและต้องการอัปโหลดไฟล์ใช่หรือไหม
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="NextPage">ยืนยัน</button>
             </div>
         </div>
     </div>
+</div>
 
 @code {
 
-    private LoanType loanData;
-    private ApplyLoanModel info;
-    private String LoanInterate { get; set; } = " ไม่มี";
-    private string typeInterate { get; set; } = "%";
-
-    protected async override Task OnInitializedAsync()
-    {
-        loanData = new LoanType();
-        info = new ApplyLoanModel();
-        var checkData = await sessionStorage.GetItemAsStringAsync("FromLoan_1");
-        if (checkData != null)
-        {
-            info = await sessionStorage.GetItemAsync<ApplyLoanModel>("FromLoan_1");
-            loanData = _context.LoanTypes.Where(c => c.LoanTypeId == info.LoanTypeID).FirstOrDefault();
-            if (loanData == null)
-            {
-                @* กลับไปยังหน้าหลัง เนื่องจากไม่พบประเภทการกู้นั้นๆ *@
-            }
-        }
-        else
-        {
-            @* Error ไม่มีตัว FromLoan_1 *@
-            @*          info.LoanTypeID = 0;
-                info.LoanMaxAmount = 0;
-                info.Period = 0;
-                info.Guarantor = "null";*@
-        }
-    }
-
     public void BackPage()
     {
-        NavigationManager.NavigateTo("/uploaddoc");
+        NavigationManager.NavigateTo("./Admin/NewAgreement");
     }
 
     public void NextPage()
     {
-        NavigationManager.NavigateTo("/applyloansuccess");
+        NavigationManager.NavigateTo("./Admin/UploadAdmin");
     }
-
 
 }

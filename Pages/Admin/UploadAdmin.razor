@@ -1,0 +1,130 @@
+﻿@page "/Admin/UploadAdmin"
+<div class="container mt-3">
+    @*design card*@
+    <div class="card m-3 p-3 ">
+        <FromUpload listModel="@resultInfoList" />
+    </div>
+</div>
+
+@*footer*@
+<div class="footer">
+
+    <div class="row py-3 col-12 ms-1 ">
+        <div class="col-3 text-left">
+            <button type="button" class="btn secondary-bg  shadow rounded text-center" @onclick="back" style="border-radius: 5px;width:180px">กลับ</button>
+
+        </div>
+        <div class="col-4 text-center">
+            <button type="button"
+                    class="btn secondary-bg  shadow rounded text-center"
+                    data-bs-toggle="modal"
+                    data-bs-target="#upload"
+                    @onclick="EmptyFile"
+                    style="border-radius: 5px; width: 180px">
+                อัพโหลดเพิ่ม
+            </button>
+        </div>
+        <div class="col-3" style="text-align:end">
+            <button type="button" class="btn secondary-bg  shadow rounded text-center" data-bs-toggle="modal"
+                    data-bs-target="#success" style="border-radius: 5px;width:180px">
+                บันทึก
+            </button>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@*old version footer*@
+@*<div class="footer">
+        <div class="px-3 py-3 text-end">
+            <div class="row justify-content-center">
+                <div class="col-10 text-end">
+                    <button type="button" class="btn button-color text-light px-5 mx-2">บันทึก</button>
+                    <button type="button"
+                            class="btn button-color text-light px-5 mx-2"
+                            data-bs-toggle="modal"
+                            data-bs-target="#upload"
+                            @onclick="EmptyFile">
+                        อัพโหลดเพิ่ม
+                    </button>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+@* model Upload *@
+<div class="modal fade"
+     id="upload"
+     tabindex="-1"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <FileInput SetChildData="SetCurrentData" />
+    </div>
+</div>
+
+@* model success page *@
+<div class="modal fade" id="success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="text-center">บันทึกสัญญาสำเร็จ</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card shadow rounded p-2 text-center" style="font-size:large">เลขสัญญาที่ # 12345 (.....)</div>
+                <div class=" p-2 text-center">
+                    ระบบได้ดำเนินการบันทึกข้อมูลและดำเนินการแจ้งไปยังกองคลัง เพื่อทำการโอนเงินตามยอดที่ระบุตามสัญญาเรียบร้อยแล้ว
+                </div>
+                <div class=" p-2  " style="color:red;font-size:small;">
+                    ผู้กู้และผู้ค้ำจะได้รับการแจ้งเตือนการบันทึกนี้ผ่านทางอีเมลที่ระบุไว้ในระบบ
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+
+                <button type="button" class="btn button-color text-light text-center" data-bs-dismiss="modal" @onclick="confirm">กลับหน้าหลัก</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code{
+    public async Task EmptyFile()
+    {
+        await JS.InvokeVoidAsync("emptyFile");
+    }
+
+    UploadModel ModelUpload;
+    public List<UploadModel> resultInfoList { get; set; }
+
+    protected override void OnInitialized()
+    {
+        resultInfoList = new List<UploadModel>();
+    }
+
+    public void SetCurrentData(DTEventArgs value)
+    {
+        ModelUpload = new UploadModel();
+        ModelUpload.Id = resultInfoList.Count() + 1;
+        ModelUpload.Name = value.Params[0].ToString();
+        ModelUpload.Url = value.Params[1].ToString();
+        resultInfoList.Add(ModelUpload);
+    }
+    public void back()
+    {
+        @*NavigationManager.NavigateTo("/uploaddoc");*@
+        NavigationManager.NavigateTo("./Admin/AgreementData");
+    }
+
+    public void confirm()
+    {
+        @*NavigationManager.NavigateTo("/uploaddoc");*@
+        NavigationManager.NavigateTo("./Admin/ManageLoanAgreement");
+    }
+
+}
