@@ -1,5 +1,5 @@
-﻿@page  "/AgreementDetail"
-
+﻿
+@page "/Admin/AgreementDetail"
 <div class="container my-3">
     <div class="row justify-content-between py-3 bg-light pb-4 shadow rounded">
         <div class="col-4 mt-3 ms-3">
@@ -14,18 +14,32 @@
                 <div class="col-12 col-lg-4">ประเภทการกู้</div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="pt-4 text-end">
-                <button class="button-color shadow rounded" onclick="" style="border-radius: 5px; color:white; width:200px; height:40px;border:none">
-                    <i class="far fa-file-pdf fa-lg  mx-3"></i>
-                    เอกสารสัญญา
-                </button>
+        <div class="col-6">
+            <div class="row">
+                <div class="pt-4 text-end col-6">
+                    <button class="button-color shadow rounded" @onclick="AgreementCheck" style="border-radius: 5px; color:white; width:200px; height:40px;border:none">
+                        <i class="far fa-file-pdf fa-lg  mx-3"></i>
+                        ดำเนินการ
+                    </button>
+                    
+                </div>
+                <div class="pt-4 text-center col-6">
+                    <button class="button-color shadow rounded" style="border-radius: 5px; color: white; width: 200px; height: 40px; border: none ">
+                        <i class="fas fa-upload fa-lg  mx-3"></i>
+                        หลักฐาน
+                    </button>
+                </div>
             </div>
-            <div class="pt-4 text-end">
-                <button class="button-color shadow rounded" @onclick="premise" style="border-radius: 5px; color: white; width: 200px; height: 40px; border: none ">
-                    <i class="fas fa-upload fa-lg  mx-3"></i>
-                    อัปโหลดหลักฐาน
-                </button>
+            <div class="row">
+                <div class="pt-4 text-end col-6">
+                    
+                </div>
+                <div class="pt-4 text-center col-6">
+                    <button class="button-color shadow rounded" onclick="" style="border-radius: 5px; color:white; width:200px; height:40px;border:none">
+                        <i class="far fa-file-pdf fa-lg  mx-3"></i>
+                        เอกสารสัญญา
+                    </button>
+                </div>
             </div>
             
         </div>
@@ -79,24 +93,24 @@
 
         </div>
         <div class="col-4 text-center">
-            
+
         </div>
         <div class="col-3" style="text-align:end">
-            
+
         </div>
     </div>
 
 </div>
 @code {
-    public void premise()
+    public void AgreementCheck()
     {
         @*NavigationManager.NavigateTo("/uploaddoc");*@
-        NavigationManager.NavigateTo("/AgreementPremise");
+        NavigationManager.NavigateTo("/Admin/AgreementCheck");
     }
     public void back()
     {
         @*NavigationManager.NavigateTo("/uploaddoc");*@
-        NavigationManager.NavigateTo("/LoanAgreement");
+        NavigationManager.NavigateTo("/Admin/ManageLoanAgreement");
     }
 
 }

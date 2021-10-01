@@ -1,0 +1,160 @@
+﻿
+@page "/Admin/AgreementCheck"
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8 card bg-light p-3 mt-4 mb-4 shadow rounded">
+            <div class="row mt-5 " style="padding-left:40px">
+                <div class="col-2" style="font-weight:bold">เลขที่สัญญา :</div>
+                <div class="col-9">
+                   
+
+                    
+                </div>
+            </div>
+            <div class="row mt-5 " style="padding-left:40px">
+                <div class="col-2" style="font-weight:bold">ดำเนินการ :</div>
+                <div class="col-9">
+                    <select class="form-select shadow rounded" style="border-radius:10px" aria-label="Default select example">
+                        <option selected>เลือกดำเนินการ</option>
+                        <option value="1">ปิดยอดชำระทั้งหมด</option>
+                        <option value="2">ปรับดอกเบี้ยเพิ่มเป็น 7.5 %</option>
+                        <option value="3">เปลี่ยนผู้ชำระเงิน</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="card primary-bg-drop pt-3 pb-4 mt-5 mb-3 shadow rounded">
+                <div class="font-color">
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">วงเงินสูงสุด  </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">50000 บาท </a>
+                        </div>
+                    </div>
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">อัตราดอกเบี้ย  </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">0.25 % </a>
+                        </div>
+                    </div>
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">ผ่อนชำระสูงสุด  </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">12 เดือน </a>
+                        </div>
+                    </div>
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">ผ่อนชำระเดือนละ </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">1000 บาท </a>
+                        </div>
+                    </div>
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">วันที่ทำรายการ  </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">12 กรกฎาคม 2564 </a>
+                        </div>
+                    </div>
+                    <div class="row pt-4">
+                        <div class="col-6 " style="padding-left: 100px">
+                            <a style="font-size:larger">วันที่ชำระ  </a>
+                        </div>
+                        <div class="col-6" style="text-align:end;padding-right:90px">
+                            <a style="font-size:larger">12 สิงหาคม 2564 </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            
+
+            <div class="mt-4  row">
+                <div class="col-6 text-end">
+                    <button type="button"
+                            class="btn secondary-bg shadow rounded"
+                            style="width:200px"
+                            data-bs-toggle="modal"
+                            data-bs-target="#backPage">
+                        กลับ
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button type="button"
+                            class="btn button-color shadow rounded"
+                            style="color: white; width: 200px"
+                            data-bs-toggle="modal"
+                            data-bs-target="#nextPage">
+                        ดำเนินการ
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-2">
+
+        </div>
+
+    </div>
+</div>
+
+@* model Back page *@
+<div class="modal fade" id="backPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                เมื่อกดกลับ ระบบจะไม่ทำการบันทึกข้อมูลหน้านี้ คุณต้องการกลับหรือไหม
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="BackPage">กลับ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* model Back page *@
+<div class="modal fade" id="nextPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                การดำเนินการนี้ถูกต้องใช่หรือไม่ 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="NextPage">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    public void BackPage()
+    {
+        NavigationManager.NavigateTo("/Admin/AgreementDetail");
+    }
+
+    public void NextPage()
+    {
+        NavigationManager.NavigateTo("/Admin/ManageLoanAgreement");
+    }
+}
