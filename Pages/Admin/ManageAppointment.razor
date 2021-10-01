@@ -57,7 +57,8 @@
             </div>
 
             <div class="col-1 ms-3">
-                <button class="btn shadow rounded text-light button-color" style=" height: 50px;border-radius:10px">ยกเลิก</button>
+                <button class="btn shadow rounded text-light button-color" data-bs-toggle="modal"
+                        data-bs-target="#ChooseDate" style=" height: 50px;border-radius:10px">ยกเลิก</button>
             </div>
         </div>
         <div class="mt-2 row">
@@ -72,7 +73,8 @@
             </div>
 
             <div class="col-1 ms-3">
-                <button class="btn shadow rounded text-light button-color" style=" height: 50px;border-radius:10px">ยกเลิก</button>
+                <button class="btn shadow rounded text-light button-color" data-bs-toggle="modal"
+                        data-bs-target="#ChooseDate" style=" height: 50px;border-radius:10px">ยกเลิก</button>
             </div>
         </div>
 
@@ -95,8 +97,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn text-light" style="background-color:red" data-bs-dismiss="modal">ปิด</button>
                 <button type="button" class="btn button-color text-light" data-bs-toggle="modal"
-                        data-bs-target="#ConfirmDate">
-                    ยกเลิก
+                        data-bs-target="#ConfirmDate" @onclick="confirm">
+                    ยืนยัน
                 </button>
             </div>
         </div>
@@ -104,7 +106,7 @@
 </div>
 
 @*confirmDate*@
-<div class="modal fade" id="ConfirmDate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@*<div class="modal fade" id="ConfirmDate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -120,7 +122,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 @code {
 
     public void confirm()
