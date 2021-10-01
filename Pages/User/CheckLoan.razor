@@ -115,7 +115,6 @@
 
 @code {
     List<LoanType> listLoan;
-    string jsonLoanData = "wwwroot/json/LoanData.json";
     private string typeMoney { get; set; } = "บาท";
     private string typeInterate { get; set; } = "%";
     private string maxAmountNote { get; set; } = "กู้ได้ตามจริง";
@@ -135,10 +134,6 @@ protected override void OnInitialized()
 {
     listLoan = new List<LoanType>();
     listLoan = _context.LoanTypes.Where(c => c.Active == true).ToList<LoanType>();
-
-@*    listLoan = new List<LoanInfoModel>();
-    string jsonString = File.ReadAllText(jsonLoanData);
-    listLoan = JsonConvert.DeserializeObject<List<LoanInfoModel>>(jsonString);*@
     }
 
     private void ApplyLoan(LoanType landData)

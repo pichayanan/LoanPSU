@@ -7,12 +7,12 @@
         <div class=" col-8"></div>
         <form class="d-flex col-4">
             <input class="form-control me-2 shadow rounded" type="search" placeholder="Search" aria-label="Search">
-            
-                <button type="button"
-                        class="btn btn-outline-secondary primary-bg-drop shadow rounded">
-                    <i class="fas fa-search"></i>
-                </button>
-           
+
+            <button type="button"
+                    class="btn btn-outline-secondary primary-bg-drop shadow rounded">
+                <i class="fas fa-search"></i>
+            </button>
+
         </form>
     </div>
 
@@ -25,27 +25,27 @@
                 <th>ยอดเงินกู้ทั้งหมด</th>
                 <th>สัญญาที่ค้ำ</th>
                 <th>สถานะ</th>
-                
+
             </tr>
         </thead>
 
         <tbody>
-            <tr class="py-2" style="background-color:whitesmoke ;" @onclick="SeeDetail">
-                <td class="text-center ">
-                    12345
-                </td>
-                <td class="text-center">ดวงธิดา</td>
-                <td class="text-center">ชูมาลี</td>
-                <td class="text-center">10000</td>
-                <td class="text-center">0/2</td>
-                <td class="text-center">
-                    ปกติ
+            @if (listStaff.Count > 0)
+            {
+                for (var i = 0; i < listStaff.Count; i++)
+                {
+                    var staff = listStaff[i];
 
-
-
-                </td>
-               
-            </tr>
+                    <tr class="py-2" style="background-color:whitesmoke ;" @onclick="SeeDetail">
+                        <td class="text-center">@staff.StaffId</td>
+                        <td class="text-center">@staff.TitleNameThai@staff.StaffNameThai</td>
+                        <td class="text-center">@staff.StaffSnameThai</td>
+                        <td class="text-center">10000</td>
+                        <td class="text-center">0/2</td>
+                        <td class="text-center">ปกติ</td>
+                    </tr>
+                }
+            }
         </tbody>
 
     </table>
@@ -63,8 +63,25 @@
     public string grayColor = "#d3d5d4";
     public string whiteColor = "#ffffff";
 
-    public void SeeDetail()
-    {
-        NavigationManager.NavigateTo("/Admin/UserdataDetail");
-    }
+    List<VLoanStaffDetail> listStaff;
+
+
+    protected override void OnInitialized()
+    @*    protected async override Task OnInitializedAsync()*@
+{
+    listStaff = new List<VLoanStaffDetail>();
+    listStaff = _context.VLoanStaffDetails.Where(c => c.StaffDepart != "e").Take(100).ToList<VLoanStaffDetail>();
+    Console.WriteLine(listStaff);
+}
+
+
+
+
+
+
+
+public void SeeDetail()
+{
+    NavigationManager.NavigateTo("/Admin/UserdataDetail");
+}
 }

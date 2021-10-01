@@ -23,3 +23,5 @@ pull data in Db => Scaffold-DbContext "USER ID=<user>;PASSWORD=<pass>;DATA SOURC
 Scaffold-DbContext "USER ID=PSU_LOAN;PASSWORD=loan123**;DATA SOURCE=192.168.102.178:1521/NORA178.PSU.AC.TH" Oracle.EntityFrameworkCore -Schemas PSU_LOAN -OutputDir ModelsDB
 
 ModelsDB เปลี่ยนเป็น ModelsEntities
+
+หน้า  ApplyLoan.razor ตรงผู้ค้ำ ใช้ดูว่ามีตำแหน่งอะไรที่กู้ได้บ้าง => STAFF_TYPE (1, 2, 3)

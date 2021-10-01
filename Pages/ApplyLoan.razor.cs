@@ -13,16 +13,18 @@ namespace BlazorApp.Pages
     public partial class ApplyLoan
     {
         ApplyLoanModel ModelApplyLoan;
+        List<VLoanStaffDetail> guarantorList;
+        List<LoanType> LoanTypeList;
+        public LoanType Model { get; set; }
 
         [Parameter]
         public decimal LoadID { get; set; } = 0;
-        public LoanType Model { get; set; }
-        List<LoanType> LoanTypeList;
 
         protected override void OnInitialized()
         {
             ModelApplyLoan = new ApplyLoanModel();
             Model = new LoanType();
+            guarantorList = new List<VLoanStaffDetail>();
 
             SetData();
 

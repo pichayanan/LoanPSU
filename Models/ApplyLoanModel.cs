@@ -20,5 +20,6 @@ namespace BlazorApp.Models
 
         [Required(ErrorMessage = "กรุณากรอกชื่อผู้ค้ำ")]
         public string Guarantor { get; set; }
+        public string GuarantorId { get; set; }
     }
 }
