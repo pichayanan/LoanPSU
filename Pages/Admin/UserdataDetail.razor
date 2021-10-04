@@ -29,18 +29,18 @@
         </div>
         <div class="row mt-3 justify-content-start">
             <div class="col-2">
-                <button class="button-color text-light shadow rounded" onclick="" style="border-radius: 10px;  height:30px;border:none;width:180px">
+                <button class="button-color text-light shadow rounded" @onclick="CheckLoan" style="border-radius: 10px;  height:30px;border:none;width:180px">
                     ตรวจสอบสิทธิการกู้
                 </button>
             </div>
 
             <div class=" col-2 ">
-                <button class="button-color text-light shadow rounded" onclick="" style="border-radius: 10px; height: 30px; border: none; width: 180px ">
+                <button class="button-color text-light shadow rounded" @onclick="pdfAgreement" style="border-radius: 10px; height: 30px; border: none; width: 180px ">
                     สัญญากู้
                 </button>
             </div>
             <div class="col-2 ">
-                <button class="secondary-bg  shadow rounded" style="border-radius: 10px; height: 30px; border: none; width: 180px ">
+                <button class="secondary-bg  shadow rounded" @onclick="pdfAgreement" style="border-radius: 10px; height: 30px; border: none; width: 180px ">
 
                     สัญญาค้ำ
                 </button>
@@ -118,6 +118,14 @@
     public void back()
     {
         NavigationManager.NavigateTo("./Admin/CheckUserdata");
+    }
+    public void pdfAgreement()
+    {
+        NavigationManager.NavigateTo("./Admin/PdfAgreement");
+    }
+    public void CheckLoan()
+    {
+        NavigationManager.NavigateTo("./Admin/CheckLoanpage");
     }
 
 

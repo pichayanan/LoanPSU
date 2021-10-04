@@ -18,7 +18,7 @@
         <div class="col-4">
 
             <div class="pt-4 text-end mt-5">
-                <button class="button-color shadow rounded" onclick="" style="border-radius: 3px; color:white; width:200px; height:40px;border:none">
+                <button class="button-color shadow rounded" @onclick="pdfAgreement" style="border-radius: 3px; color:white; width:200px; height:40px;border:none">
                     <i class="far fa-file-pdf fa-lg mx-3"></i>
                     เอกสารสัญญา
                 </button>
@@ -86,6 +86,11 @@
     public void home()
     {
         NavigationManager.NavigateTo("/Guarantor");
+    }
+    public void pdfAgreement()
+    {
+
+        NavigationManager.NavigateTo("./User/PdfAgreement");
     }
 
 

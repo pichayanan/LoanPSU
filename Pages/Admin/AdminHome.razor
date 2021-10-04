@@ -116,7 +116,7 @@
                         <a style="font-size:xx-large;font-weight:bold;color:white;padding-top:10%;text-align:end">95</a>
 
                     </div>
-                    <div class="col-2 card p-2  pt-3 ms-2 button-color" style="height: 150px; border-radius: 5px">
+                    <div class="col-2 card p-2  pt-3 ms-2 button-color" @onclick="pdfAll" style="height: 150px; border-radius: 5px">
                         <a style="font-size: medium; font-weight: bold;color:white;padding-left:7px">เอกสารรายงานผล</a>
 
                     </div>
@@ -129,5 +129,8 @@
     </div>
 
     @code {
-
+        public void pdfAll()
+        {
+            NavigationManager.NavigateTo("./Admin/PdfAll");
+        }
     }

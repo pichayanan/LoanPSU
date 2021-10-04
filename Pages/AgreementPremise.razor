@@ -26,7 +26,10 @@
             </button>
         </div>
         <div class="col-3" style="text-align:end">
-            <button type="button" class="btn secondary-bg  shadow rounded text-center" style="border-radius: 5px;width:180px">บันทึก</button>
+            <button type="button" class="btn secondary-bg  shadow rounded text-center" @onclick="confirmdoc"
+                    style="border-radius: 5px;width:180px">
+                บันทึก
+            </button>
         </div>
     </div>
 
@@ -37,23 +40,23 @@
 
 @*old version footer*@
 @*<div class="footer">
-    <div class="px-3 py-3 text-end">
-        <div class="row justify-content-center">
-            <div class="col-10 text-end">
-                <button type="button" class="btn button-color text-light px-5 mx-2">บันทึก</button>
-                <button type="button"
-                        class="btn button-color text-light px-5 mx-2"
-                        data-bs-toggle="modal"
-                        data-bs-target="#upload"
-                        @onclick="EmptyFile">
-                    อัพโหลดเพิ่ม
-                </button>
-            </div>
-            <div class="col">
+        <div class="px-3 py-3 text-end">
+            <div class="row justify-content-center">
+                <div class="col-10 text-end">
+                    <button type="button" class="btn button-color text-light px-5 mx-2">บันทึก</button>
+                    <button type="button"
+                            class="btn button-color text-light px-5 mx-2"
+                            data-bs-toggle="modal"
+                            data-bs-target="#upload"
+                            @onclick="EmptyFile">
+                        อัพโหลดเพิ่ม
+                    </button>
+                </div>
+                <div class="col">
+                </div>
             </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 @* model Upload *@
 <div class="modal fade"
@@ -92,6 +95,12 @@
     {
         @*NavigationManager.NavigateTo("/uploaddoc");*@
         NavigationManager.NavigateTo("/AgreementDetail");
+    }
+
+    public void confirmdoc()
+    {
+        @*NavigationManager.NavigateTo("/uploaddoc");*@
+        NavigationManager.NavigateTo("./User/UploadSuccess");
     }
 
 }
