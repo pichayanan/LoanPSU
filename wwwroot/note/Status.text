@@ -1,5 +1,4 @@
 Status
-
     1. รอพิจารณาการกู้                         => 0 => 
     2. อนุมัติ และระบุวันนัดหมาย / ไม่อนุมัติ        => 1 / 2
     3. รอทำสัญญา                             => 3
@@ -7,13 +6,13 @@ Status
     5. รอตรวจสอบเอกสาร                       => 5
     6. ผ่านการตรวจสอบ                        => 6
 การเงิน
-    6. ??
-    7. ??
+    6. ปกติ
+    7. ค้างชำระ
 
     8. สิ้นสุดสัญญา                            => 99
 
 หน้า ผู้ค้ำ
-    1. ยังไม่ชำระเงิน <ค้างชำระไม่เกิน 1-2 เดือน>     => 1 || 2 ขึ้นอยู่กับเดือน
+    1. ค้างชำระเงิน <ค้างชำระไม่เกิน 1-2 เดือน>     => 1 || 2 ขึ้นอยู่กับเดือน
     2. พ้นกำหนด <มากว่า 3 เดือน>                => 3
     3. สิ้นสุดสัญญา                             => 99
     4. ปกติ                                  => 0
@@ -23,3 +22,5 @@ pull data in Db => Scaffold-DbContext "USER ID=<user>;PASSWORD=<pass>;DATA SOURC
 Scaffold-DbContext "USER ID=PSU_LOAN;PASSWORD=loan123**;DATA SOURCE=192.168.102.178:1521/NORA178.PSU.AC.TH" Oracle.EntityFrameworkCore -Schemas PSU_LOAN -OutputDir ModelsDB
 
 ModelsDB เปลี่ยนเป็น ModelsEntities
+
+หน้า  ApplyLoan.razor ตรงผู้ค้ำ ใช้ดูว่ามีตำแหน่งอะไรที่กู้ได้บ้าง => STAFF_TYPE (1, 2, 3)

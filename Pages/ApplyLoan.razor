@@ -58,19 +58,20 @@
                             </button>
                         </div>
                         <ValidationMessage For="()=>ModelApplyLoan.Guarantor" />
-                        @*@if (selectGuarantor.Count != 0)
+                        @if (guarantorList.Count != 0)
                         {
-                            <div>
+                            <div class="overflow-auto my-2" style="height:200px;">
                                 <ul>
-                                    @for (var i = 0; i < selectGuarantor.Count; i++)
+                                    @for (var i = 0; i < guarantorList.Count; i++)
                                     {
-                                        var people = selectGuarantor[i];
+                                        var people = guarantorList[i];
+                                        var fullName = people.TitleNameThai + people.StaffNameThai + " " + people.StaffSnameThai;
 
-                                        <li @onclick="@(e => changeValGuarantor(people))"><a class="dropdown-item">@people.Prefix@people.Fname @people.Lname</a></li>
+                                        <li @onclick="()=>changeValGuarantor(people)"><a class="dropdown-item">@fullName</a></li>
                                     }
                                 </ul>
                             </div>
-                        }*@
+                        }
                     </div>
                     <div class="d-grid gap-2">
                         <button class="btn button-color shadow rounded" style="color:white;border-radius:10px" type="submit">ดำเนินการต่อ</button>
@@ -82,12 +83,12 @@
                 @if (ModelApplyLoan.LoanTypeID != 0)
                 {
                     var loan = LoanTypeList.FirstOrDefault(x => x.LoanTypeId == ModelApplyLoan.LoanTypeID);
-                
+
                     <div class=" card bg-light font-color  text-h2 font-weight-bolder my-4 py-2 px-2 text-center"
                          style="border-radius: 10px">
                         @loan.LoanParentId @loan.LoanParentName
                     </div>
-                
+
                     <div class="mt-4 px-4">
                         <div class="row py-1">
                             <div class="col">วงเงินสูงสุด</div>
@@ -130,67 +131,81 @@
 </div>
 
 @code {
+    public string staffId { get; set; } = "0";
+
     async Task Submit()
     {
-        Boolean period = false;
         var LoanType = LoanTypeList.FirstOrDefault(x => x.LoanTypeId == ModelApplyLoan.LoanTypeID);
 
+        @*เช็คเงินที่ขอ*@
         if (LoanType.LoanMaxAmount != 0)
         {
-            if (ModelApplyLoan.Period <= LoanType.LoanPeriod)
+            if (ModelApplyLoan.LoanMaxAmount > LoanType.LoanMaxAmount)
             {
-                period = true;
-            }
-            else
-            {
-                string alert = "ระบุจำนวนงวดไม่ถูกต้อง จำนวนงวดต้องไม่เกิน " + LoanType.LoanPeriod + "งวด!";
+                string alert = "จำนวนเงินที่คุณขอยื่นกู้มากกว่าวงเงินสูงสุดของประเภท " + LoanType.LoanParentName;
                 await JS.InvokeVoidAsync("displayTickerAlert", alert);
+                return;
             }
+        }
+
+
+        @*เช็คจำนวนงวด*@
+        if (ModelApplyLoan.Period > LoanType.LoanPeriod)
+        {
+            string alert = "ระบุจำนวนงวดไม่ถูกต้อง จำนวนงวดต้องไม่เกิน " + LoanType.LoanPeriod + "งวด!";
+            await JS.InvokeVoidAsync("displayTickerAlert", alert);
+            return;
+        }
+
+
+        @*เช็คผู้ค้ำ*@
+        if (staffId == "0")
+        {
+            string alert = "กรุณาตรวจสอบข้อมูลผู้ค้ำให้ถูกต้อง โดยการค้นหาชื่อที่เครื่องหมายค้นหา";
+            await JS.InvokeVoidAsync("displayTickerAlert", alert);
+            return;
+        }
+        else
+        {
+            var guarantorData = _context.VLoanStaffDetails.Where(c => c.StaffId == staffId).FirstOrDefault();
+            @* เช็คว่าคนที่ค้ำยังทำงานอยู่ไหม => StaffDepart *@
+            if (guarantorData.StaffDepart == "e")
+            {
+                string alert = "ไม่สามารถค้ำได้";
+                await JS.InvokeVoidAsync("displayTickerAlert", alert);
+                return;
+            }
+            @* รอถามเรื่องใช่ตัวไหนในการคำนวนวันหมดอายุงาน แต่ไม่ได้เช็เรื่องที่ต่าทำงานมาเกิน 2 ปีไหม *@
 
         }
-        if (period == true)
-        {
-            await sessionStorage.SetItemAsync("FromLoan_1", ModelApplyLoan);
-            NavigationManager.NavigateTo("/uploaddoc");
-        }
+
+        await sessionStorage.SetItemAsync("FromLoan_1", ModelApplyLoan);
+        NavigationManager.NavigateTo("/uploaddoc");
     }
 
     private void findGuarantor()
     {
+        guarantorList = _context.VLoanStaffDetails.Where(c =>
+        c.StaffNameThai.Contains(ModelApplyLoan.Guarantor) ||
+        c.StaffSnameThai.Contains(ModelApplyLoan.Guarantor)
+    ).ToList<VLoanStaffDetail>();
 
-        var staffTest = _context.VLoanStaffDetails.Where(c =>
-                c.StaffNameThai.Contains(ModelApplyLoan.Guarantor) ||
-                c.StaffSnameThai.Contains(ModelApplyLoan.Guarantor)
-            ).ToList();
+        @*     STAFF_ID
+            TITLE_NAME_THAI
+            STAFF_NAME_THAI
+            STAFF_SNAME_THAI
+            STAFF_EMAIL
+            FAC_NAME_THAI
+            DEPT_NAME_THAI
+            POS_NAME_THAI
+            STAFF_TYPE_NAME
+            STAFF_TYPE
+            CAMP_NAME_THAI
+            CAMP_ID*@
 
 
 
         @*ModelApplyLoan.Guarantor*@
-
-
-
-
-        @*        selectGuarantor = new List<GuarantorPeople>();
-
-            if (guarantorPeoples.Count != 0 && ModelApplyLoan.Guarantor != "")
-            {
-                for (var i = 0; i < guarantorPeoples.Count; i++)
-                {
-                    var people = guarantorPeoples[i];
-                    var fullName = people.Prefix + people.Fname + " " + people.Lname;
-                    Console.WriteLine(people);
-
-                    if (fullName.Contains(ModelApplyLoan.Guarantor))
-                    {
-                        // do html stuff
-                        selectGuarantor.Add(people);
-                    }
-                }
-            }
-            else
-            {
-                ModelApplyLoan.Guarantor = "";
-            }*@
     }
 
     private void OpenPDF(LoanType data)
@@ -198,10 +213,12 @@
         Console.WriteLine(data);
     }
 
-    private void changeValGuarantor(GuarantorPeople people)
+    private void changeValGuarantor(VLoanStaffDetail people)
     {
-        var fullName = people.Prefix + people.Fname + " " + people.Lname;
+        var fullName = people.TitleNameThai + people.StaffNameThai + " " + people.StaffSnameThai;
         ModelApplyLoan.Guarantor = fullName;
+        staffId = people.StaffId;
+        ModelApplyLoan.GuarantorId = staffId;
     }
 
 }

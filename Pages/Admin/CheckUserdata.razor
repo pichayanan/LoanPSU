@@ -1,19 +1,17 @@
-﻿
-@page "/Admin/CheckUserdata"
+﻿@page "/Admin/CheckUserdata"
 
 <div class="container mt-3">
 
-    <div class=" mt-4 row">
+    <div class="mt-4 row">
         <div class=" col-8"></div>
-        <form class="d-flex col-4">
-            <input class="form-control me-2 shadow rounded" type="search" placeholder="Search" aria-label="Search">
-            
-                <button type="button"
-                        class="btn btn-outline-secondary primary-bg-drop shadow rounded">
-                    <i class="fas fa-search"></i>
-                </button>
-           
-        </form>
+        <EditForm Model="search" class="d-flex col-4">
+            <InputText @bind-Value="search.Title" class="form-control me-2 shadow rounded" type="search" placeholder="Search" aria-label="Search" />
+            <button type="button"
+                    class="btn btn-outline-secondary primary-bg-drop shadow rounded"
+                    @onclick="()=>SearchData(search.Title)">
+                <i class="fas fa-search"></i>
+            </button>
+        </EditForm>
     </div>
 
     <table class="table table-hover border-table mt-4" style="border-top: 1px solid">
@@ -25,46 +23,94 @@
                 <th>ยอดเงินกู้ทั้งหมด</th>
                 <th>สัญญาที่ค้ำ</th>
                 <th>สถานะ</th>
-                
+
             </tr>
         </thead>
 
         <tbody>
-            <tr class="py-2" style="background-color:whitesmoke ;" @onclick="SeeDetail">
-                <td class="text-center ">
-                    12345
-                </td>
-                <td class="text-center">ดวงธิดา</td>
-                <td class="text-center">ชูมาลี</td>
-                <td class="text-center">10000</td>
-                <td class="text-center">0/2</td>
-                <td class="text-center">
-                    ปกติ
+            @if (listStaff.Count > 0)
+            {
+                for (var i = 0; i < listStaff.Count; i++)
+                {
+                    var staff = listStaff[i];
+                    var index = i + 1;
 
-
-
-                </td>
-               
-            </tr>
+                    <tr class="py-2" style="background-color:whitesmoke ;" @onclick="SeeDetail">
+                        <td class="text-center">@index. @staff.StaffId</td>
+                        <td class="text-center">@staff.TitleNameThai@staff.StaffNameThai</td>
+                        <td class="text-center">@staff.StaffSnameThai</td>
+                        <td class="text-center">10000</td>
+                        <td class="text-center">0/2</td>
+                        <td class="text-center">ปกติ</td>
+                    </tr>
+                }
+            }
         </tbody>
-
     </table>
-
-
-
-
-
+    <div>
+        <button type="button"
+                class="btn btn-outline-secondary primary-bg-drop shadow rounded"
+                @onclick="()=>Add(paging)">
+            ดูเพิ่ม
+        </button>
+    </div>
 </div>
-
-
 
 @code {
     public Boolean countTable = false;
     public string grayColor = "#d3d5d4";
     public string whiteColor = "#ffffff";
 
+    List<VLoanStaffDetail> listStaff;
+    SearchModel search;
+
+    public int pagingStart { get; set; } = 100;
+    public int paging { get; set; } = 50;
+
+    protected override void OnInitialized()
+    {
+        listStaff = new List<VLoanStaffDetail>();
+        search = new SearchModel();
+
+        pagingTable(pagingStart, search.Title);
+    }
+
+    public void pagingTable(int index, string searchText)
+    {
+        if (searchText == "")
+        {
+            listStaff = _context.VLoanStaffDetails.Where(c => c.StaffDepart != "e").Take(index).ToList<VLoanStaffDetail>();
+        }
+        else
+        {
+            listStaff = _context.VLoanStaffDetails.Where(c =>
+                c.StaffNameThai.Contains(searchText) ||
+                c.StaffSnameThai.Contains(searchText) &&
+                c.StaffDepart != "e"
+            ).ToList<VLoanStaffDetail>();
+
+        }
+    }
+
+    public void Add(int index)
+    {
+        pagingStart = pagingStart + index;
+        pagingTable(pagingStart, search.Title);
+    }
+
+    public void SearchData(String text)
+    {
+        pagingTable(pagingStart, text);
+    }
+
+
     public void SeeDetail()
     {
         NavigationManager.NavigateTo("/Admin/UserdataDetail");
+    }
+
+    public class SearchModel
+    {
+        public string Title { get; set; } = string.Empty;
     }
 }

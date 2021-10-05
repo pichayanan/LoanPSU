@@ -87,9 +87,6 @@
                         </td>
                         <td class="text-center">
                             @item.LoanPeriod
-
-
-
                         </td>
                         <td>
                             <div class="form-check">
@@ -131,8 +128,6 @@
 
         </div>*@
 
-
-
 </div>
 @*footer*@
 @*<div class="footer">
@@ -140,12 +135,18 @@
 
 
     </div>*@
+
+
+
+
+LoanParentName => @selectLoan.LoanParentName
 @code {
     public Boolean countTable = false;
     public string grayColor = "#d3d5d4";
     public string whiteColor = "#ffffff";
 
     List<LoanType> ListLoan;
+    LoanType selectLoan;
 
     public void CreateLoan()
     {
@@ -156,7 +157,14 @@
     protected override void OnInitialized()
     {
         ListLoan = new List<LoanType>();
+        selectLoan = new LoanType();
         ListLoan = _context.LoanTypes.ToList<LoanType>();
+    }
+
+    public void checkedData(LoanType data)
+    {
+        Console.WriteLine(data);
+        selectLoan = data;
     }
 }
 
