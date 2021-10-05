@@ -89,16 +89,21 @@
                             @item.LoanPeriod
                         </td>
                         <td>
-                            <div class="form-check">
-                               @if (@item.Active == true)
-                               {
+                            <div class="p-2">
+                                <button type="button" class="btn button-color shadow rounded text-center text-light" 
+                                        @onclick="()=>checkedData(item) "
+                                        style="border-radius: 5px;width:180px">ปรับเปลี่ยนสถานะ</button>
+
+                               @* @if (@item.Active == true)
+                                {
 
 
 
-                }
-                else { 
-   
-                               }
+                                }
+                                else
+                                {
+
+                                }*@
                             </div>
                         </td>
                     </tr>
