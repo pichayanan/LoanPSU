@@ -16,7 +16,7 @@
         </div>
         <div class="col-4">
             <div class="pt-4 text-end">
-                <button class="button-color shadow rounded" onclick="" style="border-radius: 5px; color:white; width:200px; height:40px;border:none">
+                <button class="button-color shadow rounded" @onclick="pdfAgreement" style="border-radius: 5px; color:white; width:200px; height:40px;border:none">
                     <i class="far fa-file-pdf fa-lg  mx-3"></i>
                     เอกสารสัญญา
                 </button>
@@ -27,6 +27,7 @@
                     อัปโหลดหลักฐาน
                 </button>
             </div>
+
         </div>
     </div>
     <div class="row justify-content-between  ">
@@ -78,10 +79,10 @@
 
         </div>
         <div class="col-4 text-center">
-            
+
         </div>
         <div class="col-3" style="text-align:end">
-            
+
         </div>
     </div>
 
@@ -96,6 +97,11 @@
     {
         @*NavigationManager.NavigateTo("/uploaddoc");*@
         NavigationManager.NavigateTo("/LoanAgreement");
+    }
+    public void pdfAgreement()
+    {
+        @*NavigationManager.NavigateTo("/uploaddoc");*@
+        NavigationManager.NavigateTo("./User/PdfAgreement");
     }
 
 }

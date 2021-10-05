@@ -1,6 +1,5 @@
-﻿@page  "/GuarantDetail"
-@inject NavigationManager NavigationManager
-
+﻿
+@page "/Admin/AgreementDetail"
 <div class="container my-3">
     <div class="row justify-content-between py-3 bg-light pb-4 shadow rounded">
         <div class="col-4 mt-3 ms-3">
@@ -15,14 +14,34 @@
                 <div class="col-12 col-lg-4">ประเภทการกู้</div>
             </div>
         </div>
-        <div class="col-4">
-
-            <div class="pt-4 text-end mt-5">
-                <button class="button-color shadow rounded" @onclick="pdfAgreement" style="border-radius: 3px; color:white; width:200px; height:40px;border:none">
-                    <i class="far fa-file-pdf fa-lg mx-3"></i>
-                    เอกสารสัญญา
-                </button>
+        <div class="col-6">
+            <div class="row">
+                <div class="pt-4 text-end col-6">
+                    <button class="button-color shadow rounded" @onclick="AgreementCheck" style="border-radius: 5px; color:white; width:200px; height:40px;border:none">
+                        <i class="far fa-file-pdf fa-lg  mx-3"></i>
+                        ดำเนินการ
+                    </button>
+                    
+                </div>
+                <div class="pt-4 text-center col-6">
+                    <button class="button-color shadow rounded" style="border-radius: 5px; color: white; width: 200px; height: 40px; border: none ">
+                        <i class="fas fa-upload fa-lg  mx-3"></i>
+                        หลักฐาน
+                    </button>
+                </div>
             </div>
+            <div class="row">
+                <div class="pt-4 text-end col-6">
+                    
+                </div>
+                <div class="pt-4 text-center col-6">
+                    <button class="button-color shadow rounded" onclick="" style="border-radius: 5px; color:white; width:200px; height:40px;border:none">
+                        <i class="far fa-file-pdf fa-lg  mx-3"></i>
+                        เอกสารสัญญา
+                    </button>
+                </div>
+            </div>
+            
         </div>
     </div>
     <div class="row justify-content-between  ">
@@ -62,13 +81,15 @@
             </tbody>
         </table>
     </div>
+
 </div>
+
 @*footer*@
 <div class="footer">
 
     <div class="row py-3 col-12 ms-1 ">
         <div class="col-3 text-left">
-            <button type="button" class="btn secondary-bg shadow rounded text-center" @onclick="home" style="border-radius: 5px;width:180px">กลับ</button>
+            <button type="button" class="btn secondary-bg shadow rounded text-center" @onclick="back" style="border-radius: 5px;width:180px">กลับ</button>
 
         </div>
         <div class="col-4 text-center">
@@ -80,18 +101,16 @@
     </div>
 
 </div>
-
-
 @code {
-    public void home()
+    public void AgreementCheck()
     {
-        NavigationManager.NavigateTo("/Guarantor");
+        @*NavigationManager.NavigateTo("/uploaddoc");*@
+        NavigationManager.NavigateTo("/Admin/AgreementCheck");
     }
-    public void pdfAgreement()
+    public void back()
     {
-
-        NavigationManager.NavigateTo("./User/PdfAgreement");
+        @*NavigationManager.NavigateTo("/uploaddoc");*@
+        NavigationManager.NavigateTo("/Admin/ManageLoanAgreement");
     }
-
 
 }

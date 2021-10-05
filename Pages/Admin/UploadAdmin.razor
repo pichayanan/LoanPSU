@@ -1,5 +1,4 @@
-﻿@page "/AgreementPremise"
-
+﻿@page "/Admin/UploadAdmin"
 <div class="container mt-3">
     @*design card*@
     <div class="card m-3 p-3 ">
@@ -26,8 +25,8 @@
             </button>
         </div>
         <div class="col-3" style="text-align:end">
-            <button type="button" class="btn secondary-bg  shadow rounded text-center" @onclick="confirmdoc"
-                    style="border-radius: 5px;width:180px">
+            <button type="button" class="btn secondary-bg  shadow rounded text-center" data-bs-toggle="modal"
+                    data-bs-target="#success" style="border-radius: 5px;width:180px">
                 บันทึก
             </button>
         </div>
@@ -69,6 +68,31 @@
     </div>
 </div>
 
+@* model success page *@
+<div class="modal fade" id="success" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="text-center">บันทึกสัญญาสำเร็จ</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card shadow rounded p-2 text-center" style="font-size:large">เลขสัญญาที่ # 12345 (.....)</div>
+                <div class=" p-2 text-center">
+                    ระบบได้ดำเนินการบันทึกข้อมูลและดำเนินการแจ้งไปยังกองคลัง เพื่อทำการโอนเงินตามยอดที่ระบุตามสัญญาเรียบร้อยแล้ว
+                </div>
+                <div class=" p-2  " style="color:red;font-size:small;">
+                    ผู้กู้และผู้ค้ำจะได้รับการแจ้งเตือนการบันทึกนี้ผ่านทางอีเมลที่ระบุไว้ในระบบ
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+
+                <button type="button" class="btn button-color text-light text-center" data-bs-dismiss="modal" @onclick="confirm">กลับหน้าหลัก</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @code{
     public async Task EmptyFile()
     {
@@ -94,13 +118,13 @@
     public void back()
     {
         @*NavigationManager.NavigateTo("/uploaddoc");*@
-        NavigationManager.NavigateTo("/AgreementDetail");
+        NavigationManager.NavigateTo("./Admin/AgreementData");
     }
 
-    public void confirmdoc()
+    public void confirm()
     {
         @*NavigationManager.NavigateTo("/uploaddoc");*@
-        NavigationManager.NavigateTo("./User/UploadSuccess");
+        NavigationManager.NavigateTo("./Admin/ManageLoanAgreement");
     }
 
 }

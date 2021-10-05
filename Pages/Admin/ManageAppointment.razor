@@ -1,6 +1,136 @@
 ﻿
 @page "/Admin/ManageAppointment"
 
+@inject NavigationManager NavigationManager
+
+<div class="container my-4">
+    <div class="card bg-white mt-5 px-3 py-3 shadow rounded" style="border-radius:15px">
+        <div class="row mt-1">
+            <div class="col-5 ">
+                <div class="card bg-light font-color shadow rounded p-2"
+                     style="height:50px;font-size:larger;
+                        padding-left:15px;
+                        border-radius:10px">
+                    <i class="fad fa-calendar-alt fa-lg mx-2"></i>
+                    เลือกจากวันที่
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="card bg-light font-color shadow rounded p-2"
+                     style="height:50px;font-size:larger;
+                        padding-left:15px;
+                        border-radius:10px">
+                    <i class="far fa-alarm-clock fa-lg mx-2"></i>
+                    เลือกจากเวลา
+                </div>
+            </div>
+            <div class="col-2 text-center">
+                <button class="btn shadow rounded text-light" style="background-color: gray; width: 120px; height: 50px;border-radius:10px ">ดูทั้งหมด</button>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-5 ">
+
+                <input class="form-control  shadow rounded" style="height: 50px;border-radius:10px" type="search" placeholder="1 ต.ค 2564 (วันศุกร์)" aria-label="Search">
+
+            </div>
+            <div class="col-5 ">
+
+                <input class="form-control  shadow rounded" style="height: 50px;border-radius:10px" type="search" placeholder="เลือกเวลา" aria-label="Search">
+
+            </div>
+            <div class="col-2 text-center">
+                <button class="btn shadow rounded text-light button-color" style="width: 120px; height: 50px;border-radius:10px">ค้นหา</button>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <div class="mt-5" style="color:gray"> ผลการค้นหา 4 รายการ</div>
+
+        <div class="mt-4 row mx-2">
+
+            <div class="card bg-light shadow rounded p-2 col-10 row ms-4"
+                 style="height:50px;font-size:large;
+                        padding-left:15px;
+                        border-radius:10px">
+                <div class="col-4">1 ต.ค 2564 (ศุกร์)</div>
+                <div class="col-3">10.00</div>
+                <div class="col-3">ดวงธิดา</div>
+            </div>
+
+            <div class="col-1 ms-3">
+                <button class="btn shadow rounded text-light button-color" data-bs-toggle="modal"
+                        data-bs-target="#ChooseDate" style=" height: 50px;border-radius:10px">ยกเลิก</button>
+            </div>
+        </div>
+        <div class="mt-2 row mx-2">
+
+            <div class="card bg-light shadow rounded p-2 col-10 row ms-4"
+                 style="height:50px;font-size:large;
+                        padding-left:15px;
+                        border-radius:10px">
+                <div class="col-4">1 ต.ค 2564 (ศุกร์)</div>
+                <div class="col-3">10.00</div>
+                <div class="col-3">ดวงธิดา</div>
+            </div>
+
+            <div class="col-1 ms-3">
+                <button class="btn shadow rounded text-light button-color" data-bs-toggle="modal"
+                        data-bs-target="#ChooseDate" style=" height: 50px;border-radius:10px">ยกเลิก</button>
+            </div>
+        </div>
+
+       
+    </div>
+
+</div>
+
+@* model Choosedate *@
+<div class="modal fade" id="ChooseDate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="text-center">ท่านต้องการยกเลิกการจองนี้หรือไม่ ?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card shadow rounded p-2 text-center">วันศุกร์ 1 ตุลาคม 2564 เวลา 9.00</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn text-light" style="background-color:red" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn button-color text-light" data-bs-toggle="modal"
+                        data-bs-target="#ConfirmDate" @onclick="confirm">
+                    ยืนยัน
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*confirmDate*@
+@*<div class="modal fade" id="ConfirmDate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="text-center">ท่านได้ทำการยกเลิกการจองเวลานี้สำเร็จ</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn button-color text-light" data-bs-dismiss="modal" @onclick="confirm">ปิด</button>
+            </div>
+        </div>
+    </div>
+</div>*@
 @code {
 
+    public void confirm()
+    {
+        NavigationManager.NavigateTo("./Admin/ManageAppointment");
+    }
 }
+

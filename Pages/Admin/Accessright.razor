@@ -1,5 +1,101 @@
 ﻿@page "/Admin/Accessright"
 
+<div class="container my-4">
+    <div class="card mt-5 text-center shadow rounded " style="border-radius: 15px; border-color: red; color: red; font-size: x-large; height: 50px">
+        โปรดทราบ
+    </div>
+    <div class="card shadow bg-light font-color rounded mt-5 pb-5 px-3 pt-3" style="border-radius:10px">
+        <div class="card primary-bg text-light  mt-4 px-3 py-2 shadow rounded " style="border-radius: 10px; font-size: larger; height: 50px">
+            ค้นหาจากชื่อ - นามสกุล หรือ รหัสบุคลากร
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-5">
+                <input class="form-control shadow rounded" style=" height: 40px" id="exampleFormControlInput1">
+            </div>
+            <div class="col-3">
+                <select class="form-select shadow rounded" aria-label="Default select example">
+                    <option selected>วิทยาเขต</option>
+                    <option value="1">หาดใหญ่</option>
+                    <option value="2">ภูเก็ต</option>
+                    <option value="3">ตรัง</option>
+                    <option value="4">สุราษฎร์ธานี</option>
+                    <option value="5">ปัตตานี</option>
+
+                </select>
+            </div>
+            <div class="col-3">
+                <select class="form-select shadow rounded" aria-label="Default select example">
+                    <option selected>ระดับ</option>
+                    <option value="1">แอดมิน</option>
+                    <option value="2">เจ้าหน้าที่</option>
+
+                </select>
+            </div>
+            <div class="col-1">
+                <button class="button-color text-light shadow rounded" style="border:none;height:40px">เพิ่มสิทธิ</button>
+            </div>
+        </div>
+
+        <div class="mt-5  font-weight-bold px-3" style="font-size:larger"><i class="fas fa-user-check fa-lg mx-2"></i>สิทธิการเข้าถึงที่ได้รับ</div>
+        <div class="row mx-1 mt-3 card primary-bg text-light px-3  py-2 shadow rounded" style="height: 50px;border-radius:10px">
+
+            
+            <div class="  row font-weight-bold" style="font-size: large">
+                <div class="col-6 ">ชื่อ-นามสกุล</div>
+                <div class="col-2  ">วิทยาเขต</div>
+                <div class="col-4 text-center ">ระดับ</div>
+              
+            </div>
+
+        </div>
+
+        <div class="row mt-4 text-center">
+            <div class="col-5">
+                <div class="card p-2 rounded shadow text-center" style="height:40px">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card p-2 rounded shadow text-center" style="height:40px">
+                    หาดใหญ่
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card p-2 rounded shadow text-center" style="height:40px">
+                    แอดมิน
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="card p-2 rounded shadow text-center" style="border-color:red;height:40px">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-2 text-center">
+            <div class="col-5">
+                <div class="card p-2 rounded shadow text-center" style="height:40px">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card p-2 rounded shadow text-center" style="height:40px">
+                    หาดใหญ่
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card p-2 rounded shadow text-center" style="height:40px">
+                    เจ้าหน้าที่
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="card p-2 rounded shadow text-center" style="border-color:red;height:40px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 @code {
 
