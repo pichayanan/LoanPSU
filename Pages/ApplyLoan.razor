@@ -134,7 +134,6 @@
     public string staffId { get; set; } = "0";
 
     async Task Submit()
-
     {
         var LoanType = LoanTypeList.FirstOrDefault(x => x.LoanTypeId == ModelApplyLoan.LoanTypeID);
 
@@ -207,31 +206,6 @@
 
 
         @*ModelApplyLoan.Guarantor*@
-
-
-
-
-        @*        selectGuarantor = new List<GuarantorPeople>();
-
-            if (guarantorPeoples.Count != 0 && ModelApplyLoan.Guarantor != "")
-            {
-                for (var i = 0; i < guarantorPeoples.Count; i++)
-                {
-                    var people = guarantorPeoples[i];
-                    var fullName = people.Prefix + people.Fname + " " + people.Lname;
-                    Console.WriteLine(people);
-
-                    if (fullName.Contains(ModelApplyLoan.Guarantor))
-                    {
-                        // do html stuff
-                        selectGuarantor.Add(people);
-                    }
-                }
-            }
-            else
-            {
-                ModelApplyLoan.Guarantor = "";
-            }*@
     }
 
     private void OpenPDF(LoanType data)

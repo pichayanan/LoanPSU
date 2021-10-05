@@ -3,17 +3,16 @@
 
 <div class="container mt-3">
 
-    <div class=" mt-4 row">
+    <div class="mt-4 row">
         <div class=" col-8"></div>
-        <form class="d-flex col-4">
-            <input class="form-control me-2 shadow rounded" type="search" placeholder="Search" aria-label="Search">
-
+        <EditForm Model="search" class="d-flex col-4">
+            <InputText @bind-Value="search.Title" class="form-control me-2 shadow rounded" type="search" placeholder="Search" aria-label="Search" />
             <button type="button"
-                    class="btn btn-outline-secondary primary-bg-drop shadow rounded">
+                    class="btn btn-outline-secondary primary-bg-drop shadow rounded"
+                    @onclick="()=>SearchData(search.Title)">
                 <i class="fas fa-search"></i>
             </button>
-
-        </form>
+        </EditForm>
     </div>
 
     <table class="table table-hover border-table mt-4" style="border-top: 1px solid">
@@ -46,22 +45,17 @@
                         <td class="text-center">ปกติ</td>
                     </tr>
                 }
-                <div>
-                    <button type="button"
-                            class="btn btn-outline-secondary primary-bg-drop shadow rounded"
-                            @onclick="()=>Add(10)">
-                        ดูเพิ่ม
-                    </button>
-                </div>
+
             }
         </tbody>
-
     </table>
-
-
-
-
-
+    <div>
+        <button type="button"
+                class="btn btn-outline-secondary primary-bg-drop shadow rounded"
+                @onclick="()=>Add(paging)">
+            ดูเพิ่ม
+        </button>
+    </div>
 </div>
 
 
@@ -72,52 +66,55 @@
     public string whiteColor = "#ffffff";
 
     List<VLoanStaffDetail> listStaff;
+    SearchModel search;
 
-    public int paging { get; set; } = 10;
-
+    public int pagingStart { get; set; } = 100;
+    public int paging { get; set; } = 50;
 
     protected override void OnInitialized()
     {
         listStaff = new List<VLoanStaffDetail>();
-        pagingTable(paging);
+        search = new SearchModel();
+
+        pagingTable(pagingStart, search.Title);
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    public void pagingTable(int index, string searchText)
     {
-        if (firstRender)
+        if (searchText == "")
         {
-
-            await JS.InvokeVoidAsync("tableReady");
-
-            @*ข้อมูลมีการเปลี่ยนแปลง บอก ui run ใหม่*@
-            StateHasChanged();
+            listStaff = _context.VLoanStaffDetails.Where(c => c.StaffDepart != "e").Take(index).ToList<VLoanStaffDetail>();
+        }
+        else
+        {
+            listStaff = _context.VLoanStaffDetails.Where(c =>
+                c.StaffNameThai.Contains(searchText) ||
+                c.StaffSnameThai.Contains(searchText) &&
+                c.StaffDepart != "e"
+            ).ToList<VLoanStaffDetail>();
 
         }
     }
 
-    @*$(document).ready(function () {
-            $('#myTable').DataTable();
-        } );*@
-
-    public void pagingTable(int index)
-    {
-        listStaff = _context.VLoanStaffDetails.Where(c => c.StaffDepart != "e").Take(index).ToList<VLoanStaffDetail>();
-    }
-
     public void Add(int index)
     {
-        paging = paging + index;
-        pagingTable(paging);
+        pagingStart = pagingStart + index;
+        pagingTable(pagingStart, search.Title);
     }
 
-
-
-
-
+    public void SearchData(String text)
+    {
+        pagingTable(pagingStart, text);
+    }
 
 
     public void SeeDetail()
     {
         NavigationManager.NavigateTo("/Admin/UserdataDetail");
+    }
+
+    public class SearchModel
+    {
+        public string Title { get; set; } = string.Empty;
     }
 }
