@@ -46,7 +46,7 @@ namespace BlazorApp.Pages
         public void SetData()
         {
             LoanTypeList = new List<LoanType>();
-            LoanTypeList = _context.LoanTypes.Where(c => c.Active == true).ToList<LoanType>();
+            LoanTypeList = _context.LoanTypes.Where(c => c.Active == 1).ToList<LoanType>();
             LoanTypeList.Insert(0, new LoanType() { LoanTypeId = 0, LoanTypeName = "---กรุณาระบุ---" });
         }
     }

@@ -14,7 +14,7 @@ namespace BlazorApp.ModelsDB
         public int LoanMaxAmount { get; set; }
         public decimal? LoanInterate { get; set; }
         public byte? LoanPeriod { get; set; }
-        public bool? Active { get; set; }
+        public int Active { get; set; }
         public string Remark { get; set; }
     }
 }
