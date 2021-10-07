@@ -15,20 +15,27 @@
                             
                         </div>
                         <div class="col-4">
-                            <button class="button-color text-light p-2" @onclick="()=>ToggleButton(true)">ประเภทที่มีอยู่</button>
+                            <button class="button-color text-light p-2 shadow rounded" style="border:none;height:40px" @onclick="()=>ToggleButton(true)">ประเภทที่มีอยู่</button>
                         </div>
 
                     </div>
 
-                    <div>
+                    <div class="my-3 mx-3">
                         @if (changType == true)
                         {
 
-                            <div>
+                            <div class=" card bg-light p-2 rounded shadow mt-1" >
                                 @for (var i = 0; i < ListType.Count; i++)
                                 {
                                     var item = ListType[i];
-                                    <div>@item.LoanTypeName <button class="button-color text-light p-2" @onclick="()=>selectType(false,item)">เลือก</button></div>
+                                <div class="row p-2">
+                                    <div class=" col-9">
+                                        @item.LoanTypeName
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="button-color text-light p-2 shadow rounded" style="border:none;width:120px" @onclick="()=>selectType(false,item)">เลือก</button>
+                                    </div>
+                                </div>
 
                                 }
                             </div>
@@ -80,7 +87,7 @@
                         <label for="guarantor" class="form-label font-weight-bold font-color">เริ่มใช้เงื่อนไขเมื่อ</label>
                     </div>
                     <div class=" col-7">
-                        <InputDate @bind-Value="Loan.StartDate"/>
+                        <InputDate @bind-Value="Loan.StartDate" class="form-control" id="exampleFormControlInput1"   />
                         
                     </div>
                 </div>
@@ -206,7 +213,7 @@
     public async Task Testdata()
     {
         Console.WriteLine(Loan);
-       
+        Loan.Active = 1;
         _context.TypeLoans.Add(Loan);
         await _context.SaveChangesAsync();
     }
