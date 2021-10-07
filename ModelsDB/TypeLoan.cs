@@ -14,7 +14,7 @@ namespace BlazorApp.ModelsDB
         public decimal? LoanMaxAmount { get; set; }
         public string LoanInterate { get; set; }
         public decimal? LoanPeriod { get; set; }
-        public decimal Active { get; set; }
+        public decimal? Active { get; set; }
         public string Remark { get; set; }
         public string File { get; set; }
         public DateTime? StartDate { get; set; }
