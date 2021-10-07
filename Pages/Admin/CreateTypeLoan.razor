@@ -161,17 +161,17 @@
 
 @code {
 
-    List<LoanType> ListType;
-    LoanType Loan;
+    List<TypeLoan> ListType;
+    TypeLoan Loan;
     public Boolean changType { get; set; } = false;
 
 
 
     protected override void OnInitialized()
     {
-        ListType = new List<LoanType>();
-        Loan = new LoanType();
-        ListType = _context.LoanTypes.ToList<LoanType>();
+        ListType = new List<TypeLoan>();
+        Loan = new TypeLoan();
+        ListType = _context.TypeLoans.ToList<TypeLoan>();
     }
 
 
@@ -191,7 +191,7 @@
         changType = toggle;
     }
 
-    public void selectType(Boolean toggle,LoanType loantype)
+    public void selectType(Boolean toggle, TypeLoan loantype)
 
     {
         Loan.LoanParentName = loantype.LoanParentName;
