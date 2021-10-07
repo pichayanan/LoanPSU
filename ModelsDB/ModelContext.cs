@@ -26,7 +26,6 @@ namespace BlazorApp.ModelsDB
         {
             if (!optionsBuilder.IsConfigured)
             {
-
             }
         }
 
@@ -153,6 +152,10 @@ namespace BlazorApp.ModelsDB
                     .HasMaxLength(2000)
                     .IsUnicode(false)
                     .HasColumnName("REMARK");
+
+                entity.Property(e => e.StartDate)
+                    .HasColumnType("DATE")
+                    .HasColumnName("START_DATE");
             });
 
             modelBuilder.Entity<VLoanStaffDetail>(entity =>
