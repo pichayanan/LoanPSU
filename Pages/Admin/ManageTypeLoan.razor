@@ -44,7 +44,7 @@
 
                     <tr class="py-2" style="background-color:whitesmoke ;">
                         <td class="text-center font-color font-weight-bolder">
-                            @if (item.Active == true)
+                            @if (item.Active == 1)
                             {
 
 
@@ -79,7 +79,7 @@
                             }
                         </td>
                         <td class="text-center">
-                            @if (@item.LoanInterate == 0)
+                            @if (@item.LoanInterate == "0")
                             {
                                 <div>ไม่มี</div>}
                             else
@@ -90,20 +90,14 @@
                         </td>
                         <td>
                             <div class="p-2">
-                                <button type="button" class="btn button-color shadow rounded text-center text-light" 
-                                        @onclick="()=>checkedData(item) "
-                                        style="border-radius: 5px;width:180px">ปรับเปลี่ยนสถานะ</button>
-
-                               @* @if (@item.Active == true)
-                                {
-
-
-
-                                }
-                                else
-                                {
-
-                                }*@
+                                <button type="button"
+                                        class="btn button-color shadow rounded text-center text-light"
+                                        @onclick="()=>checkedData(item)"
+                                        style="border-radius: 5px;width:180px">
+                                        @*data-bs-toggle="modal"
+                                        data-bs-target="#confirmChecked"*@
+                                    ปรับเปลี่ยนสถานะ
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -142,16 +136,38 @@
     </div>*@
 
 
-
-
 LoanParentName => @selectLoan.LoanParentName
+
+
+<!-- Modal -->
+<div class="modal fade" id="confirmChecked" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 @code {
     public Boolean countTable = false;
     public string grayColor = "#d3d5d4";
     public string whiteColor = "#ffffff";
 
-    List<LoanType> ListLoan;
-    LoanType selectLoan;
+    List<TypeLoan> ListLoan;
+    TypeLoan selectLoan;
 
     public void CreateLoan()
     {
@@ -161,15 +177,30 @@ LoanParentName => @selectLoan.LoanParentName
 
     protected override void OnInitialized()
     {
-        ListLoan = new List<LoanType>();
-        selectLoan = new LoanType();
-        ListLoan = _context.LoanTypes.ToList<LoanType>();
+        ListLoan = new List<TypeLoan>();
+        selectLoan = new TypeLoan();
+        ListLoan = _context.TypeLoans.ToList<TypeLoan>();
     }
 
-    public void checkedData(LoanType data)
+    public async Task checkedData(TypeLoan data)
     {
         Console.WriteLine(data);
         selectLoan = data;
+
+        if (data.Active == 1)
+        {
+            data.Active = 0;
+        }
+        else
+        {
+            data.Active = 1;
+        }
+        _context.Update(data);
+
+        await _context.SaveChangesAsync();
+
+        ListLoan = new List<TypeLoan>();
+        ListLoan = _context.TypeLoans.ToList<TypeLoan>();
     }
 }
 

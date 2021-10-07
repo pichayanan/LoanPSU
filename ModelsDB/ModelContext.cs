@@ -19,12 +19,14 @@ namespace BlazorApp.ModelsDB
 
         public virtual DbSet<LoanType> LoanTypes { get; set; }
         public virtual DbSet<Sample> Samples { get; set; }
+        public virtual DbSet<TypeLoan> TypeLoans { get; set; }
         public virtual DbSet<VLoanStaffDetail> VLoanStaffDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            { 
+            {
+
             }
         }
 
@@ -46,7 +48,7 @@ namespace BlazorApp.ModelsDB
                     .HasColumnName("ACTIVE");
 
                 entity.Property(e => e.LoanInterate)
-                    .HasColumnType("NUMBER(10,2)")
+                    .HasColumnType("FLOAT")
                     .HasColumnName("LOAN_INTERATE");
 
                 entity.Property(e => e.LoanMaxAmount)
@@ -85,6 +87,10 @@ namespace BlazorApp.ModelsDB
                     .HasColumnType("NUMBER")
                     .HasColumnName("ID");
 
+                entity.Property(e => e.BirthDate)
+                    .HasColumnType("DATE")
+                    .HasColumnName("BIRTH_DATE");
+
                 entity.Property(e => e.CustFirstName)
                     .HasMaxLength(100)
                     .IsUnicode(false)
@@ -94,6 +100,59 @@ namespace BlazorApp.ModelsDB
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("CUST_LAST_NAME");
+            });
+
+            modelBuilder.Entity<TypeLoan>(entity =>
+            {
+                entity.HasKey(e => e.LoanTypeId)
+                    .HasName("TYPE_LOAN_PK");
+
+                entity.ToTable("TYPE_LOAN");
+
+                entity.Property(e => e.LoanTypeId)
+                    .HasColumnType("NUMBER(38)")
+                    .HasColumnName("LOAN_TYPE_ID");
+
+                entity.Property(e => e.Active)
+                    .HasColumnType("NUMBER(38)")
+                    .HasColumnName("ACTIVE");
+
+                entity.Property(e => e.File)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("FILE");
+
+                entity.Property(e => e.LoanInterate)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("LOAN_INTERATE");
+
+                entity.Property(e => e.LoanMaxAmount)
+                    .HasColumnType("NUMBER(38)")
+                    .HasColumnName("LOAN_MAX_AMOUNT");
+
+                entity.Property(e => e.LoanParentId)
+                    .HasColumnType("NUMBER(38)")
+                    .HasColumnName("LOAN_PARENT_ID");
+
+                entity.Property(e => e.LoanParentName)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("LOAN_PARENT_NAME");
+
+                entity.Property(e => e.LoanPeriod)
+                    .HasColumnType("NUMBER(38)")
+                    .HasColumnName("LOAN_PERIOD");
+
+                entity.Property(e => e.LoanTypeName)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("LOAN_TYPE_NAME");
+
+                entity.Property(e => e.Remark)
+                    .HasMaxLength(2000)
+                    .IsUnicode(false)
+                    .HasColumnName("REMARK");
             });
 
             modelBuilder.Entity<VLoanStaffDetail>(entity =>

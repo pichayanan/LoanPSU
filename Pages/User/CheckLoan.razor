@@ -133,7 +133,7 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 protected override void OnInitialized()
 {
     listLoan = new List<LoanType>();
-    listLoan = _context.LoanTypes.Where(c => c.Active == true).ToList<LoanType>();
+    listLoan = _context.LoanTypes.Where(c => c.Active == 1).ToList<LoanType>();
     }
 
     private void ApplyLoan(LoanType landData)
