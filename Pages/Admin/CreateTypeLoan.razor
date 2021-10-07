@@ -3,108 +3,121 @@
 <div class="container mt-3 ">
     <div class="row justify-content-center">
         <div class="col-8 card bg-light shadow rounded py-4 px-3 my-5">
-            <div class="my-3 mx-3 row">
-                <div class=" col-3">
-                    <label class="form-label font-weight-bold font-color">ชื่อประเภทการกู้</label>
+            <EditForm Model="Loan" >
+                <div class="my-3 mx-3 row">
+                    <div class=" col-3">
 
-                </div>
-                <div class=" col-7">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">กู้เพื่อรักษาพยาบาลตนเอง</option>
-                        <option value="2">กู้เพื่อการศึกษาตนเอง</option>
-                        <option value="3">กู้ค่าเล่าเรียนบุตรในส่วนที่เกินสิทธิ</option>
-                        <option value="4">กู้เพื่อซื้อวัสดุอุปกรณ์การศึกษาของบุตร</option>
-                        <option value="5">กู้เพื่อซื้อคอมพิวเตอร์และอุปกรณ์ IT</option>
-                        <option value="6">กู้เพื่อส่งเสริมสุขภาวะบุคลากร</option>
-                        <option value="7">กู้เพื่อประกอบกิจกรรมด้านวัฒนธรรม</option>
-                        <option value="8">กู้เพื่อซื้อประกัน</option>
-                        <option value="9">กู้เพื่อซ่อมแซมยานพาหนะ</option>
-                        <option value="10">กู้เพื่อซ่อมแซมที่อยู่อาศัย</option>
-                        <option value="11">กู้เพื่อตัดชุดขาว</option>
-                        <option value="12">กู้เพื่อตัดชุดครุยบุคลากร</option>
-                    </select>
-                </div>
-            </div>
+                        <label class="form-label font-weight-bold font-color">ชื่อประเภทใหม่</label>
+                    </div>
+                    <div class=" col-9 row">
+                        <div class="col-6">
+                            <InputText @bind-Value="Loan.LoanParentName" class="form-control" id="exampleFormControlInput1" placeholder="ระบุชื่อประเภทการกู้ใหม่" />
+                            
+                        </div>
+                        <div class="col-4">
+                            <button class="button-color text-light p-2" @onclick="()=>ToggleButton(true)">ประเภทที่มีอยู่</button>
+                        </div>
 
+                    </div>
 
-            <div class="my-3 mx-3 row">
-                <div class=" col-3">
-                    <label class="form-label font-weight-bold font-color">ดอกเบี้ย</label>
+                    <div>
+                        @if (changType == true)
+                        {
 
-                </div>
-                <div class=" col-7">
-                    <input class="form-control" id="exampleFormControlInput1">
-                </div>
-            </div>
+                            <div>
+                                @for (var i = 0; i < ListType.Count; i++)
+                                {
+                                    var item = ListType[i];
+                                    <div>@item.LoanTypeName <button class="button-color text-light p-2" @onclick="()=>selectType(false,item)">เลือก</button></div>
+
+                                }
+                            </div>
+                        }
+                    </div>
 
 
-            <div class="my-3 mx-3 row">
-                <div class=" col-3">
-                    <label class="form-label font-weight-bold font-color">จำนวนงวดสูงสุด</label>
-                </div>
-                <div class=" col-7">
-                    <input class="form-control" id="exampleFormControlInput1">
-                </div>
-
-            </div>
-
-
-            <div class="my-3 mx-3 row">
-                <div class=" col-3">
-                    <label for="guarantor" class="form-label font-weight-bold font-color">วงเงินสูงสุด</label>
-                </div>
-                <div class=" col-7">
-                    <input class="form-control" id="exampleFormControlInput1">
-                </div>
-
-            </div>
-
-
-            <div class="my-3 mx-3 row">
-                <div class=" col-3">
-                    <label for="guarantor" class="form-label font-weight-bold font-color">เริ่มใช้เงื่อนไขเมื่อ</label>
-                </div>
-                <div class=" col-7">
-                    <input class="form-control" id="exampleFormControlInput1">
-                </div>
-            </div>
-            <div class="my-3 mx-3 row">
-                <div class=" col-3">
-                    <label for="guarantor" class="form-label font-weight-bold font-color">สำเนาเอกสารเงื่อนไข</label>
-
-                </div>
-                <div class=" col-6">
-                    <input class="form-control" id="exampleFormControlInput1">
-                </div>
-                <div class=" col-3">
-                    <button class=" btn button-color rounded shadow  text-light" style="border-radius: 10px; height: 40px">อัปโหลด</button>
-
-                </div>
-            </div>
-
-            <div class="my-4 mx-3 row">
-                <div class="col-6 text-end">
-                    <button type="button"
-                            class="btn secondary-bg shadow rounded"
-                            style="width:200px"
-                            data-bs-toggle="modal"
-                            data-bs-target="#backPage">
-                        กลับ
-                    </button>
-                </div>
-                <div class="col-6">
-                    <button type="button"
-                            class="btn button-color shadow rounded"
-                            style="color: white; width: 200px"
-                            data-bs-toggle="modal"
-                            data-bs-target="#nextPage">
-                        ยื่นคำขอ
-                    </button>
                 </div>
 
 
-            </div>
+                <div class="my-3 mx-3 row">
+                    <div class=" col-3">
+                        <label class="form-label font-weight-bold font-color">ดอกเบี้ย</label>
+
+                    </div>
+                    <div class=" col-7">
+                        <input class="form-control" id="exampleFormControlInput1">
+                    </div>
+                </div>
+
+
+                <div class="my-3 mx-3 row">
+                    <div class=" col-3">
+                        <label class="form-label font-weight-bold font-color">จำนวนงวดสูงสุด</label>
+                    </div>
+                    <div class=" col-7">
+                        <input class="form-control" id="exampleFormControlInput1">
+                    </div>
+
+                </div>
+
+
+                <div class="my-3 mx-3 row">
+                    <div class=" col-3">
+                        <label for="guarantor" class="form-label font-weight-bold font-color">วงเงินสูงสุด</label>
+                    </div>
+                    <div class=" col-7">
+                        <input class="form-control" id="exampleFormControlInput1">
+                    </div>
+
+                </div>
+
+
+                <div class="my-3 mx-3 row">
+                    <div class=" col-3">
+                        <label for="guarantor" class="form-label font-weight-bold font-color">เริ่มใช้เงื่อนไขเมื่อ</label>
+                    </div>
+                    <div class=" col-7">
+                        <input class="form-control" id="exampleFormControlInput1">
+                    </div>
+                </div>
+                <div class="my-3 mx-3 row">
+                    <div class=" col-3">
+                        <label for="guarantor" class="form-label font-weight-bold font-color">สำเนาเอกสารเงื่อนไข</label>
+
+                    </div>
+                    <div class=" col-6">
+                        <input class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class=" col-3">
+                        <button class=" btn button-color rounded shadow  text-light" style="border-radius: 10px; height: 40px">อัปโหลด</button>
+
+                    </div>
+                </div>
+           </EditForm>  
+
+                <div class="my-4 mx-3 row">
+                    <div class="col-6 text-end">
+                        <button type="button"
+                                class="btn secondary-bg shadow rounded"
+                                style="width:200px"
+                                data-bs-toggle="modal"
+                                data-bs-target="#backPage">
+                            กลับ
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button"
+                                class="btn button-color shadow rounded"
+                                style="color: white; width: 200px" @onclick="Testdata">
+                            สร้างประเภทใหม่
+                           @* data-bs-toggle="modal"
+                            data-bs-target="#nextPage"*@
+                        </button>
+
+                    </div>
+
+
+                </div>
 
 
         </div>
@@ -140,7 +153,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="NextPage">ยืนยัน</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="BackPage">ยืนยัน</button>
             </div>
         </div>
     </div>
@@ -148,14 +161,46 @@
 
 @code {
 
+    List<LoanType> ListType;
+    LoanType Loan;
+    public Boolean changType { get; set; } = false;
+
+
+
+    protected override void OnInitialized()
+    {
+        ListType = new List<LoanType>();
+        Loan = new LoanType();
+        ListType = _context.LoanTypes.ToList<LoanType>();
+    }
+
+
+
     public void BackPage()
     {
         NavigationManager.NavigateTo("./Admin/ManageTypeLoan");
     }
 
-    public void NextPage()
+
+
+
+    public void ToggleButton(Boolean toggle)
+
     {
-        NavigationManager.NavigateTo("/applyloansuccess");
+
+        changType = toggle;
     }
 
+    public void selectType(Boolean toggle,LoanType loantype)
+
+    {
+        Loan.LoanParentName = loantype.LoanParentName;
+
+        ToggleButton(toggle);
+    }
+
+    public void Testdata()
+    {
+        Console.WriteLine(Loan);
+    }
 }
