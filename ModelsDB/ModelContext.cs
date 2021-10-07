@@ -114,7 +114,8 @@ namespace BlazorApp.ModelsDB
 
                 entity.Property(e => e.Active)
                     .HasColumnType("NUMBER(38)")
-                    .HasColumnName("ACTIVE");
+                    .HasColumnName("ACTIVE")
+                    .HasDefaultValueSql("1");
 
                 entity.Property(e => e.File)
                     .HasMaxLength(1000)
