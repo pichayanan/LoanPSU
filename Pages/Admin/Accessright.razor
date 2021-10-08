@@ -1,7 +1,7 @@
 ﻿@page "/Admin/Accessright"
 
 <div class="container my-4">
-    
+
     <div class="card shadow bg-light font-color rounded mt-5 pb-5 px-3 pt-3" style="border-radius:10px">
         <div class="card primary-bg text-light  mt-4 px-3 py-2 shadow rounded " style="border-radius: 10px; font-size: larger; height: 50px">
             ค้นหาจากชื่อ - นามสกุล หรือ รหัสบุคลากร
@@ -38,12 +38,12 @@
         <div class="mt-5  font-weight-bold px-3" style="font-size:larger"><i class="fas fa-user-check fa-lg mx-2"></i>สิทธิการเข้าถึงที่ได้รับ</div>
         <div class="row mx-1 mt-3 card primary-bg text-light px-3  py-2 shadow rounded" style="height: 50px;border-radius:10px">
 
-            
+
             <div class="  row font-weight-bold" style="font-size: large">
                 <div class="col-6 ">ชื่อ-นามสกุล</div>
                 <div class="col-2  ">วิทยาเขต</div>
                 <div class="col-4 text-center ">ระดับ</div>
-              
+
             </div>
 
         </div>
@@ -64,7 +64,9 @@
                 </div>
             </div>
             <div class="col-1">
-                <div class="card p-2 rounded shadow text-center py-2" style="border-color:red;height:40px"><i class="fas fa-trash-alt fa-lg mx-2 my-1" style="color:red"></i>
+                <div class="card p-2 rounded shadow text-center py-2" style="border-color:red;height:40px" data-bs-toggle="modal"
+                     data-bs-target="#delete">
+                    <i class="fas fa-trash-alt fa-lg mx-2 my-1" style="color:red"></i>
                 </div>
             </div>
         </div>
@@ -86,7 +88,9 @@
                 </div>
             </div>
             <div class="col-1">
-                <div class="card  rounded shadow text-center py-2" style="border-color:red;height:40px"><i class="fas fa-trash-alt fa-lg mx-2 my-1" style="color:red"></i>
+                <div class="card  rounded shadow text-center py-2" style="border-color:red;height:40px" data-bs-toggle="modal"
+                     data-bs-target="#delete">
+                    <i class="fas fa-trash-alt fa-lg mx-2 my-1" style="color:red"></i>
                 </div>
             </div>
         </div>
@@ -94,7 +98,28 @@
 
 </div>
 
+@* model delete *@
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body ">
+                ยืนยันที่ต้องการลบสิทธิ์การเข้าถึงของท่านนี้ใช่หรือไม่
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="confirmPage">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @code {
 
+    public void confirmPage()
+    {
+        NavigationManager.NavigateTo("./Admin/Accessright");
+
+    }
 }
