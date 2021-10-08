@@ -1,11 +1,15 @@
 ﻿
 @page "/User/ChooseDate"
 @inject NavigationManager NavigationManager
+@using Radzen
+@using Radzen.Blazor
+
 
 <div class="container my-4">
     <div class="card bg-white mt-5 px-3 py-3 shadow rounded" style="border-radius:15px">
         <div class="row ">
             <div class="col-5 ">
+
 
                 <input class="form-control  shadow rounded" style="height: 50px;border-radius:10px" type="search" placeholder="เลือกวันที่" aria-label="Search" disabled>
 
@@ -21,164 +25,186 @@
         </div>
 
         <div class="row mt-3">
-         
+
             <div class="col-5 ">
-                <input class="form-control  shadow rounded" type="date" id="Date" style="height: 50px;border-radius:10px" />
+
+                <RadzenDatePicker @bind-Value=@value DateFormat="d" style="height: 50px;border-radius:10px" class="form-control  shadow rounded" />
+                @*<input class="form-control  shadow rounded" type="date" id="Date" style="height: 50px;border-radius:10px" />*@
             </div>
             <div class="col-5">
-                <input class="form-control  shadow rounded" type="time" id="Time" style="height: 50px;border-radius:10px" />
+                <RadzenDatePicker TValue="DateTime?" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" class="form-control  shadow rounded" style="height: 50px;border-radius:10px" />
+                @*   <input class="form-control  shadow rounded" type="time" id="Time" style="height: 50px;border-radius:10px" />*@
             </div>
             <div class="col-2 text-center">
                 <button class="btn shadow rounded text-light button-color" style="width: 120px; height: 50px;border-radius:10px">ค้นหา</button>
             </div>
         </div>
     </div>
-        <div class="mt-5">
-            <div class="mt-5" style="color:gray"> ผลการค้นหา 4 รายการ</div>
-            <div class="mt-2" style="color:red">** แสดงในระยะเวลา 7 วัน **</div>
+    <div class="mt-5">
+        <div class="mt-5 mb-3" style="color:gray"> ผลการค้นหา 4 รายการ</div>
+        <div class="mt-2" style="color:red">** แสดงในระยะเวลา 7 วัน **</div>
 
 
-            <div class="mt-4 row">
+        <div class="mt-4 row">
 
-                <div class="card bg-light shadow rounded p-2 col-10 row ms-4"
-                     style="height:50px;font-size:large;
+            <div class="card bg-light shadow rounded p-2 col-10 row ms-4"
+                 style="height:50px;font-size:large;
                         padding-left:15px;
                         border-radius:10px">
-                    <div class="col-5">1 ต.ค 2564 (ศุกร์)</div>
-                    <div class="col-5">9.00</div>
+                <div class="col-5">1 ต.ค 2564 (ศุกร์)</div>
+                <div class="col-5">9.00</div>
 
-                </div>
-
-                <div class="col-1 ms-3">
-                    <button class="btn shadow rounded text-light button-color" style=" height: 50px;border-radius:10px">เลือก</button>
-                </div>
-            </div>
-            <div class="mt-2 row">
-
-                <div class="card bg-light shadow rounded p-2 col-10 row ms-4"
-                     style="height:50px;font-size:large;
-                        padding-left:15px;
-                        border-radius:10px">
-                    <div class="col-5">1 ต.ค 2564 (ศุกร์)</div>
-                    <div class="col-5">10.00</div>
-
-                </div>
-
-                <div class="col-1 ms-3">
-                    <button class="btn shadow rounded text-light button-color" style=" height: 50px;border-radius:10px">เลือก</button>
-                </div>
             </div>
 
-            <div class="mt-2 row">
+            <div class="col-1 ms-3">
+                <button class="btn shadow rounded text-light button-color" style=" height: 50px;border-radius:10px">เลือก</button>
+            </div>
+        </div>
+        <div class="mt-4 row">
 
-                <div class="card bg-light shadow rounded p-2 col-10 row ms-4"
-                     style="height:50px;font-size:large;
+            <div class="card bg-light shadow rounded p-2 col-10 row ms-4"
+                 style="height:50px;font-size:large;
                         padding-left:15px;
                         border-radius:10px">
-                    <div class="col-5">1 ต.ค 2564 (ศุกร์)</div>
-                    <div class="col-5">14.00</div>
+                <div class="col-5">1 ต.ค 2564 (ศุกร์)</div>
+                <div class="col-5">10.00</div>
 
-                </div>
-
-                <div class="col-1 ms-3">
-                    <button class="btn shadow rounded text-light button-color" style=" height: 50px;border-radius:10px">เลือก</button>
-                </div>
             </div>
 
-            <div class="mt-2 row">
-
-                <div class="card bg-light shadow rounded p-2 col-10 row ms-4"
-                     style="height:50px;font-size:large;
-                        padding-left:15px;
-                        border-radius:10px">
-                    <div class="col-5">1 ต.ค 2564 (ศุกร์)</div>
-                    <div class="col-5">15.00</div>
-
-                </div>
-
-                <div class="col-1 ms-3">
-                    <button type="button" class="btn shadow rounded text-light button-color" data-bs-toggle="modal"
-                            data-bs-target="#ChooseDate" style=" height: 50px;border-radius:10px">
-                        เลือก
-                    </button>
-                </div>
+            <div class="col-1 ms-3">
+                <button class="btn shadow rounded text-light button-color" style=" height: 50px;border-radius:10px">เลือก</button>
             </div>
         </div>
 
-    </div>
+        <div class="mt-4 row">
 
-    @* model Choosedate *@
-    <div class="modal fade" id="ChooseDate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="text-center">ท่านต้องการจองเวลานี้ใช่ไหม ?</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="card shadow rounded p-2 text-center">วันศุกร์ 1 ตุลาคม 2564 เวลา 9.00</div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn text-light" style="background-color:red" data-bs-dismiss="modal">เลือกใหม่</button>
-                    <button type="button" class="btn button-color text-light" data-bs-toggle="modal"
-                            data-bs-target="#ConfirmDate">
-                        ยืนยัน
-                    </button>
-                </div>
+            <div class="card bg-light shadow rounded p-2 col-10 row ms-4"
+                 style="height:50px;font-size:large;
+                        padding-left:15px;
+                        border-radius:10px">
+                <div class="col-5">1 ต.ค 2564 (ศุกร์)</div>
+                <div class="col-5">14.00</div>
+
+            </div>
+
+            <div class="col-1 ms-3">
+                <button class="btn shadow rounded text-light button-color" style=" height: 50px;border-radius:10px">เลือก</button>
+            </div>
+        </div>
+
+        <div class="mt-4 row">
+
+            <div class="card bg-light shadow rounded p-2 col-10 row ms-4"
+                 style="height:50px;font-size:large;
+                        padding-left:15px;
+                        border-radius:10px">
+                <div class="col-5">1 ต.ค 2564 (ศุกร์)</div>
+                <div class="col-5">15.00</div>
+
+            </div>
+
+            <div class="col-1 ms-3">
+                <button type="button" class="btn shadow rounded text-light button-color" data-bs-toggle="modal"
+                        data-bs-target="#ChooseDate" style=" height: 50px;border-radius:10px">
+                    เลือก
+                </button>
             </div>
         </div>
     </div>
 
-    @*confirmDate*@
-    <div class="modal fade" id="ConfirmDate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="text-center">ท่านได้ทำการจองเวลานี้สำเร็จ</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="card shadow rounded p-2 text-center" style="font-size:large">วันศุกร์ 1 ตุลาคม 2564 เวลา 9.00</div>
-                    <div class=" p-2 text-center">
-                        กรุณาพิมพ์เอกสารจากระบบและเตรียมเอกสารหลักฐานให้ครบถ้วน
-                        ก่อนเข้าทำสัญญาที่สำนักงานตามเวลานี้
-                    </div>
-                    <div class=" p-2  " style="color:red;font-size:small;">
-                        ** ข้อมูลอาจมีการเปลี่ยนแปลงได้ กรุณาติดตามการแจ้งเตือนทางอีเมลอย่างใกล้ชิด
-                    </div>
-                </div>
-                <div class="modal-footer">
+</div>
 
-                    <button type="button" class="btn button-color text-light" data-bs-dismiss="modal" @onclick="confirm">ปิด</button>
-                </div>
+@* model Choosedate *@
+<div class="modal fade" id="ChooseDate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="text-center">ท่านต้องการจองเวลานี้ใช่ไหม ?</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card shadow rounded p-2 text-center">วันศุกร์ 1 ตุลาคม 2564 เวลา 9.00</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn text-light" style="background-color:red" data-bs-dismiss="modal">เลือกใหม่</button>
+                <button type="button" class="btn button-color text-light" data-bs-toggle="modal"
+                        data-bs-target="#ConfirmDate">
+                    ยืนยัน
+                </button>
             </div>
         </div>
     </div>
-    @*footer*@
-    <div class="footer">
+</div>
 
-        <div class="row py-3 col-12 ms-1 ">
-            <div class="col-3 text-left">
-                <button type="button" class="btn secondary-bg shadow rounded text-center" @onclick="back" style="border-radius: 5px;width:180px">กลับ</button>
-
+@*confirmDate*@
+<div class="modal fade" id="ConfirmDate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="text-center">ท่านได้ทำการจองเวลานี้สำเร็จ</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="col-4 text-center">
-
+            <div class="modal-body">
+                <div class="card shadow rounded p-2 text-center" style="font-size:large">วันศุกร์ 1 ตุลาคม 2564 เวลา 9.00</div>
+                <div class=" p-2 text-center">
+                    กรุณาพิมพ์เอกสารจากระบบและเตรียมเอกสารหลักฐานให้ครบถ้วน
+                    ก่อนเข้าทำสัญญาที่สำนักงานตามเวลานี้
+                </div>
+                <div class=" p-2  " style="color:red;font-size:small;">
+                    ** ข้อมูลอาจมีการเปลี่ยนแปลงได้ กรุณาติดตามการแจ้งเตือนทางอีเมลอย่างใกล้ชิด
+                </div>
             </div>
-            <div class="col-3" style="text-align:end">
+            <div class="modal-footer">
 
+                <button type="button" class="btn button-color text-light" data-bs-dismiss="modal" @onclick="confirm">ปิด</button>
             </div>
         </div>
 
-    </div>
-    @code {
 
-        public void confirm()
+    </div>
+</div>
+@*footer*@
+<div class="footer">
+
+    <div class="row py-3 col-12 ms-1 ">
+        <div class="col-3 text-left">
+            <button type="button" class="btn secondary-bg shadow rounded text-center" @onclick="back" style="border-radius: 5px;width:180px">กลับ</button>
+
+        </div>
+        <div class="col-4 text-center">
+
+        </div>
+        <div class="col-3" style="text-align:end">
+
+        </div>
+    </div>
+
+</div>
+@code {
+
+    DateTime? value = DateTime.Now;
+
+    IEnumerable<DateTime> dates = new DateTime[] { DateTime.Today.AddDays(-1), DateTime.Today.AddDays(1) };
+    void DateRenderSpecial(DateRenderEventArgs args)
+    {
+        if (dates.Contains(args.Date))
         {
-            NavigationManager.NavigateTo("/HomeUser");
-        }
-        public void back()
-        {
-            NavigationManager.NavigateTo("/LoanAgreement");
+            args.Attributes.Add("style", "background-color: #ff6d41; border-color: white;");
         }
     }
+
+    void DateRender(DateRenderEventArgs args)
+    {
+        args.Disabled = dates.Contains(args.Date);
+    }
+
+
+    public void confirm()
+    {
+        NavigationManager.NavigateTo("/HomeUser");
+    }
+    public void back()
+    {
+        NavigationManager.NavigateTo("/LoanAgreement");
+    }
+}

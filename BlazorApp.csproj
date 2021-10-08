@@ -34,6 +34,10 @@
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
 		<PackageReference Include="Oracle.EntityFrameworkCore" Version="5.21.1" />
+		<PackageReference Include="Radzen.Blazor" Version="3.11.3" />
+		<PackageReference Include="Radzen.Blazor.GridColumnVisibilityChooser" Version="2.1.0" />
+		<PackageReference Include="Radzen.Blazor.GridExportOptions" Version="2.9.0" />
+		<PackageReference Include="ShahJe.Blazor.NavigationTab" Version="1.0.9" />
 	</ItemGroup>
 
 	<ItemGroup>
