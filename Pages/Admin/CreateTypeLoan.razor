@@ -3,7 +3,7 @@
 <div class="container mt-3 ">
     <div class="row justify-content-center">
         <div class="col-8 card bg-light shadow rounded py-4 px-3 my-5">
-            <EditForm Model="Loan" >
+            <EditForm Model="Loan">
                 <div class="my-3 mx-3 row">
                     <div class=" col-3">
 
@@ -12,7 +12,7 @@
                     <div class=" col-9 row">
                         <div class="col-6">
                             <InputText @bind-Value="Loan.LoanParentName" class="form-control" id="exampleFormControlInput1" placeholder="ระบุชื่อประเภทการกู้ใหม่" />
-                            
+
                         </div>
                         <div class="col-4">
                             <button class="button-color text-light p-2 shadow rounded" style="border:none;height:40px" @onclick="()=>ToggleButton(true)">ประเภทที่มีอยู่</button>
@@ -24,18 +24,18 @@
                         @if (changType == true)
                         {
 
-                            <div class=" card bg-light p-2 rounded shadow mt-1" >
+                            <div class=" card bg-light p-2 rounded shadow mt-1">
                                 @for (var i = 0; i < ListType.Count; i++)
                                 {
                                     var item = ListType[i];
-                                <div class="row p-2">
-                                    <div class=" col-9">
-                                        @item.LoanTypeName
+                                    <div class="row p-2">
+                                        <div class=" col-9">
+                                            @item.LoanParentName
+                                        </div>
+                                        <div class="col-3">
+                                            <button class="button-color text-light p-2 shadow rounded" style="border:none;width:120px" @onclick="()=>selectType(false,item)">เลือก</button>
+                                        </div>
                                     </div>
-                                    <div class="col-3">
-                                        <button class="button-color text-light p-2 shadow rounded" style="border:none;width:120px" @onclick="()=>selectType(false,item)">เลือก</button>
-                                    </div>
-                                </div>
 
                                 }
                             </div>
@@ -49,12 +49,12 @@
                 <div class="my-3 mx-3 row">
                     <div class=" col-3">
                         <label class="form-label font-weight-bold font-color">ดอกเบี้ย</label>
-                       
+
 
                     </div>
                     <div class=" col-7">
-                        <InputText @bind-Value ="Loan.LoanInterate" class="form-control" id="exampleFormControlInput1" />
-                        
+                        <InputText @bind-Value="Loan.LoanInterate" class="form-control" id="exampleFormControlInput1" />
+
                     </div>
                 </div>
 
@@ -64,8 +64,8 @@
                         <label class="form-label font-weight-bold font-color">จำนวนงวดสูงสุด</label>
                     </div>
                     <div class=" col-7">
-                        <InputNumber @bind-Value="Loan.LoanPeriod" class="form-control" id="exampleFormControlInput1"/>
-                        
+                        <InputNumber @bind-Value="Loan.LoanPeriod" class="form-control" id="exampleFormControlInput1" />
+
                     </div>
 
                 </div>
@@ -87,8 +87,8 @@
                         <label for="guarantor" class="form-label font-weight-bold font-color">เริ่มใช้เงื่อนไขเมื่อ</label>
                     </div>
                     <div class=" col-7">
-                        <InputDate @bind-Value="Loan.StartDate" class="form-control" id="exampleFormControlInput1"   />
-                        
+                        <InputDate @bind-Value="Loan.StartDate" class="form-control" id="exampleFormControlInput1" />
+
                     </div>
                 </div>
                 <div class="my-3 mx-3 row">
@@ -104,35 +104,55 @@
 
                     </div>
                 </div>
-           </EditForm>  
+            </EditForm>
 
-                <div class="my-4 mx-3 row">
-                    <div class="col-6 text-end">
-                        <button type="button"
-                                class="btn secondary-bg shadow rounded"
-                                style="width:200px"
-                                data-bs-toggle="modal"
-                                data-bs-target="#backPage">
-                            กลับ
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button type="button"
-                                class="btn button-color shadow rounded"
-                                style="color: white; width: 200px" @onclick="Testdata">
-                            สร้างประเภทใหม่
-                           @* data-bs-toggle="modal"
+            <div class="my-4 mx-3 row">
+                <div class="col-6 text-end">
+                    <button type="button"
+                            class="btn secondary-bg shadow rounded"
+                            style="width:200px"
+                            data-bs-toggle="modal"
+                            data-bs-target="#backPage">
+                        กลับ
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button type="button"
+                            class="btn button-color shadow rounded"
+                            style="color: white; width: 200px" data-bs-toggle="modal"
+                            data-bs-target="#confirmPage" >
+                        สร้างประเภทใหม่
+                        @* data-bs-toggle="modal"
                             data-bs-target="#nextPage"*@
-                        </button>
-
-                    </div>
-
+                    </button>
 
                 </div>
 
 
+            </div>
+
+
         </div>
 
+    </div>
+</div>
+
+@* modelconfirm page *@
+<div class="modal fade" id="confirmPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                ยืนยันการสร้างประเภทใหม่ใช่หรือไม่
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                กรุณาตรวจสอบข้อมูลที่ระบุมาให้ถูกต้องสมบรูณ์ ก่อนดำเนินการ
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="Testdata">ยืนยัน</button>
+            </div>
+        </div>
     </div>
 </div>
 
