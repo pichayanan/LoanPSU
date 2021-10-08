@@ -31,7 +31,10 @@
                 </select>
             </div>
             <div class="col-1">
-                <button class="button-color text-light shadow rounded" style="border:none;height:40px">เพิ่มสิทธิ</button>
+                <button class="button-color text-light shadow rounded" style="border:none;height:40px" data-bs-toggle="modal"
+                        data-bs-target="#addperson">
+                    เพิ่มสิทธิ
+                </button>
             </div>
         </div>
 
@@ -104,7 +107,7 @@
         <div class="modal-content">
 
             <div class="modal-body ">
-                ยืนยันที่ต้องการลบสิทธิ์การเข้าถึงของท่านนี้ใช่หรือไม่
+                ยืนยันที่ต้องการลบสิทธิการเข้าถึงของท่านนี้ใช่หรือไม่
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
@@ -114,10 +117,32 @@
     </div>
 </div>
 
+@* model addperson *@
+<div class="modal fade" id="addperson" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body ">
+                ต้องการยืนยันการเพิ่มสิทธินี้หรือไม่
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="confirmadd">ยืนยัน</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @code {
 
     public void confirmPage()
+    {
+        NavigationManager.NavigateTo("./Admin/Accessright");
+
+    }
+
+    public void confirmadd()
     {
         NavigationManager.NavigateTo("./Admin/Accessright");
 
