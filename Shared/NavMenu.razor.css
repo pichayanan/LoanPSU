@@ -10,6 +10,7 @@
 .navbar-brand {
     font-size: 1.1rem;
     color: #003C71;
+    font-weight:bold;
 }
 
 .oi {
@@ -20,16 +21,16 @@
 }
 
 .nav-item {
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
+    font-size: medium;
+    padding-bottom: 1.2rem;
 }
 
     .nav-item:first-of-type {
-        padding-top: 1rem;
+        padding-top: 2rem;
     }
 
     .nav-item:last-of-type {
-        padding-bottom: 1rem;
+        padding-bottom: 3rem;
     }
 
     .nav-item ::deep a {
