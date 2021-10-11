@@ -9,7 +9,7 @@ namespace BlazorApp.ModelsDB
     {
         public byte? LoanParentId { get; set; }
         public string LoanParentName { get; set; }
-        public byte LoanTypeId { get; set; }
+        public int LoanTypeId { get; set; }
         public string LoanTypeName { get; set; }
         public int LoanMaxAmount { get; set; }
         public decimal? LoanInterate { get; set; }

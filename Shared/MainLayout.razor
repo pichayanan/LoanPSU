@@ -1,128 +1,128 @@
 ﻿@inherits LayoutComponentBase;
 @inject IJSRuntime JSRuntime;
+   
+    <div class="page">
+        <AuthorizeView>
+            <Authorized>
+                @if (role == "user")
+                {
+                    <div class="sidebar">
+                        <NavMenu />
+                    </div>
+                    <div class="main">
+                        <div class="top-row px-4">
+                            <div class="row gx-5">
 
-<div class="page">
-    <AuthorizeView>
-        <Authorized>
-            @if (role == "user")
-            {
-                <div class="sidebar">
-                    <NavMenu />
-                </div>
-                <div class="main">
-                    <div class="top-row px-4">
-                        <div class="row gx-5">
-                            
-                            <div class="col">
-                                <button type="button" class="btn secondary-bg">
-                                    <i class="fas fa-th-large fa-lg"></i>
-                                </button>
+                                <div class="col">
+                                    <button type="button" class="btn secondary-bg">
+                                        <i class="fas fa-th-large fa-lg"></i>
+                                    </button>
+                                </div>
                             </div>
+                        </div>
+
+                        <div style=" background-color: #F1F3F3;">
+                            @Body
+                        </div>
+                    </div>
+                }
+                else if (role == "admin")
+                {
+                    <div class="sidebar">
+                        <NavAdmin />
+                    </div>
+                    <div class="main">
+                        <div class="top-row px-4">
+                            <div class="row gx-5">
+
+                                <div class="col">
+                                    <button type="button" class="btn secondary-bg">
+                                        <i class="fas fa-th-large fa-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style=" background-color: #F1F3F3;">
+                            @Body
                         </div>
                     </div>
 
-                    <div style=" background-color: #F1F3F3;">
-                        @Body
-                    </div>
-                </div>
-            }
-            else if (role == "admin")
-            {
-                <div class="sidebar">
-                    <NavAdmin />
-                </div>
+
+                }
+            </Authorized>
+            <NotAuthorized>
                 <div class="main">
-                    <div class="top-row px-4">
-                        <div class="row gx-5">
-                           
-                            <div class="col">
-                                <button type="button" class="btn secondary-bg">
-                                    <i class="fas fa-th-large fa-lg"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style=" background-color: #F1F3F3;">
+                    <IndexNav />
+                    <div>
                         @Body
                     </div>
                 </div>
+            </NotAuthorized>
+        </AuthorizeView>
 
-
-            }
-        </Authorized>
-        <NotAuthorized>
-            <div class="main">
-                <IndexNav/>
-                <div>
-                    @Body
-                </div>
-            </div>
-        </NotAuthorized>
-    </AuthorizeView>
-
-    <!-- Modal -->
-    <div class="modal fade"
-         id="exampleModal"
-         tabindex="-1"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ข้อมูลส่วนตัว</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div>ชื่อ-สกุล:</div>
-                    <div class="row">
-                        <div class="col">วันที่เริ่มทำงาน:</div>
-                        <div class="col">ตำแหน่งงาน:</div>
+        <!-- Modal -->
+        <div class="modal fade"
+             id="exampleModal"
+             tabindex="-1"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">ข้อมูลส่วนตัว</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="row">
-                        <div class="col">สังกัดส่วนงาน:</div>
-                        <div class="col">เบอร์ที่ทำงาน:</div>
+                    <div class="modal-body">
+                        <div>ชื่อ-สกุล:</div>
+                        <div class="row">
+                            <div class="col">วันที่เริ่มทำงาน:</div>
+                            <div class="col">ตำแหน่งงาน:</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">สังกัดส่วนงาน:</div>
+                            <div class="col">เบอร์ที่ทำงาน:</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">เบอร์ติดต่อ:</div>
+                            <div class="col">เงินเดือน:</div>
+                        </div>
+                        <div>เลขที่บัญชี:</div>
+                        <div>เงินคงเหลือสุทธิ:</div>
+                        <div>สถานภาพ:</div>
+                        <div>สถานะการมีบุตร:</div>
                     </div>
-                    <div class="row">
-                        <div class="col">เบอร์ติดต่อ:</div>
-                        <div class="col">เงินเดือน:</div>
-                    </div>
-                    <div>เลขที่บัญชี:</div>
-                    <div>เงินคงเหลือสุทธิ:</div>
-                    <div>สถานภาพ:</div>
-                    <div>สถานะการมีบุตร:</div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@code {
-    [CascadingParameter]
-    private Task<AuthenticationState> AuthStateTask { get; set; }
+    @code {
+        [CascadingParameter]
+        private Task<AuthenticationState> AuthStateTask { get; set; }
 
-    string role = string.Empty;
+        string role = string.Empty;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            var authState = await AuthStateTask;
-            var user = authState.User;
-            if (user.Identity.IsAuthenticated)
+            if (firstRender)
             {
-                role = await sessionStorage.GetItemAsync<string>("role");
-                if (role == null)
+                var authState = await AuthStateTask;
+                var user = authState.User;
+                if (user.Identity.IsAuthenticated)
                 {
-                    NavigationManager.NavigateTo("/SignOut", true);
-                }
+                    role = await sessionStorage.GetItemAsync<string>("role");
+                    if (role == null)
+                    {
+                        NavigationManager.NavigateTo("/SignOut", true);
+                    }
 
-                @*ข้อมูลมีการเปลี่ยนแปลง บอก ui run ใหม่*@
-                StateHasChanged();
+                    @*ข้อมูลมีการเปลี่ยนแปลง บอก ui run ใหม่*@
+                    StateHasChanged();
+                }
             }
         }
     }
-}
 
 
 
