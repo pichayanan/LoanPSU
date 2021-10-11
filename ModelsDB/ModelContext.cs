@@ -46,9 +46,9 @@ namespace BlazorApp.ModelsDB
                     .HasPrecision(1)
                     .HasColumnName("ACTIVE");
 
-                entity.Property(e => e.LoanInterate)
+                entity.Property(e => e.LoanInterest)
                     .HasColumnType("FLOAT")
-                    .HasColumnName("LOAN_INTERATE");
+                    .HasColumnName("LOAN_INTEREST");
 
                 entity.Property(e => e.LoanMaxAmount)
                     .HasColumnType("NUMBER(10,2)")
@@ -117,10 +117,10 @@ namespace BlazorApp.ModelsDB
                     .HasColumnName("ACTIVE")
                     .HasDefaultValueSql("1");
 
-                entity.Property(e => e.File)
-                    .HasMaxLength(1000)
+                entity.Property(e => e.FileName)
+                    .HasMaxLength(2000)
                     .IsUnicode(false)
-                    .HasColumnName("FILE");
+                    .HasColumnName("FILE_NAME");
 
                 entity.Property(e => e.LoanInterate)
                     .HasMaxLength(20)
@@ -148,6 +148,11 @@ namespace BlazorApp.ModelsDB
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("LOAN_TYPE_NAME");
+
+                entity.Property(e => e.PathFile)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("PATH_FILE");
 
                 entity.Property(e => e.Remark)
                     .HasMaxLength(2000)
@@ -420,6 +425,8 @@ namespace BlazorApp.ModelsDB
                     .IsUnicode(false)
                     .HasColumnName("UNIT_ID");
             });
+
+            modelBuilder.HasSequence("DEPT_SEQ");
 
             OnModelCreatingPartial(modelBuilder);
         }
