@@ -15,7 +15,11 @@
 
                         </div>
                         <div class="col-4">
-                            <button class="button-color text-light p-2 shadow rounded" style="border:none;height:40px" @onclick="()=>ToggleButton(true)">ประเภทที่มีอยู่</button>
+                            <button class="button-color text-light p-2 shadow rounded"
+                                    style="border:none;height:40px"
+                                    @onclick="()=>ToggleButton(true)">
+                                ประเภทที่มีอยู่
+                            </button>
                         </div>
 
                     </div>
@@ -33,7 +37,11 @@
                                             @item.LoanParentName
                                         </div>
                                         <div class="col-3">
-                                            <button class="button-color text-light p-2 shadow rounded" style="border:none;width:120px" @onclick="()=>selectType(false,item)">เลือก</button>
+                                            <button class="button-color text-light p-2 shadow rounded"
+                                                    style="border:none;width:120px"
+                                                    @onclick="()=>SelectType(false,item)">
+                                                เลือก
+                                            </button>
                                         </div>
                                     </div>
 
@@ -207,50 +215,4 @@
 
 @code {
 
-    List<TypeLoan> ListType;
-    TypeLoan Loan;
-    UploadModel ModelUpload;
-
-    public Boolean changType { get; set; } = false;
-
-    public void SetCurrentData(DTEventArgs value)
-    {
-        ModelUpload.Name = value.Params[0].ToString();
-        ModelUpload.Url = value.Params[1].ToString();
-        Loan.PathFile = ModelUpload.Url;
-    }
-
-    protected override void OnInitialized()
-    {
-        ModelUpload = new UploadModel();
-        ListType = new List<TypeLoan>();
-        Loan = new TypeLoan();
-        ListType = _context.TypeLoans.ToList<TypeLoan>();
-    }
-
-    public void BackPage()
-    {
-        NavigationManager.NavigateTo("./Admin/ManageTypeLoan");
-    }
-
-
-    public void ToggleButton(Boolean toggle)
-    {
-        changType = toggle;
-    }
-
-    public void selectType(Boolean toggle, TypeLoan loantype)
-    {
-        Loan.LoanParentName = loantype.LoanParentName;
-
-        ToggleButton(toggle);
-    }
-
-    public void SaveToDb()
-    {
-        Console.WriteLine(Loan);
-@*        Loan.Active = 1;
-        _context.TypeLoans.Add(Loan);
-        await _context.SaveChangesAsync();*@
-    }
 }

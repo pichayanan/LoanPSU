@@ -148,7 +148,6 @@
             }
         }
 
-
         @*เช็คจำนวนงวด*@
         if (ModelApplyLoan.Period > LoanType.LoanPeriod)
         {
@@ -176,7 +175,6 @@
                 return;
             }
             @* รอถามเรื่องใช่ตัวไหนในการคำนวนวันหมดอายุงาน แต่ไม่ได้เช็เรื่องที่ต่าทำงานมาเกิน 2 ปีไหม *@
-
         }
 
         await sessionStorage.SetItemAsync("FromLoan_1", ModelApplyLoan);

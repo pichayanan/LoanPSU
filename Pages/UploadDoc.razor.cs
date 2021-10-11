@@ -25,6 +25,7 @@ namespace BlazorApp.Pages
             ModelUpload.Id = resultInfoList.Count() + 1;
             ModelUpload.Name = value.Params[0].ToString();
             ModelUpload.Url = value.Params[1].ToString();
+            ModelUpload.TempImgName = value.Params[2].ToString();
             resultInfoList.Add(ModelUpload);
         }
 

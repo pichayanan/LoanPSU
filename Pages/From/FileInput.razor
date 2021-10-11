@@ -1,5 +1,4 @@
 ﻿@page "/fileinput"
-
 @using Microsoft.AspNetCore.Hosting
 @using BlazorApp.Data
 
@@ -41,12 +40,10 @@
 
     public const string TEMP_DIR = "Temp";
     const int maxFileSize = 10485760 * 2; //20 MB
-    string Message = "No file(s) selected";
 
     private void OnInputFileChange(InputFileChangeEventArgs e)
     {
         selectedFiles = e.GetMultipleFiles();
-        Message = $"{selectedFiles.Count} file(s) selected";
         this.StateHasChanged();
     }
 
@@ -62,9 +59,10 @@
                 {
                     if (file.Size <= maxFileSize)
                     {
-                        var url = await SaveFile(file);
+                        var tempName = await CreateFileCombine(file);
+                        var url = await SaveFile(file, tempName);
 
-                        AddData(file.Name, url);
+                        AddData(file.Name, url, tempName);
 
                         //ApplyLoanModel.FileData tmp = new ApplyLoanModel.FileData();
                         //tmp.Name = file.Name;
@@ -87,7 +85,6 @@
                     Console.WriteLine(ex);
                 }
             }
-            Message = $"{selectedFiles.Count} file(s) uploaded on server";
             @*        testModelData test_22 = new testModelData() { LoanTypeID = 1, Guarantor = "new" };
                 var test2 = $"/uploaddoc/{test_22}";
                 NavigationManager.NavigateTo(test2);*@
@@ -101,15 +98,16 @@
     }
 }
 
-public void AddData(string name, string url)
+public void AddData(string name, string url, string tempName)
 {
     DTEventArgs arg = new DTEventArgs();
     arg.Params.Add(name);
     arg.Params.Add(url);
+    arg.Params.Add(tempName);
     SetChildData.InvokeAsync(arg);
 }
 
-private async Task<string> SaveFile(IBrowserFile file, string guid = null)
+private async Task<string> CreateFileCombine(IBrowserFile file, string guid = null)
 {
     var dirToSave = Path.Combine(env.WebRootPath, TEMP_DIR);
     var di = new DirectoryInfo(dirToSave);
@@ -123,6 +121,12 @@ private async Task<string> SaveFile(IBrowserFile file, string guid = null)
     //var fileName = Guid.NewGuid().ToString() + GetFileExtension(file.Name);
     var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.Name);
 
+    return fileName;
+}
+
+private async Task<string> SaveFile(IBrowserFile file, string fileName)
+{
+    var dirToSave = Path.Combine(env.WebRootPath, TEMP_DIR);
     var filePath = Path.Combine(dirToSave, fileName);
 
     using (var stream = file.OpenReadStream(maxFileSize))

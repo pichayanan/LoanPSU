@@ -7,7 +7,7 @@
     }
     else
     {
-        <div class="card primary-bg h4 text-light px-2 py-1" >ชื่อเอกสาร</div>
+        <div class="card primary-bg h4 text-light px-2 py-1">ชื่อเอกสาร</div>
 
         @for (var i = 0; i < listModel.Count; i++)
         {
@@ -18,7 +18,7 @@
                 <div class="col-4 text-end">
                     <button type="button"
                             data-bs-toggle="modal"
-                            data-bs-target="#Confirm"
+                            data-bs-target="#remove"
                             class="btn error-color"
                             @onclick="@(e => ConfirmFrom(item))">
                         <i class="fas fa-trash-alt"></i>
@@ -29,9 +29,9 @@
     }
 
 
-    @* modal Confirm *@
+    @* modal remove *@
     <div class="modal fade"
-         id="Confirm"
+         id="remove"
          tabindex="-1"
          aria-labelledby="exampleModalLabel"
          aria-hidden="true">

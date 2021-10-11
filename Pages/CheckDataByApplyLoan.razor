@@ -105,7 +105,7 @@
                 }
                 else
                 {
-                    @loanData.LoanInterest @typeInterate
+                    @loanData.LoanInterest @TypeInterate
                 }
             </div>
             <br />
@@ -173,45 +173,4 @@
     </div>
 
 @code {
-
-    private LoanType loanData;
-    private ApplyLoanModel info;
-    private String LoanInterate { get; set; } = " ไม่มี";
-    private string typeInterate { get; set; } = "%";
-
-    protected async override Task OnInitializedAsync()
-    {
-        loanData = new LoanType();
-        info = new ApplyLoanModel();
-        var checkData = await sessionStorage.GetItemAsStringAsync("FromLoan_1");
-        if (checkData != null)
-        {
-            info = await sessionStorage.GetItemAsync<ApplyLoanModel>("FromLoan_1");
-            loanData = _context.LoanTypes.Where(c => c.LoanTypeId == info.LoanTypeID).FirstOrDefault();
-            if (loanData == null)
-            {
-                @* กลับไปยังหน้าหลัง เนื่องจากไม่พบประเภทการกู้นั้นๆ *@
-            }
-        }
-        else
-        {
-            @* Error ไม่มีตัว FromLoan_1 *@
-            @*          info.LoanTypeID = 0;
-                info.LoanMaxAmount = 0;
-                info.Period = 0;
-                info.Guarantor = "null";*@
-        }
-    }
-
-    public void BackPage()
-    {
-        NavigationManager.NavigateTo("/uploaddoc");
-    }
-
-    public void NextPage()
-    {
-        NavigationManager.NavigateTo("/applyloansuccess");
-    }
-
-
-}
+   }
