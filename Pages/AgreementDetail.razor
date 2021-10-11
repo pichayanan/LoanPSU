@@ -1,8 +1,8 @@
 ﻿@page  "/AgreementDetail"
 
-<div class="container my-3">
-    <div class="row justify-content-between py-3 bg-light pb-4 shadow rounded">
-        <div class="col-4 mt-3 ms-3">
+<div class="container my-3 ">
+    <div class="row justify-content-center py-3 bg-light pb-4 shadow rounded mx-2">
+        <div class="col-lg-8 col-12 mt-3">
             <div style="font-size: x-large; font-weight: bold; color: #2788DE"> ชื่อผู้กู้ </div>
             <div class="row my-3" style="font-weight: bold;color: #2788DE">
                 <div class="col-12 col-lg-6">ยอดเงินกู้ทั้งหมด</div>
@@ -14,14 +14,14 @@
                 <div class="col-12 col-lg-4">ประเภทการกู้</div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="pt-4 text-end">
+        <div class="col-lg-4 col-12">
+            <div class="col-6 pt-4 text-end">
                 <button class="button-color shadow rounded" @onclick="pdfAgreement" style="border-radius: 5px; color:white; width:200px; height:40px;border:none">
                     <i class="far fa-file-pdf fa-lg  mx-3"></i>
                     เอกสารสัญญา
                 </button>
             </div>
-            <div class="pt-4 text-end">
+            <div class="col-6 pt-4 text-end">
                 <button class="button-color shadow rounded" @onclick="premise" style="border-radius: 5px; color: white; width: 200px; height: 40px; border: none ">
                     <i class="fas fa-upload fa-lg  mx-3"></i>
                     อัปโหลดหลักฐาน
@@ -30,8 +30,8 @@
 
         </div>
     </div>
-    <div class="row justify-content-between  ">
-        <table class="table table-hover  shadow rounded">
+    <div class="row justify-content-center mx-2">
+        <table class="table table-hover  shadow rounded col-12 " >
             <thead class="primary-bg text-center text-light">
                 <tr>
                     <th>วันที่</th>

@@ -1,16 +1,16 @@
 ﻿@page "/LoanAgreement"
 @inject NavigationManager NavigationManager
 
-<div class="container mt-3">
+<div class="container mt-3 mb-5 pb-5">
     @if (listAgreement.Count != 0)
     {
-        <div>
-            <div class="card col-12 col-md-12 primary-bg pt-2 "
-                 style="color:white; border-radius:0px; height:50px; padding-left:15px">
-                <a>สัญญาที่คงอยู่</a>
+        <div class="mx-2 col-12 col-md-12">
+            <div class="card  primary-bg pt-2  "
+                 style="color:white; border-radius:0px; height:50px;">
+                <div class="ms-3">สัญญาที่คงอยู่</div>
             </div>
 
-            <table class="table table-hover border-table">
+            <table class="table table-hover border-table ">
                 <thead>
                     <tr>
                         <th>เลขที่สัญญา</th>
@@ -81,7 +81,7 @@
                                     }
                                 </td>
                                 <td class="text-left">@titleStatus</td>
-                                <td class="text-center">@agreement.LoanType</td>
+                                <td class="text-left">@agreement.LoanType</td>
                                 <td class="text-center">@agreement.LoanAmout</td>
                                 <td class="text-center">@agreement.TotalAmout</td>
                                 <td class="text-center">
@@ -91,7 +91,7 @@
                                     }
                                     @if (agreement.LoanStatus == 1)
                                     {
-                                        <button class="button-color shadow rounded"
+                                        <button class="button-color shadow rounded "
                                                 type="button"
                                                 @onclick="ChooseDate"
                                                 style="border-radius:3px; color: #ffffff;height:30px">
@@ -116,10 +116,10 @@
 
         @if (LoanCheckbook == true)
         {
-            <div class="pt-5" style="padding-bottom: 5rem">
+            <div class="mx-2 col-12 col-md-12 pb-5 mt-5">
 
-                <div class="card col-12 col-md-12 primary-bg pt-2 " style="color:white;border-radius:0px;height:50px;padding-left:15px">
-                    <a>สัญญาที่สิ้นสุดลงแล้ว</a>
+                <div class="card primary-bg pt-2 " style="color:white;border-radius:0px;height:50px">
+                    <div class="ms-3">สัญญาที่สิ้นสุดลงแล้ว</div>
                 </div>
 
                 <table class="table table-hover border-table">
