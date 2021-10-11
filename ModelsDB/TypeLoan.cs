@@ -16,7 +16,8 @@ namespace BlazorApp.ModelsDB
         public decimal? LoanPeriod { get; set; }
         public decimal? Active { get; set; }
         public string Remark { get; set; }
-        public string File { get; set; }
+        public string PathFile { get; set; }
         public DateTime? StartDate { get; set; }
+        public string FileName { get; set; }
     }
 }
