@@ -17,11 +17,11 @@ namespace BlazorApp.Pages
         protected override void OnInitialized()
         {
             resultInfoList = new List<UploadModel>();
+            ModelUpload = new UploadModel();
         }
 
         public void SetCurrentData(DTEventArgs value)
         {
-            ModelUpload = new UploadModel();
             ModelUpload.Id = resultInfoList.Count() + 1;
             ModelUpload.Name = value.Params[0].ToString();
             ModelUpload.Url = value.Params[1].ToString();
