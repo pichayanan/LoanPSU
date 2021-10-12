@@ -2,8 +2,8 @@
 
 <div class="container mt-5">
     <div class="h3">สถานะการกู้ยืมปัจจุบัน</div>
-    <div class="owl-carousel owl-theme pt-2">
-        <div class="mx-2 pt-2">
+    <div class=" row mx-2">
+        <div class=" pt-2 p-2 col-11 col-md-4">
             <div class="card" style="border-color:blue">
                 <div class="card-body">
                     <div class="card-title h5" style="color:blue">ทำรายการกู้ยืมไปแล้ว</div>
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="mx-2 pt-2">
+        <div class=" pt-2 col-11 col-md-4 p-2">
             <div class="card">
                 <div class="card-body">
                     <div class="card-title h5">เงินกู้เพื่อกิจกรรมฯ</div>
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="mx-2 pt-2">
+        <div class="pt-2 col-11 col-md-4">
             <div class="card " style="background-color:orange;border-color:yellow">
                 <div class="card-body">
                     <div class="card-title h5">รออนุมัติการกู้</div>
@@ -50,97 +50,98 @@
             </select>
         </div>
     </div>
+    
+        <div class="mt-4 owl-carousel owl-theme mx-2">
+            @for (var x = 0; x < listLoan.Count; x++)
+            {
+                var itam = listLoan[x];
+                var index = x + 1;
 
-    <div class="mt-4 owl-carousel owl-theme">
-        @for (var x = 0; x < listLoan.Count; x++)
-        {
-            var itam = listLoan[x];
-            var index = x + 1;
-
-            <div class="mx-2">
-                <div class="card">
-                    <div class="card-body overflow-auto" style="height:200px;">
-                        <div class="card-title h5">ประเภทที่@itam.LoanParentId. @itam.LoanParentName</div>
-                        @if (@itam.LoanParentName != @itam.LoanTypeName)
-                        {
-                            <div class="card-title h6">หมายเหตุ @itam.LoanTypeName</div>
-                        }
-                        <div class="row">
-                            <div class="col">วงเงินสูงสุด</div>
-                            <div class="col text-end">
-                                @if (itam.LoanMaxAmount == 0)
-                                {
-                                    @maxAmountNote
-                                }
-                                else
-                                {
-                                    @itam.LoanMaxAmount @typeMoney
-                                }
+                <div class="mx-2 ">
+                    <div class="card">
+                        <div class="card-body overflow-auto" style="height:200px;">
+                            <div class="card-title h5">ประเภทที่@itam.LoanParentId. @itam.LoanParentName</div>
+                            @if (@itam.LoanParentName != @itam.LoanTypeName)
+                            {
+                                <div class="card-title h6">หมายเหตุ @itam.LoanTypeName</div>
+                            }
+                            <div class="row">
+                                <div class="col">วงเงินสูงสุด</div>
+                                <div class="col text-end">
+                                    @if (itam.LoanMaxAmount == 0)
+                                    {
+                                        @maxAmountNote
+                                    }
+                                    else
+                                    {
+                                        @itam.LoanMaxAmount @typeMoney
+                                    }
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">อัตราดอกเบี้ย</div>
+                                <div class="col text-end">
+                                    @if (itam.LoanInterest == 0)
+                                    {
+                                        @maxAmountNote
+                                    }
+                                    else
+                                    {
+                                        @itam.LoanInterest @typeInterate
+                                    }
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">ผ่อนชำระสูงสุด</div>
+                                <div class="col text-end">@itam.LoanPeriod เดือน</div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">อัตราดอกเบี้ย</div>
-                            <div class="col text-end">
-                                @if (itam.LoanInterest == 0)
-                                {
-                                    @maxAmountNote
-                                }
-                                else
-                                {
-                                    @itam.LoanInterest @typeInterate
-                                }
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">ผ่อนชำระสูงสุด</div>
-                            <div class="col text-end">@itam.LoanPeriod เดือน</div>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-white">
-                        <div class="row mx-1">
-                            <div class="col d-grid gap-2">
-                                <button type="button" class="btn btn-outline-primary">รายละเอียด</button>
-                            </div>
-                            <div class="col d-grid gap-2">
-                                <button type="button" class="btn btn-primary" @onclick="()=> ApplyLoan(itam)">ยื่นกู้</button>
+                        <div class="card-footer bg-white">
+                            <div class="row mx-1">
+                                <div class="col d-grid gap-2">
+                                    <button type="button" class="btn btn-outline-primary">รายละเอียด</button>
+                                </div>
+                                <div class="col d-grid gap-2">
+                                    <button type="button" class="btn btn-primary" @onclick="()=> ApplyLoan(itam)">ยื่นกู้</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
 
-    </div>
+        </div>
+  
 </div>
 
-@code {
-    List<LoanType> listLoan;
-    private string typeMoney { get; set; } = "บาท";
-    private string typeInterate { get; set; } = "%";
-    private string maxAmountNote { get; set; } = "กู้ได้ตามจริง";
-    @*List<LoanType> listLoan;*@
-    public LoanType Model { get; set; }
+    @code {
+        List<LoanType> listLoan;
+        private string typeMoney { get; set; } = "บาท";
+        private string typeInterate { get; set; } = "%";
+        private string maxAmountNote { get; set; } = "กู้ได้ตามจริง";
+        @*List<LoanType> listLoan;*@
+        public LoanType Model { get; set; }
 
-    @*run code ก่อนแล้ว run js หลัง*@
-protected override async Task OnAfterRenderAsync(bool firstRender)
-{
-    if (firstRender)
-    {
-        await JS.InvokeVoidAsync("Cardimgheader");
-    }
-}
+        @*run code ก่อนแล้ว run js หลัง*@
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                await JS.InvokeVoidAsync("Cardimgheader");
+            }
+        }
 
-protected override void OnInitialized()
-{
-    listLoan = new List<LoanType>();
-    listLoan = _context.LoanTypes.Where(c => c.Active == 1).ToList<LoanType>();
-    }
+        protected override void OnInitialized()
+        {
+            listLoan = new List<LoanType>();
+            listLoan = _context.LoanTypes.Where(c => c.Active == 1).ToList<LoanType>();
+        }
 
-    private void ApplyLoan(LoanType landData)
-    {
-        NavigationManager.NavigateTo($"/Applyloan/{landData.LoanTypeId}");
-@*    await sessionStorage.SetItemAsync("loanTitle", landData);
-    await sessionStorage.SetItemAsync("loanDetail", loanDetail);
-    NavigationManager.NavigateTo("/applyloan");*@
+        private void ApplyLoan(LoanType landData)
+        {
+            NavigationManager.NavigateTo($"/Applyloan/{landData.LoanTypeId}");
+            @*    await sessionStorage.SetItemAsync("loanTitle", landData);
+                await sessionStorage.SetItemAsync("loanDetail", loanDetail);
+                NavigationManager.NavigateTo("/applyloan");*@
+        }
     }
-}
