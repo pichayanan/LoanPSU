@@ -7,18 +7,34 @@
 
         </div>
 
-        <div class="card bg-light pa-3 mt-4 mx-2 shadow rounded" style="height:300px;border-radius:10px">
-            <div class="row pt-3">
+        <div class="card bg-light pa-3 mt-4 mx-2 shadow rounded col-md-12 col-12" style="height:300px;border-radius:10px">
+            <div class="row pt-3  ">
 
-                <div class="card col-10 primary-bg-drop pt-3 mt-3 shadow rounded" @onclick="ChangeGuarantor" style="height:60px;padding-left:20px;border-radius:10px;margin-left:40px">
-                    <div class="col-8 ">
-                        <a style="font-size:larger">คำขอเปลี่ยนผู้ค้ำ</a>
+                <div class="card col-md-10 col-9 primary-bg-drop pt-3 mt-3 shadow rounded ms-3" @onclick="ChangeGuarantor" style="height:60px;border-radius:10px;">
+                    <div class="col-md-8 col-12 " style="font-size:larger" >
+                        คำขอเปลี่ยนผู้ค้ำ
 
                     </div>
 
 
                 </div>
-                <div class="col-1 card primary-bg mt-3 shadow rounded" @onclick="ChangeGuarantor" style="height:60px;margin-left:30px;width:60px">
+                <div class="col-md-1 col-1 card primary-bg mt-3 shadow rounded mx-2" @onclick="ChangeGuarantor" style="height:60px;width:60px">
+
+                </div>
+
+
+            </div>
+            <div class="row pt-3 ">
+
+                <div class="card col-md-10 col-9  primary-bg-drop pt-3 mt-3 shadow rounded ms-3" @onclick="CompoundLoan" style="height:60px;border-radius:10px" >
+                    <div class="col-md-8 col-12" style="font-size:larger">
+                        คำขอกู้ประเภทกู้ทบยอด
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-1 col-1 card primary-bg mt-3 shadow rounded mx-2" @onclick="CompoundLoan" style="height:60px;width:60px">
 
                 </div>
 
@@ -26,31 +42,14 @@
             </div>
             <div class="row pt-3">
 
-                <div class="card col-10 primary-bg-drop pt-3 mt-2 shadow rounded" @onclick="CompoundLoan" style="height:60px;padding-left:20px;border-radius:10px;margin-left:40px">
-                    <div class="col-8">
-                        <a style="font-size:larger">คำขอกู้ประเภทกู้ทบยอด</a>
-
+                <div class="card col-md-10 col-9  primary-bg-drop pt-3 mt-2 shadow rounded ms-3" @onclick="AnotherRequest" style="height:60px;border-radius:10px">
+                    <div class="col-md-8 col-12" style="font-size:larger">
+                        คำขออื่นๆ
                     </div>
 
 
                 </div>
-                <div class="col-1 card primary-bg mt-2 shadow rounded" @onclick="CompoundLoan" style="height:60px;margin-left:30px;width:60px">
-
-                </div>
-
-
-            </div>
-            <div class="row pt-3">
-
-                <div class="card col-10 primary-bg-drop pt-3 mt-2 shadow rounded" @onclick="AnotherRequest" style="height:60px;padding-left:20px;border-radius:10px;margin-left:40px">
-                    <div class="col-8">
-                        <a style="font-size:larger">คำขออื่นๆ</a>
-
-                    </div>
-
-
-                </div>
-                <div class="col-1 card primary-bg mt-2 shadow rounded" @onclick="AnotherRequest" style="height:60px;margin-left:30px;width:60px">
+                <div class="col-1 col-md-1 card primary-bg mt-2 shadow rounded mx-2" @onclick="AnotherRequest" style="height:60px;width:60px">
 
                 </div>
 

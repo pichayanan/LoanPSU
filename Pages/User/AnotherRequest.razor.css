@@ -1,0 +1,64 @@
+﻿body {
+}
+
+@media (min-width: 1024px) {
+    .backpage {
+        text-align: end;
+        width: 200px
+    }
+
+    .nextpage {
+        width: 200px;
+    }
+
+    .back {
+        width: 200px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .backpage {
+        text-align: end;
+        width: 200px
+    }
+
+    .nextpage {
+        width: 200px;
+    }
+
+    .back {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .backpage {
+        text-align: end;
+        width: 150px
+    }
+
+    .nextpage {
+        width: 150px
+    }
+
+    .back {
+        width: 150px;
+    }
+}
+
+@media (max-width: 450px) {
+    .backpage {
+        text-align: center;
+        margin-bottom: 15px;
+        width: 200px;
+    }
+
+    .nextpage {
+        text-align: center;
+        width: 200px
+    }
+
+    .back {
+        width: 200px;
+    }
+}

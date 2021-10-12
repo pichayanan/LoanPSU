@@ -7,3 +7,31 @@
     width: 100%;
     background-color: white;
 }
+
+
+@media (min-width: 1024px) {
+   
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 768px) {
+    
+}
+
+@media (max-width: 450px) {
+    .hidden {
+        margin-top:5px
+    }
+    allbtn {
+       
+        margin-top: 20px;
+    }
+    searchbtn {
+        
+        margin-top: 20px;
+    }
+    
+}
