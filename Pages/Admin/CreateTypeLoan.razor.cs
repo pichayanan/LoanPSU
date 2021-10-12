@@ -32,6 +32,7 @@ namespace BlazorApp.Pages.Admin
         {
             ModelUpload.Name = value.Params[0].ToString();
             ModelUpload.Url = value.Params[1].ToString();
+            ModelUpload.TempImgName = value.Params[2].ToString();
         }
 
         public void BackPage()

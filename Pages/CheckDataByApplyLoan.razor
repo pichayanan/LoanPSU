@@ -43,7 +43,7 @@
             </div>
             <div class="row pt-1">
                 <div class="col" style="color:red">หากข้อมูลส่วนตัวไม่ถูกต้องกรุณาแก้ไขในระบบสารสนเทศบุคลากร และดำเนินการสร้างคำขอใหม่</div>
-                
+
             </div>
         </div>
 
@@ -91,7 +91,7 @@
         <div class="card primary-bg text-light mt-4 px-3 " style="border-radius: 10px;font-size:x-large;height:40px">
             รายละเอียดการกู้เงิน
         </div>
-        
+
         <div class="mt-3 ms-4 pt-1">
             <div>ประเภทการกู้: @loanData.LoanTypeId @loanData.LoanParentName</div>
             <br />
@@ -157,20 +157,20 @@
     </div>
 </div>
 
-@* model Back page *@
+@* model next page *@
 <div class="modal fade" id="nextPage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    คุณยื่นยันในการยื่นขอกู้ในประเภท @loanData.LoanParentName ใช่หรือไหม
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="NextPage">ยืนยัน</button>
-                </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                คุณยื่นยันในการยื่นขอกู้ในประเภท @loanData.LoanParentName ใช่หรือไหม
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="NextPage">ยืนยัน</button>
             </div>
         </div>
     </div>
+</div>
 
 @code {
-   }
+}
