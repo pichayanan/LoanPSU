@@ -10,7 +10,38 @@
 @*footer*@
 <div class="footer">
 
-    <div class="row py-3 col-12 col-md-12 ms-1 ">
+    <div class="row py-3 col-md-12 col-12 ms-1 ">
+        <div class="col-4 col-md-3 text-left">
+            <button type="button"
+                    class="btn buttonsize secondary-bg shadow rounded text-center"
+                    style="border-radius: 5px"
+                    @onclick="back">
+                กลับ
+            </button>
+
+        </div>
+        <div class="col-4 col-md-4 text-center">
+            <button type="button"
+                    class="btn buttonsize secondary-bg shadow rounded text-center"
+                    style="border-radius: 5px"
+                    data-bs-toggle="modal"
+                    data-bs-target="#upload"
+                    @onclick="EmptyFile">
+                เพิ่มเอกสาร
+            </button>
+        </div>
+        <div class="col-4 col-md-3" style="text-align:end">
+            <button type="button"
+                    class="btn buttonsize secondary-bg shadow rounded text-center"
+                    style="border-radius: 5px"  @onclick="confirmdoc">
+                บันทึก
+            </button>
+        </div>
+    </div>
+
+
+
+   @* <div class="row py-3 col-12 col-md-12 ms-1 ">
         <div class="col-md-3 col-3 text-left">
             <button type="button" class="btn secondary-bg  shadow rounded text-center" @onclick="back" style="border-radius: 5px;width:180px">กลับ</button>
 
@@ -31,7 +62,7 @@
                 บันทึก
             </button>
         </div>
-    </div>
+    </div>*@
 
 </div>
 
